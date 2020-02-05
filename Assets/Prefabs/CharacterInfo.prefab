@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8613336207532230122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5805550119345761970}
+  - component: {fileID: 8613336207532230123}
+  m_Layer: 0
+  m_Name: CharacterInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5805550119345761970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613336207532230122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1490.6829, y: 674.59753, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8613336207532230123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613336207532230122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf7c5a2afad2dc94aaa46865c95364ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterImages:
+  - {fileID: 21300000, guid: 69a13992f369f074caa09369e8217cd8, type: 3}
+  - {fileID: 21300000, guid: 94cf44524cdfc6848a2b7b13a4b9c39c, type: 3}
+  - {fileID: 21300000, guid: 6d5eb3735ec250b42b7fe2f85ed97d0c, type: 3}
+  characterBackgrounds:
+  - {fileID: 21300000, guid: 643647d4b475b3e48b027871b7be6c76, type: 3}
+  - {fileID: 21300000, guid: ca035edde69117d4191c18ba5f87ff90, type: 3}
+  - {fileID: 21300000, guid: cb1410eaffb94da4ab680a9797cb2def, type: 3}
+  - {fileID: 21300000, guid: cb1410eaffb94da4ab680a9797cb2def, type: 3}
+  - {fileID: 21300000, guid: 70598fd271d7d8e40b9c760717389966, type: 3}
+  - {fileID: 21300000, guid: 70598fd271d7d8e40b9c760717389966, type: 3}
+  - {fileID: 21300000, guid: 1b8cf10481035794d8cc1cbea33afe68, type: 3}
+  - {fileID: 21300000, guid: 1b8cf10481035794d8cc1cbea33afe68, type: 3}
+  characterPrefabs:
+  - {fileID: 8693997761177966666, guid: 93edc6a815687f546a5bf7b44244b19e, type: 3}
+  - {fileID: 6333616815445450810, guid: 18c6e4c2b3cc12e418cc0188bd4577d7, type: 3}
