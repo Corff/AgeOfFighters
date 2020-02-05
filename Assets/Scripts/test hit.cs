@@ -9,7 +9,7 @@ public class testhit : MonoBehaviour
 
     void Start()
     {
-        
+        testing = false;
     }
 
     // Update is called once per frame
