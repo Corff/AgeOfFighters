@@ -10208,6 +10208,7 @@ MonoBehaviour:
   facingRight: 0
   isGrounded: 0
   dust: {fileID: 8693997760643936059}
+  dist: 1.49
 --- !u!61 &1699752027658547796
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -17,9 +17,9 @@ public class CMovement : MonoBehaviour
     public bool facingRight;
     public bool isGrounded;
     public ParticleSystem dust;
+    public float dist = 1f;
 
     private float jumpForce = -500f;
-    private float dist;
     private float groundedTimer = 0;
     private Rigidbody2D rigidBody;
     private RaycastHit2D hit;
@@ -74,7 +74,6 @@ public class CMovement : MonoBehaviour
             //anim.SetBool("isCrouched", false); ***
         }
 
-        dist = 3f;
         dir = Vector2.down;
 
         Vector2 endpoint = transform.position + new Vector3(1, 0);
