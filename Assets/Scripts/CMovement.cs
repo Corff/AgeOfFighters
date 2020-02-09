@@ -8,7 +8,7 @@ public class CMovement : MonoBehaviour
     //*** = Not Implemented
     public bool isCrouched = false;
     public float speed = 5f;
-    public static float distance;
+    //public static float distance;
     public bool dashBuffer = false;
     public float dash = 0f;
     public bool isWalking = false;
@@ -22,7 +22,7 @@ public class CMovement : MonoBehaviour
     private float dist;
     private float groundedTimer = 0;
     private Rigidbody2D rigidBody;
-    private RaycastHit hit;
+    private RaycastHit2D hit;
     private Vector3 dir;
     private Vector3 movement;
     private Animator anim;
@@ -37,7 +37,7 @@ public class CMovement : MonoBehaviour
 
     void Update()
     {
-        var hitbox = GetComponent<BoxCollider>();
+        var hitbox = GetComponent<BoxCollider2D>();
 
         if (Input.GetKeyDown(KeyCode.S)) //Enter Crouch
         {
@@ -50,7 +50,7 @@ public class CMovement : MonoBehaviour
             {
                 transform.localPosition = new Vector3(transform.position.x, -0.25f, 0);
             }
-            //anim.SetBool("Crouch", true); ***
+            //anim.SetBool("isCrouched", true); ***
         }
 
         //else if (!isGrounded && !isCrouched)
@@ -74,20 +74,20 @@ public class CMovement : MonoBehaviour
             //anim.SetBool("isCrouched", false); ***
         }
 
-        dist = 0.5f;
-        dir = new Vector3(0, -1, 0);
+        dist = 3f;
+        dir = Vector2.down;
 
-        Vector3 endpoint = transform.position + new Vector3(1, 0, 0);
-        Vector3 startpoint = transform.position + new Vector3(-1, 0, 0);
-
+        Vector2 endpoint = transform.position + new Vector3(1, 0);
+        Vector2 startpoint = transform.position + new Vector3(-1, 0);
+        Debug.DrawRay(transform.position, dir * dist, Color.green);
         groundedTimer += Time.deltaTime;
 
-        //Position
+        //Position --- Convert to else ifs
         if (!isGrounded && groundedTimer >= 0.2f)
         {
-            if (Physics.Raycast(transform.position, dir, dist))
+            if (Physics2D.Raycast(transform.position, dir, dist))
             {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
                 speed = 5f;
             }
@@ -98,9 +98,9 @@ public class CMovement : MonoBehaviour
             }
 
             //Endpoint
-            if (Physics.Raycast(endpoint, dir, dist))
+            if (Physics2D.Raycast(endpoint, dir, dist))
             {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
                 speed = 5f;
             }
@@ -111,9 +111,9 @@ public class CMovement : MonoBehaviour
             }
 
             //Startpoint
-            if (Physics.Raycast(startpoint, dir, dist))
+            if (Physics2D.Raycast(startpoint, dir, dist))
             {
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
                 speed = 5f;
             }
@@ -150,7 +150,7 @@ public class CMovement : MonoBehaviour
             isShielding = false;
         }
 
-        distance = transform.localPosition.x;
+        //distance = transform.localPosition.x;
     }
 
     void FixedUpdate()
@@ -161,7 +161,7 @@ public class CMovement : MonoBehaviour
         {
             moveHorizontal = Input.GetAxis("Horizontal");
             movement = new Vector3(moveHorizontal * (speed + 5), rigidBody.velocity.y, 0);
-            anim.SetBool("Running", true);
+            //anim.SetBool("Running", true);
             //Replace with moveHorizontal != 0 && !isWalking && !isDashing
             if (moveHorizontal > 0 && !isWalking && !isDashing)
             {
@@ -215,7 +215,7 @@ public class CMovement : MonoBehaviour
                 movement = new Vector3(Input.GetAxis("Horizontal") * (speed + 5), rigidBody.velocity.y, 0);
                 dash = 0;
                 isDashing = true;
-                anim.SetBool("Running", false);
+                //anim.SetBool("Running", false);
                 //Dash Animation
             }
         }

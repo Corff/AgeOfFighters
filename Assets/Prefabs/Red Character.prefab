@@ -10200,7 +10200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCrouched: 0
   speed: 5
-  rayCastDistance: -3
   dashBuffer: 0
   dash: 0
   isWalking: 0
