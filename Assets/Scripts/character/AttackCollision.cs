@@ -9,7 +9,7 @@ public class AttackCollision : MonoBehaviour
     private int damage;
     private Health health;
 
-    private void Awake()
+    private void Start()
     {
         //Set the tag to the opposite of what the gameobject
         //this script is attached to.
@@ -22,7 +22,7 @@ public class AttackCollision : MonoBehaviour
             targetTag = "Player";
         }
         //Get the damage value of the attack
-        damage = gameObject.GetComponentInParent<PlayerController>().damageArray[damageArrayPosition];
+        damage = gameObject.GetComponentInParent<CAttack>().damageArray[damageArrayPosition];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -13,13 +13,13 @@ public class Projectile : MonoBehaviour
 
     private string targetTag;
 
-    private PlayerController pc;
+    private CMovement pc;
     private Health health;
     public GameObject destroyEffect;
     private void Start()
     {
-        pc = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<PlayerController>();
-        if (!pc.facingRight)
+        pc = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<CMovement>();
+        if (pc.facingRight)
         {
             speed *= -1;
         }
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
             targetTag = "Player";
         }
         //Get the damage value of the attack
-        damage = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<PlayerController>().damageArray[damagePosition];
+        damage = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<CAttack>().damageArray[damagePosition];
     }
     private void Update()
     {
