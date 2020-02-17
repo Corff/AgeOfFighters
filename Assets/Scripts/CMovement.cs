@@ -37,7 +37,7 @@ public class CMovement : MonoBehaviour
 
     void Update()
     {
-        var hitbox = GetComponent<BoxCollider2D>();
+        var hitbox = GetComponent<BoxCollider>();
 
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player") //Enter Crouch
         {
