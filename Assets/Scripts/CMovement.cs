@@ -7,21 +7,20 @@ public class CMovement : MonoBehaviour
 {
     //*** = Not Implemented
     public bool isCrouched = false;
- 
+    public float speed = 5f;
     //public static float distance;
     public bool dashBuffer = false;
+    public float dash = 0f;
     public bool isWalking = false;
     public bool isDashing = false;
     public bool isShielding = false;
     public bool facingRight;
     public bool isGrounded;
-    public float dash = 0f;
-    public float speed = 5f;
-    public float dist = 1f;
     public ParticleSystem dust;
+    public float dist = 1f;
     private float jumpForce = -500f;
     private float groundedTimer = 0;
-    private Rigidbody rigidBody;
+    private Rigidbody2D rigidBody;
     private RaycastHit2D hit;
     private Vector3 dir;
     private Vector3 movement;
@@ -30,14 +29,14 @@ public class CMovement : MonoBehaviour
 
     private void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody2D>();
         isGrounded = true;
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        var hitbox = GetComponent<BoxCollider>();
+        var hitbox = GetComponent<BoxCollider2D>();
 
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player") //Enter Crouch
         {
@@ -98,16 +97,16 @@ public class CMovement : MonoBehaviour
             //anim.SetBool("isCrouched", false); ***
         }
 
-        dir = Vector3.down;
-        Vector3 endpoint = transform.position + new Vector3(1, 0);
-        Vector3 startpoint = transform.position + new Vector3(-1, 0);
+        dir = Vector2.down;
+        Vector2 endpoint = transform.position + new Vector3(1, 0);
+        Vector2 startpoint = transform.position + new Vector3(-1, 0);
         Debug.DrawRay(transform.position, dir * dist, Color.green);
         groundedTimer += Time.deltaTime;
 
         //Position --- Convert to else ifs
         if (!isGrounded && groundedTimer >= 0.2f)
         {
-            if (Physics.Raycast(transform.position, dir, dist))
+            if (Physics2D.Raycast(transform.position, dir, dist))
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
@@ -120,7 +119,7 @@ public class CMovement : MonoBehaviour
             }
 
             //Endpoint
-            if (Physics.Raycast(endpoint, dir, dist))
+            if (Physics2D.Raycast(endpoint, dir, dist))
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
@@ -133,7 +132,7 @@ public class CMovement : MonoBehaviour
             }
 
             //Startpoint
-            if (Physics.Raycast(startpoint, dir, dist))
+            if (Physics2D.Raycast(startpoint, dir, dist))
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
