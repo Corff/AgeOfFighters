@@ -43,7 +43,8 @@ public class CMovement : MonoBehaviour
             isCrouched = true;
             transform.localScale -= new Vector3(0, 0.5f, 0);
             jumpForce = -400f;
-            hitbox.size = new Vector3(1, 0.5f, 1);
+            hitbox.size = new Vector3(1, 2.62f, 1);
+            hitbox.offset = new Vector2(0, -0.27f);
             isShielding = true;
             if (isGrounded)
             {
@@ -57,7 +58,8 @@ public class CMovement : MonoBehaviour
             isCrouched = true;
             transform.localScale -= new Vector3(0, 0.5f, 0);
             jumpForce = -400f;
-            hitbox.size = new Vector3(1, 0.5f, 1);
+            hitbox.size = new Vector3(1, 2.62f, 1);
+            hitbox.offset = new Vector2(0, -0.27f);
             isShielding = true;
             if (isGrounded)
             {
@@ -83,7 +85,8 @@ public class CMovement : MonoBehaviour
             isShielding = false;
             transform.localScale += new Vector3(0, 0.5f, 0);
             jumpForce = -500f;
-            hitbox.size = new Vector3(1, 1, 1);
+            hitbox.size = new Vector3(0.72f, 2.9f, 1);
+            hitbox.offset = new Vector2(0, 0);
             //anim.SetBool("isCrouched", false); ***
         }
 
@@ -93,7 +96,8 @@ public class CMovement : MonoBehaviour
             isShielding = false;
             transform.localScale += new Vector3(0, 0.5f, 0);
             jumpForce = -500f;
-            hitbox.size = new Vector3(1, 1, 1);
+            hitbox.size = new Vector3(0.72f, 2.9f, 1);
+            hitbox.offset = new Vector2(0, 0);
             //anim.SetBool("isCrouched", false); ***
         }
 
@@ -177,6 +181,8 @@ public class CMovement : MonoBehaviour
             isShielding = false;
         }
     }
+
+    
 
     void FixedUpdate()
     {
