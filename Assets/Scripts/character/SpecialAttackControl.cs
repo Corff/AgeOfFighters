@@ -53,9 +53,9 @@ public class SpecialAttackControl : MonoBehaviour
         specialVal += addSp;
     }
 
-    public void SpecialTrigger()
+    public void SpecialTrigger(string tag)
     {
-        if (specialVal >= 100)
+        if (specialVal >= 100 && tag == "Player")
         {
             foreach (SpriteRenderer sr in charPBodyParts)
             {
@@ -65,14 +65,35 @@ public class SpecialAttackControl : MonoBehaviour
             animator.SetTrigger("Special Attack");
             specialVal = 0;
         }
+        if (specialVal >= 100 && tag == "Enemy")
+        {
+            foreach (SpriteRenderer sr in charEBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            specialAttackCheck.SetActive(true);
+            animator.SetTrigger("Special Attack");
+            specialVal = 0;
+        }
     }
 
-    public void SpecialOff()
+    public void SpecialOff(string tag)
     {
-        foreach (SpriteRenderer sr in charPBodyParts)
+        if (tag == "Player")
         {
-            sr.GetComponent<SpriteRenderer>().color = Color.white;
+            foreach (SpriteRenderer sr in charPBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            specialAttackCheck.SetActive(false);
         }
-        specialAttackCheck.SetActive(false);
+        if (tag == "Enemy")
+        {
+            foreach (SpriteRenderer sr in charEBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            specialAttackCheck.SetActive(false);
+        }
     }
 }

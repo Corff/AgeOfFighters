@@ -76,7 +76,7 @@ public class Health : MonoBehaviour
     /// Deals damage to the character.
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
-    /// <param name="ranged">True indicates the attack is ranged and can be reflected.</param>
+    /// <param name="go">The game object of the ranged object.</param>
     public void TakeHealth(int amount, GameObject go)
     {
         if (blocking.perfectBlock) //If the block is perfect take only half the amount off.
@@ -109,7 +109,7 @@ public class Health : MonoBehaviour
     /// Heals the character.
     /// </summary>
     /// <param name="amount">Value to be added.</param>
-    public void AddHealth(int amount) //IDE1006 Name Violation
+    public void AddHealth(int amount)
     {
         health += amount;
         healthSlider.value = health;

@@ -98,20 +98,20 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
         {
-            specialAC.SpecialTrigger();
+            specialAC.SpecialTrigger(gameObject.tag);
         }
         if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
         {
-            specialAC.SpecialTrigger();
+            specialAC.SpecialTrigger(gameObject.tag);
         }
 
         if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
         {
-            specialAC.SpecialOff();
+            specialAC.SpecialOff(gameObject.tag);
         }
         if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
         {
-            specialAC.SpecialOff();
+            specialAC.SpecialOff(gameObject.tag);
         }
     }
 }
