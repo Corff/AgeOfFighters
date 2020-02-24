@@ -79,5 +79,14 @@ public class CAttack : MonoBehaviour
             proj.tag = "Enemy";
             anim.SetTrigger("rangedAttack");
         }
+
+        if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
+        {
+            throw new System.NotImplementedException();
+        }
+        if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
