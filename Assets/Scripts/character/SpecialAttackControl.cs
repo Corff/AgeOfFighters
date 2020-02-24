@@ -8,7 +8,7 @@ public class SpecialAttackControl : MonoBehaviour
 
     public GameObject specialAttackCheck;
 
-    private int specialVal;
+    public int specialVal;
     private GameStartControl gameControlAccess;
     private Slider specialSlider;
     private Animator animator;
@@ -45,50 +45,55 @@ public class SpecialAttackControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(specialVal >= 100 && Input.GetKeyDown(KeyCode.F) && gameObject.tag == "Player")
-        {
-            foreach(SpriteRenderer x in charPBodyParts)
-            {
-                x.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            specialAttackCheck.SetActive(true);
-            animator.SetTrigger("Special Attack");
-            specialVal = 0;
-        }
-
-        if(Input.GetKeyUp(KeyCode.F) && gameObject.tag == "Player")
-        {
-            foreach (SpriteRenderer x in charPBodyParts)
-            {
-                x.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            specialAttackCheck.SetActive(false);
-        }
-
-        if (specialVal >= 100 && Input.GetKeyDown(KeyCode.RightShift) && gameObject.tag == "Enemy")
-        {
-            foreach (SpriteRenderer x in charEBodyParts)
-            {
-                x.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            specialAttackCheck.SetActive(true);
-            animator.SetTrigger("Special Attack");
-            specialVal = 0;
-        }
-
-        if (Input.GetKeyUp(KeyCode.RightShift) && gameObject.tag == "Enemy")
-        {
-            foreach (SpriteRenderer x in charEBodyParts)
-            {
-                x.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            specialAttackCheck.SetActive(false);
-        }
         specialSlider.value = specialVal;
     }
 
-    public void setSpecialValue(int addSp)
+    public void IncrementSpecialValue(int addSp) 
     {
-        specialVal = specialVal + addSp;
+        specialVal += addSp;
+    }
+
+    public void SpecialTrigger(string tag)
+    {
+        if (specialVal >= 100 && tag == "Player")
+        {
+            foreach (SpriteRenderer sr in charPBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            specialAttackCheck.SetActive(true);
+            animator.SetTrigger("Special Attack");
+            specialVal = 0;
+        }
+        if (specialVal >= 100 && tag == "Enemy")
+        {
+            foreach (SpriteRenderer sr in charEBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            specialAttackCheck.SetActive(true);
+            animator.SetTrigger("Special Attack");
+            specialVal = 0;
+        }
+    }
+
+    public void SpecialOff(string tag)
+    {
+        if (tag == "Player")
+        {
+            foreach (SpriteRenderer sr in charPBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            specialAttackCheck.SetActive(false);
+        }
+        if (tag == "Enemy")
+        {
+            foreach (SpriteRenderer sr in charEBodyParts)
+            {
+                sr.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            specialAttackCheck.SetActive(false);
+        }
     }
 }

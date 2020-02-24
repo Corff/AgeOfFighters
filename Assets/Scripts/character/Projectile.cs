@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag == targetTag)
         {
             health = collision.gameObject.GetComponentInParent<Health>();
-            health.takeHealth(damage, gameObject); //Deal damage to the target
+            health.TakeHealth(damage, gameObject); //Deal damage to the target
             DestroyProjectile();
         }
     }

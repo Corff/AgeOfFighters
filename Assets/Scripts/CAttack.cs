@@ -9,14 +9,20 @@ public class CAttack : MonoBehaviour
     public GameObject heavyPunchCheck;
     public Transform shotOrigin;
     public GameObject projectile;
+    public TimeControl timer;
+    public int[] damageArray = { 0, 0, 0, 0 };
+    public float rangedCooldown;
 
     private Animator anim;
-    public int[] damageArray = { 0, 0, 0, 0 };
+    private SpecialAttackControl specialAC;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        specialAC = GetComponent<SpecialAttackControl>();
+        timer = Instantiate(timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
+        timer.countDown = true;
     }
 
     // Update is called once per frame
@@ -46,9 +52,14 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
-            var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-            proj.tag = "Player";
-            anim.SetTrigger("rangedAttack");
+            Debug.Log(timer.time);
+            if (timer.timeUp)
+            {
+                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                proj.tag = "Player";
+                anim.SetTrigger("rangedAttack");
+                timer.time = rangedCooldown;
+            }
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -75,9 +86,32 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
         {
-            var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-            proj.tag = "Enemy";
-            anim.SetTrigger("rangedAttack");
+            Debug.Log(timer.time);
+            if (timer.timeUp)
+            {
+                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                proj.tag = "Enemy";
+                anim.SetTrigger("rangedAttack");
+                timer.time = rangedCooldown;
+            }
+        }
+
+        if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
+        {
+            specialAC.SpecialTrigger(gameObject.tag);
+        }
+        if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
+        {
+            specialAC.SpecialTrigger(gameObject.tag);
+        }
+
+        if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
+        {
+            specialAC.SpecialOff(gameObject.tag);
+        }
+        if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
+        {
+            specialAC.SpecialOff(gameObject.tag);
         }
     }
 }
