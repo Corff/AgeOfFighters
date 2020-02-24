@@ -30,7 +30,7 @@ public class AttackCollision : MonoBehaviour
         if (collision.gameObject.tag == targetTag)
         {
             health = collision.gameObject.GetComponentInParent<Health>();
-            health.takeHealth(damage); //Deal damage to the target
+            health.TakeHealth(damage); //Deal damage to the target
         }
     }
 }
