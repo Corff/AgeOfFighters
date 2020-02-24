@@ -54,3 +54,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CharSort
+    uniqueID: 1900985749
+    locked: 0
