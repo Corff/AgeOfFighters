@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Enemy
+  - PlayerHealth
+  - EnemyHealth
+  - PlayerBodyPart
+  - EnemyBodyPart
+  - PlayerStamina
+  - EnemyStamina
+  - PlayerSpecial
+  - EnemySpecial
+  - BodyPart
+  - Undefined
+  - Timer
   layers:
   - Default
   - TransparentFX

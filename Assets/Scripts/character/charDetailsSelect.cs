@@ -1,0 +1,45 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class charDetailsSelect : MonoBehaviour
+{
+
+    public GameObject namePanel;
+    public GameObject descPanel;
+    public GameObject charPanel;
+    public GameObject charInfo;
+
+    private string[] charNames;
+    private string[] charDescs;
+    private bool isOn = false;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        charNames = charInfo.GetComponent<Character_Array>().getCharNames();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void hoverRequestOn(int charSNum)
+    {
+        isOn = true;
+        charPanel.SetActive(true);
+        namePanel.GetComponent<Text>().text = charInfo.GetComponent<Character_Array>().getCharNames()[charSNum];
+        descPanel.GetComponent<Text>().text = charInfo.GetComponent<Character_Array>().getCharDesc()[charSNum];
+        charPanel.GetComponentInChildren<Image>().sprite = charInfo.GetComponent<Character_Array>().characterImages[charSNum];
+        charInfo.GetComponent<Character_Array>().setPlayerChoice(charSNum);
+    }
+    public void hoverRequestOof()
+    {
+        isOn = false;
+        charPanel.SetActive(false);
+    }
+}
