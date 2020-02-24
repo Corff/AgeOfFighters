@@ -87,7 +87,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -99,19 +99,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -119,12 +107,12 @@ TextureImporter:
       name: Character_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 504
-        width: 130
-        height: 362
+        x: 42
+        y: 510
+        width: 119
+        height: 351
       alignment: 9
-      pivot: {x: 0.82889193, y: 0.94397885}
+      pivot: {x: 0.8550919, y: 0.9564683}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +128,12 @@ TextureImporter:
       name: Character_1
       rect:
         serializedVersion: 2
-        x: 328
-        y: 538
-        width: 150
-        height: 338
+        x: 333
+        y: 544
+        width: 140
+        height: 327
       alignment: 9
-      pivot: {x: 0.13612977, y: 0.9390407}
+      pivot: {x: 0.1101388, y: 0.9522806}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +149,12 @@ TextureImporter:
       name: Character_2
       rect:
         serializedVersion: 2
-        x: 580.48145
-        y: 462.6467
-        width: 221
-        height: 448.00003
+        x: 585
+        y: 467
+        width: 210
+        height: 438
       alignment: 9
-      pivot: {x: 0.503526, y: 0.07804067}
+      pivot: {x: 0.5083842, y: 0.0698833}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +170,12 @@ TextureImporter:
       name: Head
       rect:
         serializedVersion: 2
-        x: 933.5654
-        y: 509.30188
-        width: 399.93103
-        height: 399.0448
+        x: 936
+        y: 510
+        width: 396
+        height: 395
       alignment: 9
-      pivot: {x: 0.58041626, y: 0.05987351}
+      pivot: {x: 0.58003, y: 0.05871922}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +191,12 @@ TextureImporter:
       name: Character_4
       rect:
         serializedVersion: 2
-        x: 526
-        y: 47
-        width: 64
-        height: 287
+        x: 531
+        y: 51
+        width: 54
+        height: 277
       alignment: 9
-      pivot: {x: 0.5, y: 0.9259459}
+      pivot: {x: 0.5, y: 0.9449331}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +212,12 @@ TextureImporter:
       name: Character_5
       rect:
         serializedVersion: 2
-        x: 736
-        y: 46
-        width: 90
-        height: 293
+        x: 741
+        y: 51
+        width: 79
+        height: 282
       alignment: 9
-      pivot: {x: 0.24012655, y: 0.9249389}
+      pivot: {x: 0.2102707, y: 0.9432876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,6 +242,6 @@ TextureImporter:
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1
-  userData: 637181392443394612
+  userData: 
   assetBundleName: 
   assetBundleVariant: 
