@@ -7,7 +7,7 @@ public class CMovement : MonoBehaviour
 {
     //*** = Not Implemented
     public bool isCrouched = false;
-    public float speed = 5f;
+    public float speed;
     //public static float distance;
     public bool dashBuffer = false;
     public float dash = 0f;
@@ -41,16 +41,22 @@ public class CMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player") //Enter Crouch
         {
             isCrouched = true;
+            //@@ Testing out another method of crouching
+            /*
             transform.localScale -= new Vector3(0, 0.5f, 0);
             jumpForce = -400f;
             hitbox.size = new Vector3(1, 2.62f, 1);
             hitbox.offset = new Vector2(0, -0.27f);
+            */
             isShielding = true;
+            /*
             if (isGrounded)
             {
                 transform.localPosition = new Vector3(transform.position.x, -0.25f, 0);
             }
-            //anim.SetBool("isCrouched", true); ***
+            */
+            //Crouching hitbox (box collider) implemented into the animation itself
+            anim.SetBool("isCrouched", true);
         }
 
         if (Input.GetButtonDown("EnemyCrouch") && gameObject.tag == "Enemy") //Enter Crouch
@@ -83,11 +89,14 @@ public class CMovement : MonoBehaviour
         {
             isCrouched = false;
             isShielding = false;
+            //@@ Testing out another method of crouching
+            /*
             transform.localScale += new Vector3(0, 0.5f, 0);
             jumpForce = -500f;
             hitbox.size = new Vector3(0.72f, 2.9f, 1);
             hitbox.offset = new Vector2(0, 0);
-            //anim.SetBool("isCrouched", false); ***
+            */
+            anim.SetBool("isCrouched", false);
         }
 
         if (Input.GetButtonUp("EnemyCrouch") && isCrouched && gameObject.tag == "Enemy") //Exit crouch
@@ -114,7 +123,7 @@ public class CMovement : MonoBehaviour
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
-                speed = 5f;
+                //speed = 5f;
             }
 
             else
@@ -127,7 +136,7 @@ public class CMovement : MonoBehaviour
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
-                speed = 5f;
+                //speed = 5f;
             }
 
             else
@@ -140,7 +149,7 @@ public class CMovement : MonoBehaviour
             {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                 isGrounded = true;
-                speed = 5f;
+                //speed = 5f;
             }
 
             else
@@ -152,10 +161,10 @@ public class CMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player") //Jumping
         {
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
-            speed = 3.5f;
+            //speed = 3.5f;
             groundedTimer = 0;
             isGrounded = false;
-            anim.SetTrigger("jump");
+            anim.SetTrigger("isJumping");
             CreateDust();
         }
 
@@ -198,7 +207,7 @@ public class CMovement : MonoBehaviour
             {
                 moveHorizontal = Input.GetAxis("EnemyHorizontal");
             }
-            movement = new Vector3(moveHorizontal * (speed + 5), rigidBody.velocity.y, 0);
+            movement = new Vector3(moveHorizontal * (speed), rigidBody.velocity.y, 0);
             //anim.SetBool("Running", true);
             //Replace with moveHorizontal != 0 && !isWalking && !isDashing
             if (moveHorizontal > 0 && !isWalking && !isDashing)
@@ -220,7 +229,7 @@ public class CMovement : MonoBehaviour
             dashBuffer = false;
             isWalking = false;
             isDashing = false;
-            speed = 5f;
+            //speed = 5f;
         }
 
         if (moveHorizontal > 0)
@@ -236,13 +245,13 @@ public class CMovement : MonoBehaviour
         if (moveHorizontal > 0 && facingRight == true)
         {
             facingRight = false;
-            Flip();
+            //Flip();
         }
 
         else if (moveHorizontal < 0 && facingRight == false)
         {
             facingRight = true;
-            Flip();
+            //Flip();
         }
 
         if (dashBuffer == true)

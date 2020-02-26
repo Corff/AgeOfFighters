@@ -749,7 +749,7 @@ GameObject:
   m_Layer: 0
   m_Name: CharacterRig
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -804,11 +804,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 527472958486636750}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a4e5d5d5e62d5894cb80e533fd70fbe0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4095509, y: 4.219539}
+  m_Offset: {x: 1.4095509, y: 3.89565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -819,7 +819,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.313108, y: 8.442203}
+  m_Size: {x: 2.313108, y: 7.759845}
   m_EdgeRadius: 0
 --- !u!50 &206404143207713420
 Rigidbody2D:
@@ -837,7 +837,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a4e5d5d5e62d5894cb80e533fd70fbe0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCrouched: 0
-  speed: 2
+  speed: 3
   dashBuffer: 0
   dash: 0
   isWalking: 0
@@ -1343,7 +1343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6622553100897944663
 Transform:
   m_ObjectHideFlags: 0

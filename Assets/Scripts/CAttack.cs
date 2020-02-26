@@ -31,7 +31,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
         {
             punchCheck.SetActive(true);
-            anim.SetTrigger("Punch");
+            anim.SetTrigger("isPunching");
         }
 
         if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
