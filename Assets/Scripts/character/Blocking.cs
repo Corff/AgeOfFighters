@@ -18,6 +18,7 @@ public class Blocking : MonoBehaviour
     private TimeControl perfect;
     public GameObject block;
     public GameObject Timer;
+    public Animator anim;
     private Slider staminaSlider;
 
     public void ReturnProjectile(GameObject projectileGO)
@@ -60,6 +61,7 @@ public class Blocking : MonoBehaviour
             if (Input.GetButton("Block") && !timer.timeUp) //If there is stamina left...
             {
                 block.SetActive(true);
+                anim.SetBool("isBlocking", true);
                 perfect.countDown = true; //Start the degen for stamina and the perfect window
                 timer.countDown = true;
                 if (!perfect.timeUp) //If there is time left on the perfect window
@@ -77,6 +79,7 @@ public class Blocking : MonoBehaviour
             else if (Input.GetButton("Block") && timer.timeUp)
             {
                 block.SetActive(false);
+                anim.SetBool("isBlocking", false);
                 blocked = false;
                 //Block fail sound effect (Play once). Use flag to tell.
             }
@@ -84,6 +87,7 @@ public class Blocking : MonoBehaviour
             else
             {
                 block.SetActive(false);
+                anim.SetBool("isBlocking", false);
                 perfectBlock = false;
                 blocked = false;
                 timer.countDown = false;
