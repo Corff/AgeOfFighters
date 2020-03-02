@@ -64,16 +64,6 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
             RangedAttackOn();
-            Debug.Log(timer.time);
-            if (timer.timeUp)
-            {
-                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                //proj.tag = "Player";
-                //anim.SetTrigger("rangedAttack");
-
-                StartCoroutine(RangedAttackPlayer());
-                timer.time = rangedCooldown;
-            }
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -99,17 +89,6 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
         {
             RangedAttackOn();
-            Debug.Log(timer.time);
-            if (timer.timeUp)
-            {
-                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                //proj.tag = "Enemy";
-                //anim.SetTrigger("rangedAttack");
-                //timer.time = rangedCooldown;
-
-                StartCoroutine(RangedAttackEnemy());
-                timer.time = rangedCooldown;
-            }
         }
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
@@ -133,7 +112,7 @@ public class CAttack : MonoBehaviour
     void LightAttackOn()
     {
         punchCheck.SetActive(true);
-        anim.SetTrigger("Punch");
+        anim.SetTrigger("isPunching");
         if (moveQueue.Count == 9)
         {
             moveQueue.Dequeue();
@@ -158,7 +137,7 @@ public class CAttack : MonoBehaviour
     void HeavyAttackOn()
     {
         heavyPunchCheck.SetActive(true);
-        anim.SetTrigger("Heavy Punch");
+        anim.SetTrigger("isHeavyPunching");
         if (moveQueue.Count == 9)
         {
             moveQueue.Dequeue();
@@ -184,9 +163,7 @@ public class CAttack : MonoBehaviour
         Debug.Log(timer.time);
         if (timer.timeUp)
         {
-            var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-            proj.tag = gameObject.tag;
-            anim.SetTrigger("rangedAttack");
+            StartCoroutine(RangedAttack());
             timer.time = rangedCooldown;
             if (moveQueue.Count == 9)
             {
@@ -220,7 +197,7 @@ public class CAttack : MonoBehaviour
     }
 
     float StaleMoves(int n)
-    { 
+    {
         float scale = 0f;
         foreach (int i in moveQueue)
         {
@@ -247,21 +224,13 @@ public class CAttack : MonoBehaviour
             }
         }
         return scale - 1;
-    IEnumerator RangedAttackPlayer()
-    {
-        anim.SetTrigger("rangedAttack");
-
-        yield return new WaitForSeconds(0.4f);
-        var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-        proj.tag = "Player";
     }
-
-    IEnumerator RangedAttackEnemy()
+    IEnumerator RangedAttack()
     {
         anim.SetTrigger("rangedAttack");
 
         yield return new WaitForSeconds(0.4f);
         var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-        proj.tag = "Enemy";
+        proj.tag = gameObject.tag;
     }
 }
