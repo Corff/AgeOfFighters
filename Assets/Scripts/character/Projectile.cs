@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         pc = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<CMovement>();
-        if (pc.facingRight)
+        if (!pc.facingRight)
         {
             speed *= -1;
         }

@@ -64,6 +64,16 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
             RangedAttackOn();
+            Debug.Log(timer.time);
+            if (timer.timeUp)
+            {
+                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                //proj.tag = "Player";
+                //anim.SetTrigger("rangedAttack");
+
+                StartCoroutine(RangedAttackPlayer());
+                timer.time = rangedCooldown;
+            }
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -89,6 +99,17 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
         {
             RangedAttackOn();
+            Debug.Log(timer.time);
+            if (timer.timeUp)
+            {
+                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                //proj.tag = "Enemy";
+                //anim.SetTrigger("rangedAttack");
+                //timer.time = rangedCooldown;
+
+                StartCoroutine(RangedAttackEnemy());
+                timer.time = rangedCooldown;
+            }
         }
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
@@ -109,7 +130,6 @@ public class CAttack : MonoBehaviour
             specialAC.SpecialOff(gameObject.tag);
         }
     }
-
     void LightAttackOn()
     {
         punchCheck.SetActive(true);
@@ -227,5 +247,21 @@ public class CAttack : MonoBehaviour
             }
         }
         return scale - 1;
+    IEnumerator RangedAttackPlayer()
+    {
+        anim.SetTrigger("rangedAttack");
+
+        yield return new WaitForSeconds(0.4f);
+        var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+        proj.tag = "Player";
+    }
+
+    IEnumerator RangedAttackEnemy()
+    {
+        anim.SetTrigger("rangedAttack");
+
+        yield return new WaitForSeconds(0.4f);
+        var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+        proj.tag = "Enemy";
     }
 }

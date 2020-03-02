@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
     private Blocking blocking;
     private SpecialAttackControl accessSP;
     private GameObject workingObj;
+    public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
+    private Image fill; //the Bar of the Health Bar.
    
 
     void Start()
@@ -20,12 +22,15 @@ public class Health : MonoBehaviour
         if(gameObject.tag == "Player")
         {
             healthSlider = GameObject.FindWithTag("PlayerHealth").GetComponent<Slider>();
+            fill = GameObject.FindWithTag("PlayerHealthBar").GetComponent<Image>();
         }
         else if(gameObject.tag == "Enemy")
         {
             healthSlider = GameObject.FindWithTag("EnemyHealth").GetComponent<Slider>();
+            fill = GameObject.FindWithTag("EnemyHealthBar").GetComponent<Image>();
         }
         healthSlider.value = health;
+        fill.color = gradient.Evaluate(healthSlider.normalizedValue); //Changes the health bar colour based on the character's HP
         blocking = GetComponent<Blocking>();
     }
 
@@ -59,7 +64,8 @@ public class Health : MonoBehaviour
         {
             health -= amount;
             healthSlider.value = health;
-            if(gameObject.tag == "Player")
+            fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
+            if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
@@ -92,6 +98,7 @@ public class Health : MonoBehaviour
         {
             health -= amount;
             healthSlider.value = health;
+            fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
@@ -113,6 +120,7 @@ public class Health : MonoBehaviour
     {
         health += amount;
         healthSlider.value = health;
+        fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
     }
 
 
