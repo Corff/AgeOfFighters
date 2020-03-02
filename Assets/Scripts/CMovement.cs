@@ -9,29 +9,51 @@ public class CMovement : MonoBehaviour
     public bool isCrouched = false;
     public float speed;
     //public static float distance;
+
+    //Movement variables
     public bool dashBuffer = false;
     public float dash = 0f;
     public bool isWalking = false;
     public bool isDashing = false;
     public bool isShielding = false;
+
+    //Condition variables
     public bool facingRight;
     public bool isGrounded;
+
     public ParticleSystem dust;
+
+    //??
     public float dist = 1f;
     private float jumpForce = -500f;
     private float groundedTimer = 0;
+
+    //Components
     private Rigidbody2D rigidBody;
     private RaycastHit2D hit;
     private Vector3 dir;
     private Vector3 movement;
     private Animator anim;
 
+    //These variables could be placed in another script
+    private Transform EnemyPos;
+    private Transform PlayerPos;
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         isGrounded = true;
         anim = GetComponent<Animator>();
+
+        EnemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
+        PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
+        if (gameObject.tag == "Enemy")
+        {
+            facingRight = false;
+            Flip();
+        }
+
     }
 
     void Update()
@@ -42,12 +64,12 @@ public class CMovement : MonoBehaviour
         {
             isCrouched = true;
             //@@ Testing out another method of crouching
-            /*
-            transform.localScale -= new Vector3(0, 0.5f, 0);
-            jumpForce = -400f;
-            hitbox.size = new Vector3(1, 2.62f, 1);
-            hitbox.offset = new Vector2(0, -0.27f);
-            */
+            
+            //transform.localScale -= new Vector3(0, 0.5f, 0);
+            //jumpForce = -400f;
+            //hitbox.size = new Vector3(1, 2.62f, 1);
+            //hitbox.offset = new Vector2(0, -0.27f);
+            
             isShielding = true;
             /*
             if (isGrounded)
@@ -62,16 +84,18 @@ public class CMovement : MonoBehaviour
         if (Input.GetButtonDown("EnemyCrouch") && gameObject.tag == "Enemy") //Enter Crouch
         {
             isCrouched = true;
-            transform.localScale -= new Vector3(0, 0.5f, 0);
-            jumpForce = -400f;
-            hitbox.size = new Vector3(1, 2.62f, 1);
-            hitbox.offset = new Vector2(0, -0.27f);
+
+            //transform.localScale -= new Vector3(0, 0.5f, 0);
+            //jumpForce = -400f;
+            //hitbox.size = new Vector3(1, 2.62f, 1);
+            //hitbox.offset = new Vector2(0, -0.27f);
+
             isShielding = true;
-            if (isGrounded)
-            {
-                transform.localPosition = new Vector3(transform.position.x, -0.25f, 0);
-            }
-            //anim.SetBool("isCrouched", true); ***
+            //if (isGrounded)
+            //{
+            //    transform.localPosition = new Vector3(transform.position.x, -0.25f, 0);
+            //}
+            anim.SetBool("isCrouched", true);
         }
 
         //else if (!isGrounded && !isCrouched)
@@ -103,11 +127,11 @@ public class CMovement : MonoBehaviour
         {
             isCrouched = false;
             isShielding = false;
-            transform.localScale += new Vector3(0, 0.5f, 0);
-            jumpForce = -500f;
-            hitbox.size = new Vector3(0.72f, 2.9f, 1);
-            hitbox.offset = new Vector2(0, 0);
-            //anim.SetBool("isCrouched", false); ***
+            //transform.localScale += new Vector3(0, 0.5f, 0);
+            //jumpForce = -500f;
+            //hitbox.size = new Vector3(0.72f, 2.9f, 1);
+            //hitbox.offset = new Vector2(0, 0);
+            anim.SetBool("isCrouched", false);
         }
 
         dir = Vector2.down;
@@ -161,7 +185,6 @@ public class CMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player") //Jumping
         {
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
-            //speed = 3.5f;
             groundedTimer = 0;
             isGrounded = false;
             anim.SetTrigger("isJumping");
@@ -172,10 +195,9 @@ public class CMovement : MonoBehaviour
         {
             Debug.Log("Debug Alpha");
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
-            speed = 3.5f;
             groundedTimer = 0;
             isGrounded = false;
-            anim.SetTrigger("jump");
+            anim.SetTrigger("isJumping");
             CreateDust();
         }
 
@@ -188,6 +210,42 @@ public class CMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.F)) //Blocking Stop
         {
             isShielding = false;
+        }
+
+        //Player and Enemy will always be facing each other.
+        //if X scale is positive, player will be facing right.
+        if (EnemyPos.position.x < gameObject.transform.position.x && gameObject.tag == "Player")
+        {
+            facingRight = false;
+            if (gameObject.transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            facingRight = true;
+            if (gameObject.transform.localScale.x < 0)
+            {
+                Flip();
+            }
+        }
+
+        if (PlayerPos.position.x < gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = false;
+            if (gameObject.transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
+        else if (PlayerPos.position.x > gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = true;
+            if (gameObject.transform.localScale.x < 0)
+            {
+                Flip();
+            }
         }
     }
 
@@ -240,18 +298,6 @@ public class CMovement : MonoBehaviour
         else if (moveHorizontal < 0)
         {
            anim.SetBool("isRunning", true);
-        }
-
-        if (moveHorizontal > 0 && facingRight == true)
-        {
-            facingRight = false;
-            //Flip();
-        }
-
-        else if (moveHorizontal < 0 && facingRight == false)
-        {
-            facingRight = true;
-            //Flip();
         }
 
         if (dashBuffer == true)
