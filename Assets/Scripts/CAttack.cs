@@ -43,127 +43,52 @@ public class CAttack : MonoBehaviour
     {
         if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
         {
-            punchCheck.SetActive(true);
-            anim.SetTrigger("Punch");
-            if (moveQueue.Count == 9)
-            {
-                moveQueue.Dequeue();
-            }
-
-            moveQueue.Enqueue(1);
-            stale = StaleMoves(1);
-            if (stale == 0)
-            {
-                damageArray[0] = lightAttackDamage;
-            }
-            else
-            {
-                damageArray[0] -= stale / 5;
-                if (damageArray[0] < 1)
-                {
-                    damageArray[0] = 1;
-                }
-            }
-            count += 1;
+            LightAttackOn();
         }
 
         if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
         {
-            punchCheck.SetActive(false);
+            LightAttackOff();
         }
 
         if (Input.GetButtonDown("HeavyAttack") && gameObject.tag == "Player")
         {
-            heavyPunchCheck.SetActive(true);
-            anim.SetTrigger("Heavy Punch");
-            if (moveQueue.Count == 9)
-            {
-                moveQueue.Dequeue();
-            }
-            moveQueue.Enqueue(2);
-            stale = (StaleMoves(2));
-            if (stale == 0)
-            {
-                damageArray[1] = heavyAttackDamage;
-            }
-            else
-            {
-                damageArray[1] -= stale / 2;
-                if (damageArray[1] < 1)
-                {
-                    damageArray[1] = 1;
-                }
-            }
-            count += 1;
+            HeavyAttackOn();
         }
 
         if (Input.GetButtonUp("HeavyAttack") && gameObject.tag == "Player")
         {
-            heavyPunchCheck.SetActive(false);
+            HeavyAttackOff();
         }
 
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
-            Debug.Log(timer.time);
-            if (timer.timeUp)
-            {
-                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                proj.tag = "Player";
-                anim.SetTrigger("rangedAttack");
-                timer.time = rangedCooldown;
-                if (moveQueue.Count == 9)
-                {
-                    moveQueue.Dequeue();
-                }
-                moveQueue.Enqueue(3);
-                stale = StaleMoves(3);
-                if (stale == 0)
-                {
-                    damageArray[2] = rangedAttackDamage;
-                }
-                else
-                {
-                    damageArray[2] -= stale / 2.5f;
-                    if (damageArray[2] < 1)
-                    {
-                        damageArray[2] = 1;
-                    }
-                }
-            }
+            RangedAttackOn();
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
         {
-            punchCheck.SetActive(true);
-            anim.SetTrigger("Punch");
+            LightAttackOn();
         }
 
         if (Input.GetButtonUp("EnemyLightAttack") && gameObject.tag == "Enemy")
         {
-            punchCheck.SetActive(false);
+            LightAttackOff();
         }
 
         if (Input.GetButtonDown("EnemyHeavyAttack") && gameObject.tag == "Enemy")
         {
-            heavyPunchCheck.SetActive(true);
-            anim.SetTrigger("Heavy Punch");
+            HeavyAttackOn();
         }
 
         if (Input.GetButtonUp("EnemyHeavyAttack") && gameObject.tag == "Enemy")
         {
-            heavyPunchCheck.SetActive(false);
+            HeavyAttackOff();
         }
 
         if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
         {
-            Debug.Log(timer.time);
-            if (timer.timeUp)
-            {
-                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                proj.tag = "Enemy";
-                anim.SetTrigger("rangedAttack");
-                timer.time = rangedCooldown;
-            }
+            RangedAttackOn();
         }
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
@@ -185,44 +110,122 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    float StaleMoves(int n)
+    void LightAttackOn()
     {
+        punchCheck.SetActive(true);
+        anim.SetTrigger("Punch");
+        if (moveQueue.Count == 9)
+        {
+            moveQueue.Dequeue();
+        }
 
+        moveQueue.Enqueue(1);
+        stale = StaleMoves(1);
+        if (stale == 0)
+        {
+            damageArray[0] = lightAttackDamage;
+        }
+        else
+        {
+            damageArray[0] -= stale / 5;
+            if (damageArray[0] < 1)
+            {
+                damageArray[0] = 1;
+            }
+        }
+    }
+
+    void HeavyAttackOn()
+    {
+        heavyPunchCheck.SetActive(true);
+        anim.SetTrigger("Heavy Punch");
+        if (moveQueue.Count == 9)
+        {
+            moveQueue.Dequeue();
+        }
+        moveQueue.Enqueue(2);
+        stale = (StaleMoves(2));
+        if (stale == 0)
+        {
+            damageArray[1] = heavyAttackDamage;
+        }
+        else
+        {
+            damageArray[1] -= stale / 2;
+            if (damageArray[1] < 1)
+            {
+                damageArray[1] = 1;
+            }
+        }
+    }
+
+    void RangedAttackOn()
+    {
+        Debug.Log(timer.time);
+        if (timer.timeUp)
+        {
+            var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+            proj.tag = gameObject.tag;
+            anim.SetTrigger("rangedAttack");
+            timer.time = rangedCooldown;
+            if (moveQueue.Count == 9)
+            {
+                moveQueue.Dequeue();
+            }
+            moveQueue.Enqueue(3);
+            stale = StaleMoves(3);
+            if (stale == 0)
+            {
+                damageArray[2] = rangedAttackDamage;
+            }
+            else
+            {
+                damageArray[2] -= stale / 2.5f;
+                if (damageArray[2] < 1)
+                {
+                    damageArray[2] = 1;
+                }
+            }
+        }
+    }
+
+    void LightAttackOff()
+    {
+        punchCheck.SetActive(false);
+    }
+
+    void HeavyAttackOff()
+    {
+        heavyPunchCheck.SetActive(false);
+    }
+
+    float StaleMoves(int n)
+    { 
         float scale = 0f;
-
         foreach (int i in moveQueue)
         {
             if (i == 1)
             {
-                //light += 1;
-
                 if (n == 1)
                 {
                     scale += 1;
                 }
             }
-
             else if (i == 2)
             {
-                //heavy += 1;
-
                 if (n == 2)
                 {
                     scale += 1;
                 }
             }
-
             else if (i == 3)
             {
-                //ranged += 1;
-
                 if (n == 3)
                 {
                     scale += 1;
                 }
             }
         }
-
         return scale - 1;
     }
 }
