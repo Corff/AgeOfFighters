@@ -6,7 +6,7 @@ public class AttackCollision : MonoBehaviour
 {
     private string targetTag;
     public int damageArrayPosition;
-    private int damage;
+    private float damage;
     private Health health;
 
     private void Start()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public bool dead;
-    public int health = 100; //Make Private once implemented
+    public float health = 100; //Make Private once implemented
     public string deathTag;
     private Slider healthSlider;
     private Blocking blocking;
@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
     /// Deals damage to the character.
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
-    public void TakeHealth(int amount) //IDE1006 Name Violation
+    public void TakeHealth(float amount) //IDE1006 Name Violation
     {
         Debug.Log(blocking.blocked);
         //Checks for blocking before taking health, takes stamina instead of blocking.
@@ -83,7 +83,7 @@ public class Health : MonoBehaviour
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
     /// <param name="go">The game object of the ranged object.</param>
-    public void TakeHealth(int amount, GameObject go)
+    public void TakeHealth(float amount, GameObject go)
     {
         if (blocking.perfectBlock) //If the block is perfect take only half the amount off.
         {
@@ -116,7 +116,7 @@ public class Health : MonoBehaviour
     /// Heals the character.
     /// </summary>
     /// <param name="amount">Value to be added.</param>
-    public void AddHealth(int amount)
+    public void AddHealth(float amount)
     {
         health += amount;
         healthSlider.value = health;
