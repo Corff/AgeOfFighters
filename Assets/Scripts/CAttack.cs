@@ -97,6 +97,7 @@ public class CAttack : MonoBehaviour
                 //timer.time = rangedCooldown;
 
                 StartCoroutine(RangedAttackEnemy());
+                timer.time = rangedCooldown;
             }
         }
 

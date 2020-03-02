@@ -9,6 +9,7 @@ public class CMovement : MonoBehaviour
     public bool isCrouched = false;
     public float speed;
     //public static float distance;
+
     //Movement variables
     public bool dashBuffer = false;
     public float dash = 0f;
@@ -35,8 +36,8 @@ public class CMovement : MonoBehaviour
     private Animator anim;
 
     //These variables could be placed in another script
-    private Transform facePlayer;
-    private Transform faceEnemy;
+    private Transform EnemyPos;
+    private Transform PlayerPos;
 
     private void Start()
     {
@@ -44,17 +45,13 @@ public class CMovement : MonoBehaviour
         isGrounded = true;
         anim = GetComponent<Animator>();
 
-        facePlayer = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
-        faceEnemy = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        EnemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
+        PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         if (gameObject.tag == "Enemy")
         {
             facingRight = false;
             Flip();
-        }
-        else if (gameObject.tag == "Player")
-        {
-            facingRight = true;
         }
 
     }
@@ -188,7 +185,6 @@ public class CMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player") //Jumping
         {
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
-            //speed = 3.5f;
             groundedTimer = 0;
             isGrounded = false;
             anim.SetTrigger("isJumping");
@@ -199,7 +195,6 @@ public class CMovement : MonoBehaviour
         {
             Debug.Log("Debug Alpha");
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
-            //speed = 3.5f;
             groundedTimer = 0;
             isGrounded = false;
             anim.SetTrigger("isJumping");
@@ -215,6 +210,42 @@ public class CMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.F)) //Blocking Stop
         {
             isShielding = false;
+        }
+
+        //Player and Enemy will always be facing each other.
+        //if X scale is positive, player will be facing right.
+        if (EnemyPos.position.x < gameObject.transform.position.x && gameObject.tag == "Player")
+        {
+            facingRight = false;
+            if (gameObject.transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            facingRight = true;
+            if (gameObject.transform.localScale.x < 0)
+            {
+                Flip();
+            }
+        }
+
+        if (PlayerPos.position.x < gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = false;
+            if (gameObject.transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
+        else if (PlayerPos.position.x > gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = true;
+            if (gameObject.transform.localScale.x < 0)
+            {
+                Flip();
+            }
         }
     }
 
@@ -308,41 +339,6 @@ public class CMovement : MonoBehaviour
             isWalking = true;
             dash = 0;
             dashBuffer = false;
-        }
-
-        //Player and Enemy will always be facing each other
-        if (facePlayer.position.x > gameObject.transform.position.x && gameObject.tag == "Player")
-        {
-            if (gameObject.transform.localScale.x < 0)
-            {
-                facingRight = true;
-                Flip();
-            }
-        }
-        else
-        {
-            if (gameObject.transform.localScale.x >  0)
-            {
-                facingRight = false;
-                Flip();
-            }
-        }
-
-        if (faceEnemy.position.x < gameObject.transform.position.x && gameObject.tag == "Enemy")
-        {
-            if (gameObject.transform.localScale.x > 0)
-            {
-                facingRight = false;
-                Flip();
-            }
-        }
-        else
-        {
-            if (gameObject.transform.localScale.x < 0)
-            {
-                facingRight = true;
-                Flip();
-            }
         }
     }
     //These could be static in a seperate script
