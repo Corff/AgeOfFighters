@@ -1983,6 +1983,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707171882}
   m_CullTransparentMesh: 0
+--- !u!1 &741598540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 719090221981042117, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 719090222370321158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &741598541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741598540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0b5af48682f914a9506e7d2f6903da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSFX:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: debded20227accc4c9c18f1dbb2779e0, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: e2715b63efcaae1429da169ae7f6e3e0, type: 3}
+  - {fileID: 8300000, guid: 50cfc9795de4f4844b970b4980ec543a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 8e388673655e18f44b54e38ffcec6ae4, type: 3}
+  - {fileID: 8300000, guid: 582f1d1cdd3612443b43d74eb86a73ca, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 00e46ff044ba3484c97008443f4a6d9d, type: 3}
+  - {fileID: 8300000, guid: 45c2bf7e192cbba4bad544847d574e14, type: 3}
+  - {fileID: 8300000, guid: 7bbd10b2bd5abef4c9612a6d857142ea, type: 3}
+  - {fileID: 8300000, guid: cb62b753b1a29c14cb0c4c123e852ab1, type: 3}
+  - {fileID: 8300000, guid: 3f0a54bd67f9a864eb5f984bc6699e00, type: 3}
+  - {fileID: 8300000, guid: 96616140831c7764f8ac6d1006d37869, type: 3}
 --- !u!1 &772757063
 GameObject:
   m_ObjectHideFlags: 0
