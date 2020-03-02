@@ -639,6 +639,35 @@ MonoBehaviour:
   dead: 0
   health: 100
   deathTag: 
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.90196085, g: 0.11764707, b: 0.14509805, a: 1}
+    key1: {r: 0.909804, g: 0.9607844, b: 0, a: 1}
+    key2: {r: 0.14117648, g: 0.882353, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 6554
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!114 &8475230942589200123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,6 +689,7 @@ MonoBehaviour:
   timer: {fileID: 0}
   block: {fileID: 1863660137638594768}
   Timer: {fileID: 166422153398596364, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
+  anim: {fileID: 0}
 --- !u!114 &-849468170726450260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialAttackCheck: {fileID: 5072510581904419206}
+  specialVal: 0
 --- !u!1 &6333616815485921516
 GameObject:
   m_ObjectHideFlags: 0

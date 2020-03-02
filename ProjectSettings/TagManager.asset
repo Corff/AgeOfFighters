@@ -17,6 +17,8 @@ TagManager:
   - BodyPart
   - Undefined
   - Timer
+  - PlayerHealthBar
+  - EnemyHealthBar
   layers:
   - Default
   - TransparentFX

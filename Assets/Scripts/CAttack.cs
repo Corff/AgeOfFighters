@@ -31,7 +31,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
         {
             punchCheck.SetActive(true);
-            anim.SetTrigger("Punch");
+            anim.SetTrigger("isPunching");
         }
 
         if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
@@ -55,9 +55,11 @@ public class CAttack : MonoBehaviour
             Debug.Log(timer.time);
             if (timer.timeUp)
             {
-                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                proj.tag = "Player";
-                anim.SetTrigger("rangedAttack");
+                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                //proj.tag = "Player";
+                //anim.SetTrigger("rangedAttack");
+
+                StartCoroutine(RangedAttackPlayer());
                 timer.time = rangedCooldown;
             }
         }
@@ -65,7 +67,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
         {
             punchCheck.SetActive(true);
-            anim.SetTrigger("Punch");
+            anim.SetTrigger("isPunching");
         }
 
         if (Input.GetButtonUp("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -89,9 +91,12 @@ public class CAttack : MonoBehaviour
             Debug.Log(timer.time);
             if (timer.timeUp)
             {
-                var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
-                proj.tag = "Enemy";
-                anim.SetTrigger("rangedAttack");
+                //var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+                //proj.tag = "Enemy";
+                //anim.SetTrigger("rangedAttack");
+                //timer.time = rangedCooldown;
+
+                StartCoroutine(RangedAttackEnemy());
                 timer.time = rangedCooldown;
             }
         }
@@ -113,5 +118,23 @@ public class CAttack : MonoBehaviour
         {
             specialAC.SpecialOff(gameObject.tag);
         }
+    }
+
+    IEnumerator RangedAttackPlayer()
+    {
+        anim.SetTrigger("rangedAttack");
+
+        yield return new WaitForSeconds(0.4f);
+        var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+        proj.tag = "Player";
+    }
+
+    IEnumerator RangedAttackEnemy()
+    {
+        anim.SetTrigger("rangedAttack");
+
+        yield return new WaitForSeconds(0.4f);
+        var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
+        proj.tag = "Enemy";
     }
 }
