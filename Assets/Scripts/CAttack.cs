@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class CAttack : MonoBehaviour
@@ -10,11 +11,14 @@ public class CAttack : MonoBehaviour
     public Transform shotOrigin;
     public GameObject projectile;
     public TimeControl timer;
-    public int[] damageArray = { 0, 0, 0, 0 };
+    public float[] damageArray = { 0, 0, 0, 0 };
     public float rangedCooldown;
+    public float stale = 0f;
+    public float count = 0f;
 
     private Animator anim;
     private SpecialAttackControl specialAC;
+    private Queue<int> moveQueue;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class CAttack : MonoBehaviour
         specialAC = GetComponent<SpecialAttackControl>();
         timer = Instantiate(timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
         timer.countDown = true;
+        moveQueue = new Queue<int>(9);
     }
 
     // Update is called once per frame
@@ -32,6 +37,14 @@ public class CAttack : MonoBehaviour
         {
             punchCheck.SetActive(true);
             anim.SetTrigger("Punch");
+            if (moveQueue.Count == 9)
+            {
+                moveQueue.Dequeue();
+            }
+            moveQueue.Enqueue(1);
+            stale = (StaleMoves(1) / 5);
+            damageArray[0] = damageArray[0] - stale;
+            count += 1;
         }
 
         if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
@@ -113,5 +126,46 @@ public class CAttack : MonoBehaviour
         {
             specialAC.SpecialOff(gameObject.tag);
         }
+    }
+
+    float StaleMoves(int n)
+    {
+
+        float scale = 0f;
+
+        foreach (int i in moveQueue)
+        {
+            if (i == 1)
+            {
+                //light += 1;
+
+                if (n == 1)
+                {
+                    scale += 1;
+                }
+            }
+
+            else if (i == 2)
+            {
+                //heavy += 1;
+
+                if (n == 2)
+                {
+                    scale += 1;
+                }
+            }
+
+            else if (i == 3)
+            {
+                //ranged += 1;
+
+                if (n == 3)
+                {
+                    scale += 1;
+                }
+            }
+        }
+
+        return scale - 1;
     }
 }

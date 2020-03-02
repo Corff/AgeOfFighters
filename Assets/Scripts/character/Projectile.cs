@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public float distance;
     public LayerMask whatIsSolid;
     public int damagePosition;
-    private int damage;
+    private float damage;
 
     private string targetTag;
 
