@@ -109,7 +109,7 @@ public class CAttack : MonoBehaviour
             specialAC.SpecialOff(gameObject.tag);
         }
     }
-    void LightAttackOn()
+    public void LightAttackOn()
     {
         punchCheck.SetActive(true);
         anim.SetTrigger("isPunching");
@@ -134,7 +134,7 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void HeavyAttackOn()
+    public void HeavyAttackOn()
     {
         heavyPunchCheck.SetActive(true);
         anim.SetTrigger("isHeavyPunching");
@@ -158,7 +158,7 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void RangedAttackOn()
+    public void RangedAttackOn()
     {
         Debug.Log(timer.time);
         if (timer.timeUp)
@@ -186,17 +186,17 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void LightAttackOff()
+    public void LightAttackOff()
     {
         punchCheck.SetActive(false);
     }
 
-    void HeavyAttackOff()
+    public void HeavyAttackOff()
     {
         heavyPunchCheck.SetActive(false);
     }
 
-    float StaleMoves(int n)
+    public float StaleMoves(int n)
     {
         float scale = 0f;
         foreach (int i in moveQueue)

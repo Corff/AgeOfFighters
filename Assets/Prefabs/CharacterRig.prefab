@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 4078188763545205756}
   - component: {fileID: 8701239313056610563}
   - component: {fileID: 5255306369047139271}
+  - component: {fileID: -458884700952244903}
   m_Layer: 0
   m_Name: CharacterRig
   m_TagString: Untagged
@@ -949,8 +950,9 @@ MonoBehaviour:
   projectile: {fileID: 1711698372638110818, guid: 5a568a2930979ce4ea691fa9a3c01ffb,
     type: 3}
   timer: {fileID: 7139670209364289179, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
-  damageArray: 04000000080000000500000028000000
+  damageArray: []
   rangedCooldown: 2
+  stale: 0
 --- !u!114 &5255306369047139271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +967,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialAttackCheck: {fileID: 9139925149052199265}
   specialVal: 0
+--- !u!114 &-458884700952244903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527472958486636750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b16a77d90491b5499052b7169fb942b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &527472958486636752
 GameObject:
   m_ObjectHideFlags: 0
