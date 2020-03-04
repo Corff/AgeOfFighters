@@ -280,8 +280,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218080883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -503.15, y: -384.11, z: 50}
-  m_LocalScale: {x: 31.199432, y: 10.472272, z: 1.248}
+  m_LocalPosition: {x: 3, y: 8, z: 50}
+  m_LocalScale: {x: 1112.1162, y: 785.9073, z: 1.248}
   m_Children: []
   m_Father: {fileID: 1046548994}
   m_RootOrder: 1
@@ -317,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d07131d5e3a5d82418575bacc9c73f7c, type: 2}
+  - {fileID: 2100000, guid: 7cc34fffcc1db5341a25e2bf95defab0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -962,7 +962,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 381.97528
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -986,7 +986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 510, y: 387, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2038,6 +2038,7 @@ GameObject:
   - component: {fileID: 1802649142}
   - component: {fileID: 1802649144}
   - component: {fileID: 1802649143}
+  - component: {fileID: 1802649145}
   m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
@@ -2084,9 +2085,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ART OF WAR
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73280a1b83c4afe42880a61d74e10fb8, type: 2}
-  m_sharedMaterial: {fileID: -3384039902567242938, guid: 73280a1b83c4afe42880a61d74e10fb8,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2184,6 +2184,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802649141}
   m_CullTransparentMesh: 0
+--- !u!95 &1802649145
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802649141}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 626b0b11622c54b459f8e9c2111787f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1925937763
 GameObject:
   m_ObjectHideFlags: 0
