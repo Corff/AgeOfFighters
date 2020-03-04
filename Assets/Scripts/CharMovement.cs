@@ -37,7 +37,7 @@ public class CharMovement : MonoBehaviour
     private Transform EnemyPos;
     private Transform PlayerPos;
 
-    //Dash rewrite
+    //Dash rewrite -- VAR NEED ORGANISING
     bool dashTimerRunning = false;
     float dashTimer = 0f;
     float dashWindow = 1f;
@@ -46,6 +46,9 @@ public class CharMovement : MonoBehaviour
     public float dashSpeed = 30f;
     private bool dashDurationTimerRunning;
     private float dashDurationTimer;
+    public float dashCoolDown = 1f;
+    private bool dashCoolDownTimerRunning;
+    private float dashCoolDownTimer;
 
     void Flip()
     {
@@ -83,6 +86,7 @@ public class CharMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player")
         {
             CrouchOn();
+            Debug.Log("RESET");
         }
         else if (Input.GetButtonDown("EnemyCrouch") && gameObject.tag == "Enemy")
         {
@@ -197,15 +201,16 @@ public class CharMovement : MonoBehaviour
             DashManager(1);
         }
 
+        //Probably needs some of this replacing with the timer object
         if (dashTimerRunning)
         {
-            dashTimer += Time.deltaTime;
-            if (dashTimer >= dashWindow)
+            dashTimer += Time.deltaTime; //This is the time frame to get the second input in to dash
+            if (dashTimer >= dashWindow) //When out of time clear out the queue
             {
                 DashTimerReset();
             }
         }
-        if (dashDurationTimerRunning)
+        if (dashDurationTimerRunning) //Countdown how long the dash speed buff lasts
         {
             dashDurationTimer -= Time.deltaTime;
             if (dashDurationTimer <= 0)
@@ -213,6 +218,17 @@ public class CharMovement : MonoBehaviour
                 dashDurationTimer = dashDuration;
                 speed = 5f;
                 dashDurationTimerRunning = false;
+                DashTimerReset();
+                dashCoolDownTimerRunning = true;
+            }
+        }
+        if (dashCoolDownTimerRunning)
+        {
+            dashCoolDownTimer -= Time.deltaTime;
+            if (dashCoolDownTimer <= 0)
+            {
+                dashCoolDownTimer = dashCoolDown;
+                dashCoolDownTimerRunning = false;
                 DashTimerReset();
             }
         }
@@ -227,6 +243,11 @@ public class CharMovement : MonoBehaviour
         if(dashQueue.Count >= 2)
         {
             dashQueue.RemoveAt(0);
+        }
+        if (dashCoolDownTimerRunning) //If dash is on cooldown reset it and clear the queue.
+        {
+            DashTimerReset();
+            return;
         }
         if (!dashTimerRunning) //If the dash timer is not running this is the first time we have had an input recently.
         {
@@ -259,10 +280,15 @@ public class CharMovement : MonoBehaviour
     /// <summary>
     /// Make the character dash.
     /// </summary>
-    public void Dash()
+    public void Dash() //Turn on particle effect in here
     {
-        speed = dashSpeed;
-        dashDurationTimerRunning = true;
+        Debug.Log("Dash");
+        if (!dashDurationTimerRunning) //Prevent dash firing twice
+        {
+            speed = dashSpeed;
+            dashDurationTimerRunning = true;
+        }
+
     }
 
     /// <summary>
@@ -343,7 +369,7 @@ public class CharMovement : MonoBehaviour
     /// <summary>
     /// Make the character stand back up.
     /// </summary>
-    private void CrouchOff()
+    public void CrouchOff()
     {
         isCrouched = false;
         isShielding = false;
@@ -353,7 +379,7 @@ public class CharMovement : MonoBehaviour
     /// <summary>
     /// Make the character crouch.
     /// </summary>
-    void CrouchOn()
+    public void CrouchOn()
     {
         isCrouched = true;
         isShielding = true;
