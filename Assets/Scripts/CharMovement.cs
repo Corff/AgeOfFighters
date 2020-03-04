@@ -15,7 +15,7 @@ public class CharMovement : MonoBehaviour
     public bool isWalking = false;
     public bool isDashing = false;
     public bool isShielding = false;
-    private List<int?> moveQueue = new List<int?>(15);
+    private List<int?> dashQueue = new List<int?>(15);
 
     //Condition variables
     public bool facingRight;
@@ -36,6 +36,16 @@ public class CharMovement : MonoBehaviour
     private Animator anim;
     private Transform EnemyPos;
     private Transform PlayerPos;
+
+    //Dash rewrite
+    bool dashTimerRunning = false;
+    float dashTimer = 0f;
+    float dashWindow = 1f;
+    bool dashFailed = false;
+    public float dashDuration = 0.25f;
+    public float dashSpeed = 30f;
+    private bool dashDurationTimerRunning;
+    private float dashDurationTimer;
 
     void Flip()
     {
@@ -169,8 +179,102 @@ public class CharMovement : MonoBehaviour
                 Flip();
             }
         }
+
+        if (Input.GetButtonDown("DashLeft") && gameObject.tag == "Player")
+        {
+            DashManager(-1);
+        }
+        else if (Input.GetButtonDown("DashRight") && gameObject.tag == "Player")
+        {
+            DashManager(1);
+        }
+        else if (Input.GetButtonDown("EnemyDashLeft") && gameObject.tag == "Enemy")
+        {
+            DashManager(-1);
+        }
+        else if (Input.GetButtonDown("EnemyDashRight") && gameObject.tag == "Enemy")
+        {
+            DashManager(1);
+        }
+
+        if (dashTimerRunning)
+        {
+            dashTimer += Time.deltaTime;
+            if (dashTimer >= dashWindow)
+            {
+                DashTimerReset();
+            }
+        }
+        if (dashDurationTimerRunning)
+        {
+            dashDurationTimer -= Time.deltaTime;
+            if (dashDurationTimer <= 0)
+            {
+                dashDurationTimer = dashDuration;
+                speed = 5f;
+                dashDurationTimerRunning = false;
+                DashTimerReset();
+            }
+        }
     }
 
+    /// <summary>
+    /// Used to check for a dash attempt and control the adding of new inputs to the dash queue.
+    /// </summary>
+    /// <param name="dir">Value of either 1 or -1, the direction of the dash.</param>
+    private void DashManager(int dir)
+    {
+        if(dashQueue.Count >= 2)
+        {
+            dashQueue.RemoveAt(0);
+        }
+        if (!dashTimerRunning) //If the dash timer is not running this is the first time we have had an input recently.
+        {
+            dashTimerRunning = true;
+            dashQueue.Add(dir); //Add the latest input
+        }
+        else //Only check if there has been atleast 2 inputs recently.
+        {
+            //Check if we are going to dash.
+            //If we dont dash clean out the queue.
+            //If the items match then we dash.
+            dashQueue.Add(dir);
+            dashFailed = true;
+            for (int i = 1; i < dashQueue.Count; i++)
+            {
+                if (dashQueue[i] == dashQueue[i-1])
+                {
+                    dashFailed = false;
+                    Dash();
+                    return;
+                }
+            }
+            if (dashFailed) //If we didnt dash reset the queue
+            {
+                DashTimerReset();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Make the character dash.
+    /// </summary>
+    public void Dash()
+    {
+        speed = dashSpeed;
+        dashDurationTimerRunning = true;
+    }
+
+    /// <summary>
+    /// Used to reset the dash timer 
+    /// </summary>
+    private void DashTimerReset()
+    {
+        dashTimerRunning = false;
+        //This may need changing, maybe just use two queues, one for just dashing and one for attacks
+        dashQueue.Clear();
+        dashTimer = 0;
+    }
     private void FixedUpdate()
     {
         float moveHorizontal = 0f;
@@ -180,28 +284,21 @@ public class CharMovement : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 moveHorizontal = Input.GetAxis("Horizontal");
-                MoveHorizontal(moveHorizontal, true);
+                MoveHorizontal(moveHorizontal);
             }
             else
             {
                 moveHorizontal = Input.GetAxis("EnemyHorizontal");
-                MoveHorizontal(moveHorizontal, true);
+                MoveHorizontal(moveHorizontal);
             }
         }
     }
-    private void Awake()
-    {
-        MoveHorizontal(-1f, 
-    }
+
     /// <summary>
     /// Call within FixedUpdate. Used to move the player.
     /// </summary>
     /// <param name="moveHorizontal">Value between -1 and 1 (inclusive).</param>
-    /// <param name="calculateDash">When true, the calculations on the dash queue will be made.
-    /// <para>For AI, this should probably be false.
-    /// Test</para>
-    /// </param>
-    public void MoveHorizontal(float moveHorizontal, bool calculateDash = false)
+    public void MoveHorizontal(float moveHorizontal)
     {
         if (moveHorizontal > 1 || moveHorizontal < -1)
         {
@@ -209,15 +306,6 @@ public class CharMovement : MonoBehaviour
         }
         movement = new Vector3(moveHorizontal * (speed), rigidBody.velocity.y, 0);
         //anim.SetBool("Running", true);
-        //Replace with moveHorizontal != 0 && !isWalking && !isDashing
-        if (moveHorizontal > 0 && !isWalking && !isDashing)
-        {
-            dashBuffer = true;
-        }
-        else if (moveHorizontal < 0 && !isWalking && !isDashing)
-        {
-            dashBuffer = true;
-        }
 
         rigidBody.velocity = movement;
 
@@ -226,7 +314,6 @@ public class CharMovement : MonoBehaviour
             anim.SetBool("isRunning", false);
             dashBuffer = false;
             isWalking = false;
-            isDashing = false;
             //speed = 5f;
         }
 
@@ -238,23 +325,6 @@ public class CharMovement : MonoBehaviour
         {
            anim.SetBool("isRunning", true);
         }
-
-        if (dashBuffer == true)
-        {
-            dash += Time.deltaTime;
-        }
-        else if (dashBuffer == false)
-        {
-            dash = 0;
-        }
-    }
-
-    /// <summary>
-    /// Make the character dash.
-    /// </summary>
-    public void Dash()
-    {
-        throw new NotImplementedException();
     }
 
     /// <summary>
