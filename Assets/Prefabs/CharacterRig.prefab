@@ -745,10 +745,9 @@ GameObject:
   - component: {fileID: 206404143207713420}
   - component: {fileID: 6246829098612906564}
   - component: {fileID: -7757772846296217521}
-  - component: {fileID: 4078188763545205756}
   - component: {fileID: 8701239313056610563}
   - component: {fileID: 5255306369047139271}
-  - component: {fileID: 6226783828902679942}
+  - component: {fileID: 3315816507525509660}
   m_Layer: 0
   m_Name: CharacterRig
   m_TagString: Untagged
@@ -909,29 +908,6 @@ MonoBehaviour:
   block: {fileID: 2420890809749482577}
   Timer: {fileID: 166422153398596364, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
   anim: {fileID: 124200450891386750}
---- !u!114 &4078188763545205756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527472958486636750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5a6b77bb703ed439a2f0963a3b3349, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCrouched: 0
-  speed: 3
-  dashBuffer: 0
-  dash: 0
-  isWalking: 0
-  isDashing: 0
-  isShielding: 0
-  facingRight: 0
-  isGrounded: 0
-  dust: {fileID: 0}
-  dist: 1
 --- !u!114 &8701239313056610563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,10 +927,10 @@ MonoBehaviour:
     type: 3}
   timer: {fileID: 7139670209364289179, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
   damageArray:
-  - 4
-  - 4
-  - 8
-  - 40
+  - 5
+  - 10
+  - 15
+  - 20
   rangedCooldown: 2
   stale: 0
 --- !u!114 &5255306369047139271
@@ -971,102 +947,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialAttackCheck: {fileID: 9139925149052199265}
   specialVal: 0
---- !u!82 &6226783828902679942
-AudioSource:
+
+--- !u!114 &3315816507525509660
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527472958486636750}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 0
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c21b739bd1e8499a6762ba3c8a8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCrouched: 0
+  speed: 3
+  dashBuffer: 0
+  dash: 0
+  isWalking: 0
+  isDashing: 0
+  isShielding: 0
+  facingRight: 0
+  isGrounded: 0
+  dust: {fileID: 0}
+  dist: 1
+  groundedTimer: 0.5
 --- !u!1 &527472958486636752
 GameObject:
   m_ObjectHideFlags: 0
