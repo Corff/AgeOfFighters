@@ -950,8 +950,13 @@ MonoBehaviour:
   projectile: {fileID: 1711698372638110818, guid: 5a568a2930979ce4ea691fa9a3c01ffb,
     type: 3}
   timer: {fileID: 7139670209364289179, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
-  damageArray: 04000000080000000500000028000000
+  damageArray:
+  - 4
+  - 4
+  - 8
+  - 40
   rangedCooldown: 2
+  stale: 0
 --- !u!114 &5255306369047139271
 MonoBehaviour:
   m_ObjectHideFlags: 0

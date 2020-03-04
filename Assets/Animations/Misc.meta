@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Audio/SFX.meta
-guid: bbe04a2bfa200fe4191867781f11a5fe
-=======
-guid: de4be84cef6c2244383a0a2d3225e91e
->>>>>>> master:Assets/Animations/Misc.meta
+guid: 82147b5b4894e0e4abdfe53650ca51a6
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
