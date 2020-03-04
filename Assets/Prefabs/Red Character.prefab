@@ -10308,9 +10308,10 @@ MonoBehaviour:
   isDashing: 0
   isShielding: 0
   facingRight: 0
-  isGrounded: 1
+  isGrounded: 0
   dust: {fileID: 0}
-  dist: 0.1
+  dist: 1
+  groundedTimer: 0.5
 --- !u!1 &8693997761232679015
 GameObject:
   m_ObjectHideFlags: 0

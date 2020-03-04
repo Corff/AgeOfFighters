@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CharMovement : MonoBehaviour
 {
-    //*** = Not Implemented
     public bool isCrouched = false;
     public float speed;
     //public static float distance;
@@ -16,6 +15,7 @@ public class CharMovement : MonoBehaviour
     public bool isWalking = false;
     public bool isDashing = false;
     public bool isShielding = false;
+    private List<int?> moveQueue = new List<int?>(15);
 
     //Condition variables
     public bool facingRight;
@@ -23,10 +23,10 @@ public class CharMovement : MonoBehaviour
 
     public ParticleSystem dust;
 
-    //??
+    //Jump Calculations
     public float dist = 1f;
     private float jumpForce = -500f;
-    private float groundedTimer = 0;
+    [SerializeField] private float groundedTimer = 0.5f;
 
     //Components
     private Rigidbody2D rigidBody;
@@ -34,9 +34,6 @@ public class CharMovement : MonoBehaviour
     private Vector3 dir;
     private Vector3 movement;
     private Animator anim;
-    private BoxCollider2D boxCollider;
-
-    //These variables could be placed in another script
     private Transform EnemyPos;
     private Transform PlayerPos;
 
@@ -55,9 +52,8 @@ public class CharMovement : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         isGrounded = true;
         anim = GetComponent<Animator>();
@@ -72,13 +68,13 @@ public class CharMovement : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player")
         {
             CrouchOn();
         }
-        else if (Input.GetButtonDown("Crouch") && gameObject.tag == "Enemy")
+        else if (Input.GetButtonDown("EnemyCrouch") && gameObject.tag == "Enemy")
         {
             CrouchOn();
         }
@@ -88,7 +84,7 @@ public class CharMovement : MonoBehaviour
             CrouchOff();
         }
 
-        if (Input.GetButtonUp("Crouch") && gameObject.tag == "Enemy")
+        if (Input.GetButtonUp("EnemyCrouch") && gameObject.tag == "Enemy")
         {
             CrouchOff();
         }
@@ -101,7 +97,7 @@ public class CharMovement : MonoBehaviour
         Debug.DrawRay(endpoint, dir * dist, Color.green);
         groundedTimer += Time.deltaTime;
 
-        if(!isGrounded && groundedTimer >= 0.2f)
+        if (!isGrounded && groundedTimer >= 0.2f)
         {
             if (Physics2D.Raycast(transform.position, dir, dist))
             {
@@ -124,60 +120,53 @@ public class CharMovement : MonoBehaviour
             {
                 isGrounded = false;
             }
-            Debug.LogWarning("Update");
-            if (Input.GetButtonDown("Jump"))
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player")
+        {
+            Debug.Log("Jump");
+            JumpOn();
+        }
+        else if (Input.GetButtonDown("EnemyJump") && isGrounded && gameObject.tag == "Enemy")
+        {
+            JumpOn();
+        }
+
+        if (EnemyPos.position.x < gameObject.transform.position.x && gameObject.tag == "Player")
+        {
+            facingRight = false;
+
+            if (gameObject.transform.localScale.x > 0)
             {
-                Debug.Log("J");
+                Flip();
             }
-            if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player")
+        }
+        else
+        {
+            facingRight = true;
+
+            if (gameObject.transform.localScale.x < 0)
             {
-                Debug.Log("Jump");
-                JumpOn();
+                Flip();
             }
+        }
 
-            else if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Enemy")
+        if (PlayerPos.position.x < gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = false;
+
+            if (gameObject.transform.localScale.x > 0)
             {
-                JumpOn();
+                Flip();
             }
+        }
+        else if (PlayerPos.position.x > gameObject.transform.position.x && gameObject.tag == "Enemy")
+        {
+            facingRight = true;
 
-            if (EnemyPos.position.x < gameObject.transform.position.x && gameObject.tag == "Player")
+            if (gameObject.transform.localScale.x < 0)
             {
-                facingRight = false;
-
-                if (gameObject.transform.localScale.x > 0)
-                {
-                    Flip();
-                }
-            }
-
-            else
-            {
-                facingRight = true;
-
-                if (gameObject.transform.localScale.x < 0)
-                {
-                    Flip();
-                }
-            }
-
-            if (PlayerPos.position.x < gameObject.transform.position.x && gameObject.tag == "Enemy")
-            {
-                facingRight = false;
-
-                if (gameObject.transform.localScale.x > 0)
-                {
-                    Flip();
-                }
-            }
-
-            else if (PlayerPos.position.x > gameObject.transform.position.x && gameObject.tag == "Enemy")
-            {
-                facingRight = true;
-
-                if (gameObject.transform.localScale.x < 0)
-                {
-                    Flip();
-                }
+                Flip();
             }
         }
     }
@@ -191,22 +180,28 @@ public class CharMovement : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 moveHorizontal = Input.GetAxis("Horizontal");
-                MoveHorizontal(moveHorizontal);
+                MoveHorizontal(moveHorizontal, true);
             }
-
             else
             {
                 moveHorizontal = Input.GetAxis("EnemyHorizontal");
-                MoveHorizontal(moveHorizontal);
+                MoveHorizontal(moveHorizontal, true);
             }
         }
     }
-
+    private void Awake()
+    {
+        MoveHorizontal(-1f, 
+    }
     /// <summary>
     /// Call within FixedUpdate. Used to move the player.
     /// </summary>
     /// <param name="moveHorizontal">Value between -1 and 1 (inclusive).</param>
-    public void MoveHorizontal(float moveHorizontal)
+    /// <param name="calculateDash">When true, the calculations on the dash queue will be made.
+    /// <para>For AI, this should probably be false.
+    /// Test</para>
+    /// </param>
+    public void MoveHorizontal(float moveHorizontal, bool calculateDash = false)
     {
         if (moveHorizontal > 1 || moveHorizontal < -1)
         {
@@ -219,7 +214,6 @@ public class CharMovement : MonoBehaviour
         {
             dashBuffer = true;
         }
-
         else if (moveHorizontal < 0 && !isWalking && !isDashing)
         {
             dashBuffer = true;
@@ -240,7 +234,6 @@ public class CharMovement : MonoBehaviour
         {
            anim.SetBool("isRunning", true);
         }
-
         else if (moveHorizontal< 0)
         {
            anim.SetBool("isRunning", true);
@@ -250,11 +243,18 @@ public class CharMovement : MonoBehaviour
         {
             dash += Time.deltaTime;
         }
-
         else if (dashBuffer == false)
         {
             dash = 0;
         }
+    }
+
+    /// <summary>
+    /// Make the character dash.
+    /// </summary>
+    public void Dash()
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>
