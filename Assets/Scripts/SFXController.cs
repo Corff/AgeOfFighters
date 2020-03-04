@@ -32,8 +32,8 @@ public class SFXController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        charSFX(playerAnim, playerAudio);
-        charSFX(enemyAnim, enemyAudio);
+        //charSFX(playerAnim, playerAudio);
+        //charSFX(enemyAnim, enemyAudio);
     }
 
     public void soundCall(GameObject Gm, string typeAnim)
@@ -50,21 +50,8 @@ public class SFXController : MonoBehaviour
 
     void charCallSFX(Animator currentAnimator, AudioSource currentAudioS, string animTypeC)
     {
-        if (animTypeC == "Idle")
-        {
-            if (currentAudioS.isPlaying == false)
-            {
-                currentAudioS.Stop();
-                sfxIsPlaying = false;
-            }
-            else if (currentAudioS.isPlaying == true && isConstantSFX == true)
-            {
-                currentAudioS.Stop();
-                isConstantSFX = false;
-                sfxIsPlaying = false;
-            }
-        }
-        else if ((animTypeC == "Walk" || animTypeC == "BackwardWalk") && sfxIsPlaying == false)
+        
+        if ((animTypeC == "Walk" || animTypeC == "BackwardWalk"))
         {
             if (currentAudioS.isPlaying == false)
             {
@@ -73,66 +60,58 @@ public class SFXController : MonoBehaviour
             }
             isConstantSFX = true;
         }
-        else if (animTypeC == "Run" && sfxIsPlaying == false)
+        else if (animTypeC == "Run")
         {
             currentAudioS.clip = characterSFX[(1 * 16) + 1];
             currentAudioS.Play();
-            sfxIsPlaying = true;
             Debug.Log("Enemy Punch Call");
         }
-        else if (animTypeC == "Punch" && sfxIsPlaying == false)
+        else if (animTypeC == "Punch")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 1 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
 
         }
-        else if (animTypeC == "HPunch" && sfxIsPlaying == false)
+        else if (animTypeC == "HPunch")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 3 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
-        else if (animTypeC == "Ranged" && sfxIsPlaying == false)
+        else if (animTypeC == "Ranged")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 5 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
-        else if (animTypeC == "Special" && sfxIsPlaying == false)
+        else if (animTypeC == "Special")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 7 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
-        else if (animTypeC == "Jump" && sfxIsPlaying == false)
+        else if (animTypeC == "Jump")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 9 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
-        else if (animTypeC == "Crouch" && sfxIsPlaying == false)
+        else if (animTypeC == "Crouch")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 11 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
-        else if (animTypeC == "Block" && sfxIsPlaying == false)
+        else if (animTypeC == "Block")
         {
             randSfxNum = Random.Range(1, 3);
             currentAudioS.clip = characterSFX[(1 * 16) + 13 + randSfxNum];
             currentAudioS.Play();
-            sfxIsPlaying = true;
         }
     }
 
-    void charSFX(Animator currentAnimator, AudioSource currentAudioS)
+    /*void charSFX(Animator currentAnimator, AudioSource currentAudioS)
     {
         if (currentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
@@ -214,5 +193,5 @@ public class SFXController : MonoBehaviour
             currentAudioS.Play();
             sfxIsPlaying = true;
         }
-    }
+    }*/
 }

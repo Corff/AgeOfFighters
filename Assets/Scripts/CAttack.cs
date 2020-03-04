@@ -21,6 +21,7 @@ public class CAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
         anim = GetComponent<Animator>();
         specialAC = GetComponent<SpecialAttackControl>();
         timer = Instantiate(timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
@@ -32,7 +33,7 @@ public class CAttack : MonoBehaviour
     {
         if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
         {
-            //soundAccess.soundCall(gameObject, "Punch");
+            soundAccess.soundCall(gameObject, "Punch");
             punchCheck.SetActive(true);
             anim.SetTrigger("isPunching");
         }
@@ -44,7 +45,7 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("HeavyAttack") && gameObject.tag == "Player")
         {
-            //soundAccess.soundCall(gameObject, "HPunch");
+            soundAccess.soundCall(gameObject, "HPunch");
             heavyPunchCheck.SetActive(true);
             anim.SetTrigger("Heavy Punch");
         }
@@ -70,7 +71,7 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
         {
-            //soundAccess.soundCall(gameObject, "Punch");
+            soundAccess.soundCall(gameObject, "Punch");
             punchCheck.SetActive(true);
             anim.SetTrigger("isPunching");
         }
@@ -82,7 +83,7 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("EnemyHeavyAttack") && gameObject.tag == "Enemy")
         {
-            //soundAccess.soundCall(gameObject, "Punch");
+            soundAccess.soundCall(gameObject, "HPunch");
             heavyPunchCheck.SetActive(true);
             anim.SetTrigger("Heavy Punch");
         }
@@ -109,7 +110,7 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
         {
-            //soundAccess.soundCall(gameObject, "Special");
+            soundAccess.soundCall(gameObject, "Special");
             specialAC.SpecialTrigger(gameObject.tag);
         }
         if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
@@ -119,7 +120,7 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
         {
-            //soundAccess.soundCall(gameObject, "Special");
+            soundAccess.soundCall(gameObject, "Special");
             specialAC.SpecialOff(gameObject.tag);
         }
         if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
@@ -130,7 +131,7 @@ public class CAttack : MonoBehaviour
 
     IEnumerator RangedAttackPlayer()
     {
-        //soundAccess.soundCall(gameObject, "Ranged");
+        soundAccess.soundCall(gameObject, "Ranged");
         anim.SetTrigger("rangedAttack");
 
         yield return new WaitForSeconds(0.4f);
@@ -141,7 +142,7 @@ public class CAttack : MonoBehaviour
     IEnumerator RangedAttackEnemy()
     {
 
-        //soundAccess.soundCall(gameObject, "Ranged");
+        soundAccess.soundCall(gameObject, "Ranged");
         anim.SetTrigger("rangedAttack");
 
         yield return new WaitForSeconds(0.4f);
