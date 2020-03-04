@@ -285,6 +285,7 @@ public class CharMovement : MonoBehaviour
         Debug.Log("Dash");
         if (!dashDurationTimerRunning) //Prevent dash firing twice
         {
+            Debug.Log("Dash speed set.");
             speed = dashSpeed;
             dashDurationTimerRunning = true;
         }

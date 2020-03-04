@@ -15,6 +15,7 @@ public class AttackCollision : MonoBehaviour
         //this script is attached to.
         if (gameObject.transform.parent.parent.parent.parent.parent.tag == "Player")
         {
+            Debug.LogWarning("If damage breaks, this probably needs re-writing");
             targetTag = "Enemy";
         }
         else if (gameObject.transform.parent.parent.parent.parent.parent.tag == "Enemy")
@@ -27,9 +28,6 @@ public class AttackCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("C2D Enter");
-        Debug.Log("Hit Tag: " + collision.gameObject.tag);
-        Debug.Log("Target Tag: " + targetTag);
 
         if (collision.gameObject.tag == targetTag)
         {
