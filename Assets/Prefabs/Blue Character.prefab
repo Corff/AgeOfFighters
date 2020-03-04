@@ -525,9 +525,9 @@ GameObject:
   - component: {fileID: 6333616815445451719}
   - component: {fileID: 6333616815445451717}
   - component: {fileID: 8475230942589200123}
+  - component: {fileID: -849468170726450260}
   - component: {fileID: -2136238047457176024}
   - component: {fileID: -8885476524222993894}
-  - component: {fileID: 6929639266745083325}
   m_Layer: 0
   m_Name: Blue Character
   m_TagString: Untagged
@@ -690,6 +690,29 @@ MonoBehaviour:
   block: {fileID: 1863660137638594768}
   Timer: {fileID: 166422153398596364, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
   anim: {fileID: 0}
+--- !u!114 &-849468170726450260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333616815445450810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5a6b77bb703ed439a2f0963a3b3349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCrouched: 0
+  speed: 5
+  dashBuffer: 0
+  dash: 0
+  isWalking: 0
+  isDashing: 0
+  isShielding: 0
+  facingRight: 0
+  isGrounded: 0
+  dust: {fileID: 0}
+  dist: 1.6
 --- !u!114 &-2136238047457176024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +738,7 @@ MonoBehaviour:
   - 20
   rangedCooldown: 2
   stale: 0
+  count: 0
 --- !u!114 &-8885476524222993894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,30 +753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialAttackCheck: {fileID: 5072510581904419206}
   specialVal: 0
---- !u!114 &6929639266745083325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6333616815445450810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c21b739bd1e8499a6762ba3c8a8bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCrouched: 0
-  speed: 5
-  dashBuffer: 0
-  dash: 0
-  isWalking: 0
-  isDashing: 0
-  isShielding: 0
-  facingRight: 0
-  isGrounded: 0
-  dust: {fileID: 0}
-  dist: 1.6
-  groundedTimer: 0.5
 --- !u!1 &6333616815485921516
 GameObject:
   m_ObjectHideFlags: 0
