@@ -322,7 +322,7 @@ public class CMovement : MonoBehaviour
 
         if (dashBuffer == true && !isWalking && dash > 0 && dash <= 1)
         {
-            if (Input.GetButtonDown("Cancel") && gameObject.tag == "Player")
+            if (Input.GetButtonDown("Dash") && gameObject.tag == "Player")
             {
                 dashBuffer = false;
                 speed = 10f;
@@ -332,7 +332,7 @@ public class CMovement : MonoBehaviour
                 //anim.SetBool("Running", false);
                 //Dash Animation
             }
-            else if (Input.GetButtonDown("Cancel") && gameObject.tag == "Enemy")
+            else if (Input.GetButtonDown("EnemyDash") && gameObject.tag == "Enemy")
             {
                 dashBuffer = false;
                 speed = 10f;
