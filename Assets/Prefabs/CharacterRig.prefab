@@ -947,6 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialAttackCheck: {fileID: 9139925149052199265}
   specialVal: 0
+
 --- !u!114 &3315816507525509660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,7 +1307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2420890809749482577}
   m_LocalRotation: {x: -0, y: -0, z: -0.70997524, w: 0.70422673}
-  m_LocalPosition: {x: 5.0670786, y: -2.2163255, z: 0}
+  m_LocalPosition: {x: 4.99, y: -2.42, z: 0}
   m_LocalScale: {x: 2.9430008, y: 2.9430008, z: 2.9432}
   m_Children: []
   m_Father: {fileID: 527472958487131360}

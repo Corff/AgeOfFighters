@@ -39,11 +39,14 @@ public class CMovement : MonoBehaviour
     private Transform EnemyPos;
     private Transform PlayerPos;
 
+    private SFXController soundAccess; 
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         isGrounded = true;
         anim = GetComponent<Animator>();
+        soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
 
         EnemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -62,6 +65,7 @@ public class CMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player") //Enter Crouch
         {
+            soundAccess.soundCall(gameObject, "Crouch"); 
             isCrouched = true;
             //@@ Testing out another method of crouching
             
@@ -111,6 +115,7 @@ public class CMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Crouch") && isCrouched && gameObject.tag == "Player") //Exit crouch
         {
+            soundAccess.soundCall(gameObject, "Crouch");
             isCrouched = false;
             isShielding = false;
             //@@ Testing out another method of crouching
@@ -187,6 +192,7 @@ public class CMovement : MonoBehaviour
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
             groundedTimer = 0;
             isGrounded = false;
+            soundAccess.soundCall(gameObject, "Jump");
             anim.SetTrigger("isJumping");
             CreateDust();
         }
@@ -197,6 +203,7 @@ public class CMovement : MonoBehaviour
             rigidBody.AddForce(new Vector3(0, -1, 0) * jumpForce);
             groundedTimer = 0;
             isGrounded = false;
+            soundAccess.soundCall(gameObject, "Jump");
             anim.SetTrigger("isJumping");
             CreateDust();
         }
@@ -292,12 +299,15 @@ public class CMovement : MonoBehaviour
 
         if (moveHorizontal > 0)
         {
+           soundAccess.soundCall(gameObject,"Walk");
            anim.SetBool("isRunning", true);
+
         }
 
         else if (moveHorizontal < 0)
         {
-           anim.SetBool("isRunning", true);
+            soundAccess.soundCall(gameObject, "Walk");
+            anim.SetBool("isRunning", true);
         }
 
         if (dashBuffer == true)
