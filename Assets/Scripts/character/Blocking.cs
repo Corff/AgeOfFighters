@@ -20,6 +20,7 @@ public class Blocking : MonoBehaviour
     public GameObject Timer;
     public Animator anim;
     private Slider staminaSlider;
+    private SFXController soundAccess;
 
     public void ReturnProjectile(GameObject projectileGO)
     {
@@ -28,6 +29,7 @@ public class Blocking : MonoBehaviour
 
     private void Start()
     {
+
         if (gameObject.tag == "Player")
         {
             staminaSlider = GameObject.FindGameObjectWithTag("PlayerStamina").GetComponent<Slider>();
@@ -36,6 +38,7 @@ public class Blocking : MonoBehaviour
         {
             staminaSlider = GameObject.FindGameObjectWithTag("EnemyStamina").GetComponent<Slider>();
         }
+        soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
         timer = Instantiate(Timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
         perfect = Instantiate(Timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
         staminaSlider.value = timer.time;
@@ -60,6 +63,10 @@ public class Blocking : MonoBehaviour
         {
             if (Input.GetButton("Block") && !timer.timeUp) //If there is stamina left...
             {
+                if(Input.GetButtonDown("Block"))
+                {
+                    soundAccess.soundCall(gameObject, "Block");
+                }
                 block.SetActive(true);
                 anim.SetBool("isBlocking", true);
                 perfect.countDown = true; //Start the degen for stamina and the perfect window
@@ -78,6 +85,10 @@ public class Blocking : MonoBehaviour
             //If the button is still being held but stamina is out.
             else if (Input.GetButton("Block") && timer.timeUp)
             {
+                if (Input.GetButtonUp("Block"))
+                {
+                    soundAccess.soundCall(gameObject, "Block");
+                }
                 block.SetActive(false);
                 anim.SetBool("isBlocking", false);
                 blocked = false;
@@ -86,6 +97,10 @@ public class Blocking : MonoBehaviour
             //If the button is released start regening
             else
             {
+                if (Input.GetButtonUp("Block"))
+                {
+                    soundAccess.soundCall(gameObject, "Block");
+                }
                 block.SetActive(false);
                 anim.SetBool("isBlocking", false);
                 perfectBlock = false;
@@ -105,6 +120,7 @@ public class Blocking : MonoBehaviour
         {
             if (Input.GetButton("EnemyBlock") && !timer.timeUp) //If there is stamina left...
             {
+                soundAccess.soundCall(gameObject, "Block");
                 block.SetActive(true);
                 perfect.countDown = true; //Start the degen for stamina and the perfect window
                 timer.countDown = true;
