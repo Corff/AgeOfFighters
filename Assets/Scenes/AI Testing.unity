@@ -4623,7 +4623,7 @@ MonoBehaviour:
   isEnemy: 1
   isVs: 1
   genRandom: 0
-  isAI: 0
+  isAi: 0
 --- !u!1 &1972931590
 GameObject:
   m_ObjectHideFlags: 0
@@ -4903,7 +4903,7 @@ MonoBehaviour:
   isEnemy: 0
   isVs: 1
   genRandom: 0
-  isAI: 0
+  isAi: 0
 --- !u!1 &1994330604
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,6 +5445,11 @@ PrefabInstance:
     - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
         type: 3}
       propertyPath: isVs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
+        type: 3}
+      propertyPath: isAi
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

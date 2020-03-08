@@ -9,7 +9,7 @@ public class GameStartControl : MonoBehaviour
     public bool isEnemy;
     public bool isVs;
     public bool genRandom;
-    public bool isAI;
+    public bool isAi;
 
     private int playerChoice;
     private Image vsImage;
@@ -57,7 +57,7 @@ public class GameStartControl : MonoBehaviour
             playerInstance.tag = "Player";
             enemyInstance.tag = "Enemy";
         }
-        if(isAI == true)
+        if(isAi)
         {
             Debug.Log("EnemyNum " + enemyNum);
             playerPrefab = characterPrefabList[playerChoice];
