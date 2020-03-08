@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject player;
     public Rigidbody2D rb;
     public CAttack enemyAttack;
+    public CharMovement cmove;
 
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class EnemyAI : MonoBehaviour
             enemyAttack = gameObject.GetComponent<CAttack>();
             player = GameObject.FindGameObjectWithTag("Player");
             rb = gameObject.GetComponent<Rigidbody2D>();
+            cmove = gameObject.GetComponent<CharMovement>();
         }
     }
 
@@ -30,7 +32,7 @@ public class EnemyAI : MonoBehaviour
         {
             WalkToPlayer();
             float distance = Vector2.Distance(gameObject.transform.position, player.transform.position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if (distance < 2)
             {
                 attackPlayer();
@@ -48,7 +50,8 @@ public class EnemyAI : MonoBehaviour
             Vector2 movement = new Vector2(10, rb.velocity.y);
             rb.velocity += movement;
             gameObject.transform.localPosition += new Vector3(-0.01f, 0, 0);
-            Debug.Log("Left");
+            cmove.MoveHorizontal(-1);
+            //Debug.Log("Left");
             gameObject.transform.localScale = new Vector3(-0.3f, 0.3f, 1);
         }
 
@@ -58,7 +61,8 @@ public class EnemyAI : MonoBehaviour
             Vector2 movement = new Vector2(-10, rb.velocity.y);
             rb.velocity += movement;
             gameObject.transform.localPosition += new Vector3(0.01f, 0, 0);
-            Debug.Log("Right");
+            cmove.MoveHorizontal(1);
+            //Debug.Log("Right");
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 1);
         }
 

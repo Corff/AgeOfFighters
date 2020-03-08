@@ -67,6 +67,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
             RangedAttackOn();
+            Debug.Log("Ranged");
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
