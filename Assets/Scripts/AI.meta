@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/AI.meta
 guid: 3b814d86c86fc694586e85ae8673b14f
+=======
+guid: 82147b5b4894e0e4abdfe53650ca51a6
+>>>>>>> master:Assets/Animations/Misc.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

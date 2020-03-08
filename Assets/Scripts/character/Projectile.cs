@@ -13,12 +13,12 @@ public class Projectile : MonoBehaviour
 
     private string targetTag;
 
-    private CMovement pc;
+    private CharMovement pc;
     private Health health;
     public GameObject destroyEffect;
     private void Start()
     {
-        pc = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<CMovement>();
+        pc = GameObject.FindGameObjectWithTag(gameObject.tag).GetComponent<CharMovement>();
         if (!pc.facingRight)
         {
             speed *= -1;
