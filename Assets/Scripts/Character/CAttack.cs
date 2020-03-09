@@ -121,7 +121,7 @@ public class CAttack : MonoBehaviour
             specialAC.SpecialOff(gameObject.tag);
         }
     }
-    void LightAttackOn()
+    public void LightAttackOn()
     {
         soundAccess.soundCall(gameObject, "Punch");
         punchCheck.SetActive(true);
@@ -147,7 +147,7 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void HeavyAttackOn()
+    public void HeavyAttackOn()
     {
         soundAccess.soundCall(gameObject, "HPunch");
         heavyPunchCheck.SetActive(true);
@@ -172,7 +172,7 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void RangedAttackOn()
+    public void RangedAttackOn()
     {
         Debug.Log("Ranged Attack On");
         //Debug.Log(timer.time);
@@ -201,12 +201,12 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void LightAttackOff()
+    public void LightAttackOff()
     {
         punchCheck.SetActive(false);
     }
 
-    void HeavyAttackOff()
+    public void HeavyAttackOff()
     {
         heavyPunchCheck.SetActive(false);
     }

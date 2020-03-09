@@ -5549,7 +5549,7 @@ PrefabInstance:
     - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
         type: 3}
       propertyPath: isVs
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e, type: 3}

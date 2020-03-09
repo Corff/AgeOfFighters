@@ -9,12 +9,14 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody2D rb;
     public CAttack enemyAttack;
     public CharMovement cmove;
+    bool isAi;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.tag == "EnemyAI")
+        isAi = gameObject.transform.GetChild(7).gameObject.activeSelf;
+        if (isAi)
         {
             Debug.Log("I am AI");
             enemyAttack = gameObject.GetComponent<CAttack>();
@@ -28,15 +30,21 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
-        if (gameObject.tag == "EnemyAI")
+        if (isAi)
         {
             WalkToPlayer();
             float distance = Vector2.Distance(gameObject.transform.position, player.transform.position);
             //Debug.Log(distance);
             if (distance < 2)
             {
-                //attackPlayer();
+                attackPlayer();
             }
+        }
+
+        RaycastHit2D line = Physics2D.Linecast(gameObject.transform.localPosition, player.transform.localPosition);
+        if(line.point.y == gameObject.transform.localPosition.y)
+        {
+            Debug.Log("He");
         }
     }
 
@@ -69,10 +77,10 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log(posDiff);
 
     }
-    //void attackPlayer()
-    //{
+    void attackPlayer()
+    {
 
-    //    enemyAttack.LightAttackOn();
+        enemyAttack.LightAttackOn();
 
-    //}
+    }
 }

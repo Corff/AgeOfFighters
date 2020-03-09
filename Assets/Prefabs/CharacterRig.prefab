@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 5255306369047139271}
   - component: {fileID: 3315816507525509660}
   - component: {fileID: -9117664537143466526}
+  - component: {fileID: 2057281516643364088}
   m_Layer: 0
   m_Name: CharacterRig
   m_TagString: Untagged
@@ -1072,6 +1073,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2057281516643364088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527472958486636750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06d10d1cbf4a34fa419b95cd2d0232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &527472958486636752
 GameObject:
   m_ObjectHideFlags: 0
