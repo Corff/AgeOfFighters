@@ -19,6 +19,7 @@ TagManager:
   - Timer
   - PlayerHealthBar
   - EnemyHealthBar
+  - EnemyAI
   layers:
   - Default
   - TransparentFX
