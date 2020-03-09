@@ -2056,6 +2056,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 221727427}
+    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
+        type: 3}
+      propertyPath: transitionTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2948078069716070211, guid: d0964107e73faf443b68b00b5aa9111c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2110,16 +2120,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 221727427}
-    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
-        type: 3}
-      propertyPath: transitionTime
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1293680773, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
       propertyPath: m_IsActive
@@ -2240,14 +2240,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 8300000, guid: debded20227accc4c9c18f1dbb2779e0, type: 3}
+  - {fileID: 8300000, guid: 33a7538d6eabba54b98b6ab8c4a32cf7, type: 3}
   - {fileID: 0}
+  - {fileID: 8300000, guid: 27a9a51aca25e044a8df98db597b53ef, type: 3}
   - {fileID: 8300000, guid: e2715b63efcaae1429da169ae7f6e3e0, type: 3}
-  - {fileID: 8300000, guid: 50cfc9795de4f4844b970b4980ec543a, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 8300000, guid: 8e388673655e18f44b54e38ffcec6ae4, type: 3}
-  - {fileID: 8300000, guid: 582f1d1cdd3612443b43d74eb86a73ca, type: 3}
+  - {fileID: 8300000, guid: 102141ed218cedd4f877764fa71891b5, type: 3}
+  - {fileID: 8300000, guid: 9144156c93d0bfc408f98d3a74567e07, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: 00e46ff044ba3484c97008443f4a6d9d, type: 3}
