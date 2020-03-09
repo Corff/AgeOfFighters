@@ -14,8 +14,7 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
-    private int phitCounter;
-    private int ehitCounter;
+    private ComboCounter comboCounter;
 
 
 
@@ -35,6 +34,7 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         fill.color = gradient.Evaluate(healthSlider.normalizedValue); //Changes the health bar colour based on the character's HP
         blocking = GetComponent<Blocking>();
+        comboCounter = GameObject.FindWithTag("GameController").GetComponent<ComboCounter>();
     }
 
     void Update()
@@ -72,27 +72,13 @@ public class Health : MonoBehaviour
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
-                if (ehitCounter < 99)
-                {
-                    ehitCounter += 1;
-                }
-                else
-                {
-                    ehitCounter = 99;
-                }
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
-                if(phitCounter < 99)
-                {
-                    phitCounter += 1;
-                }
-                else
-                {
-                    phitCounter = 99;
-                }
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
@@ -122,27 +108,13 @@ public class Health : MonoBehaviour
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
-                if (ehitCounter < 99)
-                {
-                    ehitCounter += 1;
-                }
-                else
-                {
-                    ehitCounter = 99;
-                }
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
-                if (phitCounter < 99)
-                {
-                    phitCounter += 1;
-                }
-                else
-                {
-                    phitCounter = 99;
-                }
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
@@ -157,6 +129,5 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
     }
-
 
 }
