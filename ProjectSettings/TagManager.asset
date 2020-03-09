@@ -19,6 +19,8 @@ TagManager:
   - Timer
   - PlayerHealthBar
   - EnemyHealthBar
+  - PCCounter
+  - ECCounter
   layers:
   - Default
   - TransparentFX

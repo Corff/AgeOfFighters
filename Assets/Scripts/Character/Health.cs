@@ -14,7 +14,10 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
-   
+    private int phitCounter;
+    private int ehitCounter;
+
+
 
     void Start()
     {
@@ -69,11 +72,27 @@ public class Health : MonoBehaviour
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                if (ehitCounter < 99)
+                {
+                    ehitCounter += 1;
+                }
+                else
+                {
+                    ehitCounter = 99;
+                }
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                if(phitCounter < 99)
+                {
+                    phitCounter += 1;
+                }
+                else
+                {
+                    phitCounter = 99;
+                }
             }
         }
     }
@@ -103,11 +122,27 @@ public class Health : MonoBehaviour
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                if (ehitCounter < 99)
+                {
+                    ehitCounter += 1;
+                }
+                else
+                {
+                    ehitCounter = 99;
+                }
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                if (phitCounter < 99)
+                {
+                    phitCounter += 1;
+                }
+                else
+                {
+                    phitCounter = 99;
+                }
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CAttack : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class CAttack : MonoBehaviour
     private Queue<int> moveQueue;
 
     private SFXController soundAccess;
-
+  
     // Start is called before the first frame update
     void Start()
     {
