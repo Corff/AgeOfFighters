@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class charDetailsSelect : MonoBehaviour
 {
@@ -32,10 +33,11 @@ public class charDetailsSelect : MonoBehaviour
     {
         isOn = true;
         charPanel.SetActive(true);
-        namePanel.GetComponent<Text>().text = charInfo.GetComponent<Character_Array>().getCharNames()[charSNum];
-        descPanel.GetComponent<Text>().text = charInfo.GetComponent<Character_Array>().getCharDesc()[charSNum];
+        namePanel.GetComponent<TextMeshProUGUI>().text = charInfo.GetComponent<Character_Array>().getCharNames()[charSNum];
+        descPanel.GetComponent<TextMeshProUGUI>().text = charInfo.GetComponent<Character_Array>().getCharDesc()[charSNum];
         charPanel.GetComponentInChildren<Image>().sprite = charInfo.GetComponent<Character_Array>().characterImages[charSNum];
         charInfo.GetComponent<Character_Array>().setPlayerChoice(charSNum);
+
     }
     public void hoverRequestOof()
     {
