@@ -39,13 +39,14 @@ public class EnemyAI : MonoBehaviour
             {
                 attackPlayer();
             }
+
+            if (distance > 5)
+            {
+                rangedPlayer();
+            }
         }
 
-        RaycastHit2D line = Physics2D.Linecast(gameObject.transform.localPosition, player.transform.localPosition);
-        if(line.point.y == gameObject.transform.localPosition.y)
-        {
-            Debug.Log("He");
-        }
+
     }
 
     void WalkToPlayer()
@@ -79,8 +80,19 @@ public class EnemyAI : MonoBehaviour
     }
     void attackPlayer()
     {
+        
+        if (Random.Range(0, 2) == 1)
+        {
+            enemyAttack.LightAttackOn();
+        }else
+        {
+            enemyAttack.HeavyAttackOn();
+        }
+        Debug.Log(Random.Range(0,2));
 
-        enemyAttack.LightAttackOn();
-
+    }
+    void rangedPlayer()
+    {
+        enemyAttack.RangedAttackOn();
     }
 }
