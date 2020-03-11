@@ -24,12 +24,19 @@ public class CAttack : MonoBehaviour
     private Queue<int> moveQueue;
     private Health health;
     private CharMovement charMovement;
-
+    private Dictionary<string, bool> coolDownState;
+    private float attackCooldown = 0.5f; //If you want individual attacks to have individual cooldowns, then make the dictionary an array.
     private SFXController soundAccess;
 
     // Start is called before the first frame update
     void Start()
     {
+        coolDownState = new Dictionary<string, bool>()
+        {
+            {"LightAttack", true },
+            {"HeavyAttack", true },
+            {"RangedAttack", true },
+        };
         charMovement = GetComponent<CharMovement>();
         health = GetComponent<Health>();
         soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
@@ -130,6 +137,11 @@ public class CAttack : MonoBehaviour
     }
     public void LightAttackOn()
     {
+        if (!coolDownState["LightAttack"])
+        {
+            return;
+        }
+        StartCoroutine(AttackDelay("LightAttack"));
         soundAccess.soundCall(gameObject, "Punch");
         punchCheck.SetActive(true);
         anim.SetTrigger("isPunching");
@@ -157,6 +169,11 @@ public class CAttack : MonoBehaviour
 
     public void HeavyAttackOn()
     {
+        if (!coolDownState["HeavyAttack"])
+        {
+            return;
+        }
+        StartCoroutine(AttackDelay("HeavyAttack"));
         soundAccess.soundCall(gameObject, "HPunch");
         heavyPunchCheck.SetActive(true);
         anim.SetTrigger("isHeavyPunching");
@@ -183,8 +200,11 @@ public class CAttack : MonoBehaviour
 
     public void RangedAttackOn()
     {
-        Debug.Log("Ranged Attack On");
-        Debug.Log(timer.time);
+        if (!coolDownState["RangedAttack"])
+        {
+            return;
+        }
+        StartCoroutine(AttackDelay("RangedAttack"));
         health.rangedAttackUsed += 1;
         if (timer.timeUp)
         {
@@ -260,4 +280,12 @@ public class CAttack : MonoBehaviour
         var proj = Instantiate(projectile, shotOrigin.position, transform.rotation);
         proj.tag = gameObject.tag;
     }
+
+    IEnumerator AttackDelay(string attackName)
+    {
+        coolDownState[attackName] = false;
+        yield return new WaitForSeconds(attackCooldown);
+        coolDownState[attackName] = true;
+    }
 }
+
