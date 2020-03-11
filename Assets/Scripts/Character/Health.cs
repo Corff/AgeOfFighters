@@ -14,7 +14,6 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
-
     public float damageBlocked = 0f;
     public float damageDealt = 0f;
     public int lightAttackUsed = 0;
@@ -22,9 +21,10 @@ public class Health : MonoBehaviour
     public int heavyAttackUsed = 0;
     public int specialAttackUsed = 0;
     public int totalHit = 0;
+    private ComboCounter comboCounter;
 
-    void Start()
-    {
+
+    void Start() {
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
@@ -39,6 +39,7 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         fill.color = gradient.Evaluate(healthSlider.normalizedValue); //Changes the health bar colour based on the character's HP
         blocking = GetComponent<Blocking>();
+        comboCounter = GameObject.FindWithTag("GameController").GetComponent<ComboCounter>();
     }
 
     void Update()
@@ -80,6 +81,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount;
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
@@ -87,6 +89,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
@@ -118,6 +121,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount;
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
@@ -125,6 +129,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
@@ -139,6 +144,5 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
     }
-
 
 }
