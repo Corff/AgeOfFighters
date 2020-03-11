@@ -10,8 +10,8 @@ public class GameOverController : MonoBehaviour
     private Health checkPHealth;//Checks current health of Player
     private Health checkEHealth;//Checks current health of Enemy
 
-    CharMovement playerM;
-    CharMovement enemyM;
+    GameObject playerM;
+    GameObject enemyM;
 
 
 
@@ -19,8 +19,8 @@ public class GameOverController : MonoBehaviour
     {
         checkPHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
         checkEHealth = GameObject.FindWithTag("Enemy").GetComponent<Health>();
-        playerM = GameObject.FindGameObjectWithTag("Player").GetComponent<CharMovement>();
-        enemyM = GameObject.FindGameObjectWithTag("Enemy").GetComponent<CharMovement>();
+        playerM = GameObject.FindGameObjectWithTag("Player");
+        enemyM = GameObject.FindGameObjectWithTag("Enemy");
     }
     void Update()
     {
@@ -40,7 +40,10 @@ public class GameOverController : MonoBehaviour
                 gOPanel.GetComponentInChildren<Text>().text = "Player 1";
                 gOPanel.SetActive(true);
             }
-            
+            playerM.GetComponent<CharMovement>().enabled = false;
+            enemyM.GetComponent<EnemyAI>().enabled = false;
+            enemyM.GetComponent<CharMovement>().enabled = false;
+            enemyM.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         }
     }
 }
