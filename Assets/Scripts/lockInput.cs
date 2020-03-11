@@ -9,7 +9,7 @@ public class lockInput : MonoBehaviour
     private void Start()
     {
         isAi = gameObject.transform.GetChild(7).gameObject.activeSelf;
-        gameObject.GetComponent<CharMovement>().enabled = false;
+        gameObject.GetComponent<CharMovement>().inputActive = false;
         if(isAi)
         {
             gameObject.GetComponent<EnemyAI>().enabled = false;
@@ -21,8 +21,8 @@ public class lockInput : MonoBehaviour
     public void antiStart()
     {
         Debug.Log("anti");
-        gameObject.GetComponent<CharMovement>().enabled = true;
-        if(isAi)
+        gameObject.GetComponent<CharMovement>().inputActive = true;
+        if (isAi)
         {
             gameObject.GetComponent<EnemyAI>().enabled = true;
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;

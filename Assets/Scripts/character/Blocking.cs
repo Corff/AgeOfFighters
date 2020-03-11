@@ -21,6 +21,7 @@ public class Blocking : MonoBehaviour
     public Animator anim;
     private Slider staminaSlider;
     private SFXController soundAccess;
+    private CharMovement charMovement;
 
     public void ReturnProjectile(GameObject projectileGO)
     {
@@ -29,7 +30,7 @@ public class Blocking : MonoBehaviour
 
     private void Start()
     {
-
+        charMovement = GetComponent<CharMovement>();
         if (gameObject.tag == "Player")
         {
             staminaSlider = GameObject.FindGameObjectWithTag("PlayerStamina").GetComponent<Slider>();
@@ -59,107 +60,108 @@ public class Blocking : MonoBehaviour
     private void Update()
     {
         staminaSlider.value = timer.time;
-        if (gameObject.tag == "Player")
+        if (charMovement.inputActive)
         {
-            if (Input.GetButton("Block") && !timer.timeUp) //If there is stamina left...
+            if (gameObject.tag == "Player")
             {
-                if(Input.GetButtonDown("Block"))
+                if (Input.GetButton("Block") && !timer.timeUp) //If there is stamina left...
                 {
-                    soundAccess.soundCall(gameObject, "Block");
+                    if (Input.GetButtonDown("Block"))
+                    {
+                        soundAccess.soundCall(gameObject, "Block");
+                    }
+                    block.SetActive(true);
+                    anim.SetBool("isBlocking", true);
+                    perfect.countDown = true; //Start the degen for stamina and the perfect window
+                    timer.countDown = true;
+                    if (!perfect.timeUp) //If there is time left on the perfect window
+                    {
+                        perfectBlock = true;
+                    }
+                    else //If the perfect window is up set normal blocking value
+                    {
+                        perfectBlock = false;
+                        blocked = true;
+                    }
+                    //ENABLE THE BLOCK PREFAB
                 }
-                block.SetActive(true);
-                anim.SetBool("isBlocking", true);
-                perfect.countDown = true; //Start the degen for stamina and the perfect window
-                timer.countDown = true;
-                if (!perfect.timeUp) //If there is time left on the perfect window
+                //If the button is still being held but stamina is out.
+                else if (Input.GetButton("Block") && timer.timeUp)
                 {
-                    perfectBlock = true;
+                    if (Input.GetButtonUp("Block"))
+                    {
+                        soundAccess.soundCall(gameObject, "Block");
+                    }
+                    block.SetActive(false);
+                    anim.SetBool("isBlocking", false);
+                    blocked = false;
+                    //Block fail sound effect (Play once). Use flag to tell.
                 }
-                else //If the perfect window is up set normal blocking value
-                {
-                    perfectBlock = false;
-                    blocked = true;
-                }
-                //ENABLE THE BLOCK PREFAB
-            }
-            //If the button is still being held but stamina is out.
-            else if (Input.GetButton("Block") && timer.timeUp)
-            {
-                if (Input.GetButtonUp("Block"))
-                {
-                    soundAccess.soundCall(gameObject, "Block");
-                }
-                block.SetActive(false);
-                anim.SetBool("isBlocking", false);
-                blocked = false;
-                //Block fail sound effect (Play once). Use flag to tell.
-            }
-            //If the button is released start regening
-            else
-            {
-                if (Input.GetButtonUp("Block"))
-                {
-                    soundAccess.soundCall(gameObject, "Block");
-                }
-                block.SetActive(false);
-                anim.SetBool("isBlocking", false);
-                perfectBlock = false;
-                blocked = false;
-                timer.countDown = false;
-                if (timer.time < stamina) //Refill stamina upto the maximum value
-                {
-                    timer.time += Time.deltaTime * staminaRechargeRate;
-                }
+                //If the button is released start regening
                 else
                 {
-                    timer.time = stamina;
-                }
-            }
-        }
-        else if (gameObject.tag == "Enemy")
-        {
-            if (Input.GetButton("EnemyBlock") && !timer.timeUp) //If there is stamina left...
-            {
-                soundAccess.soundCall(gameObject, "Block");
-                block.SetActive(true);
-                perfect.countDown = true; //Start the degen for stamina and the perfect window
-                timer.countDown = true;
-                if (!perfect.timeUp) //If there is time left on the perfect window
-                {
-                    perfectBlock = true;
-                }
-                else //If the perfect window is up set normal blocking value
-                {
+                    if (Input.GetButtonUp("Block"))
+                    {
+                        soundAccess.soundCall(gameObject, "Block");
+                    }
+                    block.SetActive(false);
+                    anim.SetBool("isBlocking", false);
                     perfectBlock = false;
-                    blocked = true;
+                    blocked = false;
+                    timer.countDown = false;
+                    if (timer.time < stamina) //Refill stamina upto the maximum value
+                    {
+                        timer.time += Time.deltaTime * staminaRechargeRate;
+                    }
+                    else
+                    {
+                        timer.time = stamina;
+                    }
                 }
-                
             }
-            //If the button is still being held but stamina is out.
-            else if (Input.GetButton("EnemyBlock") && timer.timeUp)
+            else if (gameObject.tag == "Enemy")
             {
-                block.SetActive(false);
-                blocked = false;
-                //Block fail sound effect (Play once). Use flag to tell.
-            }
-            //If the button is released start regening
-            else
-            {
-                block.SetActive(false);
-                perfectBlock = false;
-                blocked = false;
-                timer.countDown = false;
-                if (timer.time < stamina) //Refill stamina upto the maximum value
+                if (Input.GetButton("EnemyBlock") && !timer.timeUp) //If there is stamina left...
                 {
-                    timer.time += Time.deltaTime * staminaRechargeRate;
-                }
-                else
-                {
-                    timer.time = stamina;
-                }
-            }
-        }
-        
+                    soundAccess.soundCall(gameObject, "Block");
+                    block.SetActive(true);
+                    perfect.countDown = true; //Start the degen for stamina and the perfect window
+                    timer.countDown = true;
+                    if (!perfect.timeUp) //If there is time left on the perfect window
+                    {
+                        perfectBlock = true;
+                    }
+                    else //If the perfect window is up set normal blocking value
+                    {
+                        perfectBlock = false;
+                        blocked = true;
+                    }
 
+                }
+                //If the button is still being held but stamina is out.
+                else if (Input.GetButton("EnemyBlock") && timer.timeUp)
+                {
+                    block.SetActive(false);
+                    blocked = false;
+                    //Block fail sound effect (Play once). Use flag to tell.
+                }
+                //If the button is released start regening
+                else
+                {
+                    block.SetActive(false);
+                    perfectBlock = false;
+                    blocked = false;
+                    timer.countDown = false;
+                    if (timer.time < stamina) //Refill stamina upto the maximum value
+                    {
+                        timer.time += Time.deltaTime * staminaRechargeRate;
+                    }
+                    else
+                    {
+                        timer.time = stamina;
+                    }
+                }
+            }
+        }
     }
 }
