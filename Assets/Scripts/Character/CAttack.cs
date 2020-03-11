@@ -174,8 +174,8 @@ public class CAttack : MonoBehaviour
 
     public void RangedAttackOn()
     {
-        //Debug.Log("Ranged Attack On");
-        //Debug.Log(timer.time);
+        Debug.Log("Ranged Attack On");
+        Debug.Log(timer.time);
         if (timer.timeUp)
         {
             StartCoroutine(RangedAttack());
