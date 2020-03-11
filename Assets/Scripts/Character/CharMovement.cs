@@ -50,6 +50,8 @@ public class CharMovement : MonoBehaviour
     private bool dashCoolDownTimerRunning;
     private float dashCoolDownTimer;
 
+    private SFXController soundAccess;
+
     void Flip()
     {
         Vector3 Scaler = transform.localScale;
@@ -70,6 +72,7 @@ public class CharMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         isGrounded = true;
         anim = GetComponent<Animator>();
+        soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
 
         EnemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
         PlayerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -85,11 +88,13 @@ public class CharMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player")
         {
+            soundAccess.soundCall(gameObject, "Crouch");
             CrouchOn();
             Debug.Log("RESET");
         }
         else if (Input.GetButtonDown("EnemyCrouch") && gameObject.tag == "Enemy")
         {
+            soundAccess.soundCall(gameObject, "Crouch");
             CrouchOn();
         }
 
@@ -139,10 +144,12 @@ public class CharMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded && gameObject.tag == "Player")
         {
             Debug.Log("Jump");
+            soundAccess.soundCall(gameObject, "Jump");
             JumpOn();
         }
         else if (Input.GetButtonDown("EnemyJump") && isGrounded && gameObject.tag == "Enemy")
         {
+            soundAccess.soundCall(gameObject, "Jump");
             JumpOn();
         }
 
@@ -339,6 +346,7 @@ public class CharMovement : MonoBehaviour
 
         if (moveHorizontal == 0)
         {
+            soundAccess.soundCall(gameObject, "Idle");
             anim.SetBool("isRunning", false);
             dashBuffer = false;
             isWalking = false;
@@ -347,11 +355,13 @@ public class CharMovement : MonoBehaviour
 
         if (moveHorizontal > 0)
         {
-           anim.SetBool("isRunning", true);
+            soundAccess.soundCall(gameObject, "Walk");
+            anim.SetBool("isRunning", true);
         }
         else if (moveHorizontal< 0)
         {
-           anim.SetBool("isRunning", true);
+            soundAccess.soundCall(gameObject, "Walk");
+            anim.SetBool("isRunning", true);
         }
     }
     public void MoveHorizontal(float moveHorizontal,  ref Rigidbody2D rb)
