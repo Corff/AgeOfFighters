@@ -304,6 +304,12 @@ public class CharMovement : MonoBehaviour
            anim.SetBool("isRunning", true);
         }
     }
+
+    /// <summary>
+    /// Call within FixedUpdate. Used to move the player.
+    /// </summary>
+    /// <param name="moveHorizontal">Value between -1 and 1 (inclusive).</param>
+    /// <param name="rb">Rigid body of the AI</param>
     public void MoveHorizontal(float moveHorizontal,  ref Rigidbody2D rb)
     {
         if (moveHorizontal > 1 || moveHorizontal < -1)
