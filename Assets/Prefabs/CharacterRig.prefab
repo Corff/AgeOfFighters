@@ -890,10 +890,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  pComboCounter: {fileID: 8862387632978940361, guid: e4e279658dd88a740900a4704d94cad1,
-    type: 3}
-  eComboCounter: {fileID: 4021766109465444866, guid: ead30cd604fe1e842b94a2840568d880,
-    type: 3}
 --- !u!114 &-7757772846296217521
 MonoBehaviour:
   m_ObjectHideFlags: 0

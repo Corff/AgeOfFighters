@@ -14,7 +14,11 @@ public class SFXController : MonoBehaviour
     private Animator enemyAnim;//Enemy Animator
     private AudioSource playerAudio;
     private AudioSource enemyAudio;
+    private int playerCharPrefNum;//Prefab choice
+    private int enemyCharPrefNum;//Prefab choice
+    private bool sfxIsPlaying = false;//Set sound to playing once
     private bool isConstantSFX = false;
+    private bool hasDeAnim = false;
     private int randSfxNum;//Randomise SFX
     // Start is called before the first frame update
     void Start()
@@ -46,16 +50,8 @@ public class SFXController : MonoBehaviour
 
     void charCallSFX(Animator currentAnimator, AudioSource currentAudioS, string animTypeC)
     {
-
-        if (animTypeC == "Idle")
-        {
-            if (currentAudioS.isPlaying == true && isConstantSFX == true)
-            {
-                currentAudioS.Stop();
-                isConstantSFX = false;
-            }
-        }
-        else if ((animTypeC == "Walk" || animTypeC == "BackwardWalk"))
+        
+        if ((animTypeC == "Walk" || animTypeC == "BackwardWalk"))
         {
             if (currentAudioS.isPlaying == false)
             {

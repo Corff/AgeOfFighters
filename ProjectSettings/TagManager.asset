@@ -20,8 +20,6 @@ TagManager:
   - PlayerHealthBar
   - EnemyHealthBar
   - EnemyAI
-  - PCCounter
-  - ECCounter
   layers:
   - Default
   - TransparentFX
