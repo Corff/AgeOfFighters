@@ -750,6 +750,7 @@ GameObject:
   - component: {fileID: 3315816507525509660}
   - component: {fileID: -9117664537143466526}
   - component: {fileID: 2057281516643364088}
+  - component: {fileID: -5819405933193190094}
   m_Layer: 0
   m_Name: CharacterRig
   m_TagString: Untagged
@@ -1083,6 +1084,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb06d10d1cbf4a34fa419b95cd2d0232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  rb: {fileID: 0}
+  enemyAttack: {fileID: 0}
+  cmove: {fileID: 0}
+--- !u!114 &-5819405933193190094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527472958486636750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34fd1042a372f5542847dfb3532813bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &527472958486636752
