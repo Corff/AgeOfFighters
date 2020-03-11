@@ -30,14 +30,14 @@ public class GameOverController : MonoBehaviour
             if(checkPHealth.deathTag == "Player")
             {
 
-                gOPanel.GetComponentInChildren<Text>().text = "Player 2";
+                gOPanel.GetComponentInChildren<Text>().text = "Player 2 Wins";
                 gOPanel.SetActive(true);
                 
                 
             }
             else if (checkEHealth.deathTag == "Enemy")
             {
-                gOPanel.GetComponentInChildren<Text>().text = "Player 1";
+                gOPanel.GetComponentInChildren<Text>().text = "Player 1 Wins";
                 gOPanel.SetActive(true);
             }
             playerM.GetComponent<CharMovement>().enabled = false;
