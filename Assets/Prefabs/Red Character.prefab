@@ -10274,6 +10274,7 @@ MonoBehaviour:
   - 20
   rangedCooldown: 2
   stale: 0
+  health: {fileID: 8693997761177966658}
 --- !u!114 &4593135416042468903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10312,6 +10313,9 @@ MonoBehaviour:
   dust: {fileID: 0}
   dist: 1
   groundedTimer: 0.5
+  dashDuration: 0.25
+  dashSpeed: 30
+  dashCoolDown: 1
 --- !u!1 &8693997761232679015
 GameObject:
   m_ObjectHideFlags: 0
@@ -10735,26 +10739,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8693997761177966656}
     m_Modifications:
-    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
-        type: 3}
-      propertyPath: ColorModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
     - target: {fileID: 3704915380104024431, guid: f092cdabba8a2de48b9ee2cdf0c45864,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10829,6 +10813,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731738218454203496, guid: f092cdabba8a2de48b9ee2cdf0c45864,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.39215687
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f092cdabba8a2de48b9ee2cdf0c45864, type: 3}

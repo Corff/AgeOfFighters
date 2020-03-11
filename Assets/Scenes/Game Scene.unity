@@ -1821,7 +1821,7 @@ PrefabInstance:
     - target: {fileID: 4021766109465444866, guid: ead30cd604fe1e842b94a2840568d880,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4021766109465444867, guid: ead30cd604fe1e842b94a2840568d880,
         type: 3}
@@ -2056,16 +2056,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 221727427}
-    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
-        type: 3}
-      propertyPath: transitionTime
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 2948078069716070211, guid: d0964107e73faf443b68b00b5aa9111c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2120,6 +2110,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 221727427}
+    - target: {fileID: 7416796592173933088, guid: d0964107e73faf443b68b00b5aa9111c,
+        type: 3}
+      propertyPath: transitionTime
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1293680773, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
       propertyPath: m_IsActive
@@ -3566,7 +3566,7 @@ PrefabInstance:
     - target: {fileID: 8862387632978940361, guid: e4e279658dd88a740900a4704d94cad1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8862387632978940360, guid: e4e279658dd88a740900a4704d94cad1,
         type: 3}
@@ -5080,6 +5080,7 @@ MonoBehaviour:
   isEnemy: 1
   isVs: 1
   genRandom: 0
+  isAi: 0
 --- !u!1 &1972931590
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,6 +5360,7 @@ MonoBehaviour:
   isEnemy: 0
   isVs: 1
   genRandom: 0
+  isAi: 0
 --- !u!1 &1994330604
 GameObject:
   m_ObjectHideFlags: 0
@@ -5892,5 +5894,20 @@ PrefabInstance:
       propertyPath: gOPanel
       value: 
       objectReference: {fileID: 1462955762}
+    - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
+        type: 3}
+      propertyPath: genRandom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
+        type: 3}
+      propertyPath: isAi
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 719090221981042112, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e,
+        type: 3}
+      propertyPath: isVs
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd96a4329b2a6f4883e0c7e0ab13f4e, type: 3}

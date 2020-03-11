@@ -342,6 +342,8 @@ public class CharMovement : MonoBehaviour
 
         rigidBody.velocity = movement;
 
+        Debug.Log(rigidBody.velocity);
+
         if (moveHorizontal == 0)
         {
             soundAccess.soundCall(gameObject, "Idle");
@@ -359,6 +361,36 @@ public class CharMovement : MonoBehaviour
         else if (moveHorizontal< 0)
         {
             soundAccess.soundCall(gameObject, "Walk");
+            anim.SetBool("isRunning", true);
+        }
+    }
+    public void MoveHorizontal(float moveHorizontal,  ref Rigidbody2D rb)
+    {
+        if (moveHorizontal > 1 || moveHorizontal < -1)
+        {
+            throw new ArgumentException("The value must be between 1 and -1 (inclusive)");
+        }
+        movement = new Vector3(moveHorizontal * (speed), rigidBody.velocity.y, 0);
+        //anim.SetBool("Running", true);
+
+        rb.velocity = movement;
+
+        Debug.Log(rigidBody.velocity);
+
+        if (moveHorizontal == 0)
+        {
+            anim.SetBool("isRunning", false);
+            dashBuffer = false;
+            isWalking = false;
+            //speed = 5f;
+        }
+
+        if (moveHorizontal > 0)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else if (moveHorizontal < 0)
+        {
             anim.SetBool("isRunning", true);
         }
     }

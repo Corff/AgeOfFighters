@@ -14,12 +14,17 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
+    public float damageBlocked = 0f;
+    public float damageDealt = 0f;
+    public int lightAttackUsed = 0;
+    public int rangedAttackUsed = 0;
+    public int heavyAttackUsed = 0;
+    public int specialAttackUsed = 0;
+    public int totalHit = 0;
     private ComboCounter comboCounter;
 
 
-
-    void Start()
-    {
+    void Start() {
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
@@ -51,17 +56,19 @@ public class Health : MonoBehaviour
     /// Deals damage to the character.
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
-    public void TakeHealth(float amount) //IDE1006 Name Violation
+    public void TakeHealth(float amount)
     {
         Debug.Log(blocking.blocked);
         //Checks for blocking before taking health, takes stamina instead of blocking.
         if (blocking.perfectBlock) //If the block is perfect take only half the amount off.
         {
             blocking.timer.time = blocking.timer.time - (amount / 2);
+
         }
         else if (blocking.blocked) //Consider making this a private method
         {
             blocking.timer.time -= amount;
+            damageBlocked += amount;
         }
         else
         {
@@ -71,12 +78,16 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
+                workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
                 comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
+                workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
                 comboCounter.IncrementPHitCounter();
             }
@@ -107,12 +118,16 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
+                workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
                 comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
+                workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
                 comboCounter.IncrementPHitCounter();
             }

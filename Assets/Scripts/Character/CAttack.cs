@@ -23,12 +23,14 @@ public class CAttack : MonoBehaviour
     private Animator anim;
     private SpecialAttackControl specialAC;
     private Queue<int> moveQueue;
+    private Health health;
 
     private SFXController soundAccess;
   
     // Start is called before the first frame update
     void Start()
     {
+        health = GetComponent<Health>();
         soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
         anim = GetComponent<Animator>();
         specialAC = GetComponent<SpecialAttackControl>();
@@ -39,7 +41,7 @@ public class CAttack : MonoBehaviour
         heavyAttackDamage = damageArray[1];
         rangedAttackDamage = damageArray[2];
         specialAttackDamage = damageArray[3];
-
+        Debug.Log(health.health);
     }
 
     // Update is called once per frame
@@ -68,6 +70,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
             RangedAttackOn();
+            //Debug.Log("Ranged");
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -121,11 +124,12 @@ public class CAttack : MonoBehaviour
             specialAC.SpecialOff(gameObject.tag);
         }
     }
-    void LightAttackOn()
+    public void LightAttackOn()
     {
         soundAccess.soundCall(gameObject, "Punch");
         punchCheck.SetActive(true);
         anim.SetTrigger("isPunching");
+        health.lightAttackUsed += 1;
         if (moveQueue.Count == 9)
         {
             moveQueue.Dequeue();
@@ -147,11 +151,12 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void HeavyAttackOn()
+    public void HeavyAttackOn()
     {
         soundAccess.soundCall(gameObject, "HPunch");
         heavyPunchCheck.SetActive(true);
         anim.SetTrigger("isHeavyPunching");
+        health.heavyAttackUsed += 1;
         if (moveQueue.Count == 9)
         {
             moveQueue.Dequeue();
@@ -172,9 +177,11 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void RangedAttackOn()
+    public void RangedAttackOn()
     {
+        Debug.Log("Ranged Attack On");
         Debug.Log(timer.time);
+        health.rangedAttackUsed += 1;
         if (timer.timeUp)
         {
             StartCoroutine(RangedAttack());
@@ -200,12 +207,12 @@ public class CAttack : MonoBehaviour
         }
     }
 
-    void LightAttackOff()
+    public void LightAttackOff()
     {
         punchCheck.SetActive(false);
     }
 
-    void HeavyAttackOff()
+    public void HeavyAttackOff()
     {
         heavyPunchCheck.SetActive(false);
     }

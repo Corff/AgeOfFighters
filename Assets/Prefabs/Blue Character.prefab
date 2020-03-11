@@ -715,6 +715,7 @@ MonoBehaviour:
   - 20
   rangedCooldown: 2
   stale: 0
+  health: {fileID: 6333616815445451717}
 --- !u!114 &-8885476524222993894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,6 +754,9 @@ MonoBehaviour:
   dust: {fileID: 0}
   dist: 1.6
   groundedTimer: 0.5
+  dashDuration: 0.25
+  dashSpeed: 30
+  dashCoolDown: 1
 --- !u!1 &6333616815485921516
 GameObject:
   m_ObjectHideFlags: 0
