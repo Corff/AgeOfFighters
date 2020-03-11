@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,9 +25,14 @@ public class Health : MonoBehaviour
     public int heavyAttackUsed = 0;
     public int specialAttackUsed = 0;
     public int totalHit = 0;
+    private float target;
+    private float current;
+    public float slideSpeed = 0.75f;
 
     void Start()
     {
+        current = health;
+        target = health;
         charMovement = GetComponent<CharMovement>();
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
@@ -46,7 +52,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        healthSlider.value = health;
+        UpdateSlider();
         if (health <= 0)
         {
             deathTag = gameObject.tag;
@@ -84,8 +90,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            health -= amount;
-            healthSlider.value = health;
+            UpdateSlider(amount);
             StartCoroutine(DisableInput()); //Delta time might be better.
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
@@ -123,8 +128,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            health -= amount;
-            healthSlider.value = health;
+            UpdateSlider(amount);
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
@@ -144,15 +148,25 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
-    /// Heals the character.
+    /// Gradually change the health slider so it is smooth.
     /// </summary>
-    /// <param name="amount">Value to be added.</param>
-    public void AddHealth(float amount)
+    private void UpdateSlider(float amount = 0)
     {
-        health += amount;
-        healthSlider.value = health;
-        fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
+        if (amount != 0)
+        {
+            health -= amount;
+            target = health;
+        }
+        if (current != target)
+        {
+            healthSlider.value = healthSlider.value - Time.deltaTime * slideSpeed;
+            current = healthSlider.value;
+        }
+        if (current < target)
+        {
+            current = target;
+            healthSlider.value = target;
+        }
     }
-
 
 }
