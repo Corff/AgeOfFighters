@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
     public int totalHit = 0;
     private float target;
     private float current;
-    public float slideSpeed = 0.75f;
+    public float slideSpeed = 1f;
 
     void Start()
     {
@@ -159,7 +159,7 @@ public class Health : MonoBehaviour
         }
         if (current != target)
         {
-            healthSlider.value = healthSlider.value - Time.deltaTime * slideSpeed;
+            healthSlider.value = healthSlider.value - Time.deltaTime * 30;
             current = healthSlider.value;
         }
         if (current < target)
