@@ -12,9 +12,11 @@ public class Character_Array : MonoBehaviour
         "A blue boi chump :)"};
     private static int playerNumChoice;
 
+    
     public List<Sprite> characterImages;
     public List<Sprite> characterBackgrounds;
     public List<GameObject> characterPrefabs;
+    public bool isSingleplayer;
 
     //public int numOfCharacters;
 
