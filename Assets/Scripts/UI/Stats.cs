@@ -11,7 +11,8 @@ public class Stats : MonoBehaviour
     private Text heavyAttacks;
     private Text rangedAttacks;
     private Text specialAttacks;
-    private Text[] parent;
+    private Text totalHits;
+    private Text[] textList;
     private Health health;
 
     // Start is called before the first frame update
@@ -25,12 +26,13 @@ public class Stats : MonoBehaviour
         {
             health = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
         }
-        parent = gameObject.GetComponentsInChildren<Text>();
-        damageDealt = parent[0].GetComponent<Text>();
-        damageBlocked = parent[1].GetComponent<Text>();
-        lightAttacks = parent[2].GetComponent<Text>();
-        heavyAttacks = parent[3].GetComponent<Text>();
-        rangedAttacks = parent[4].GetComponent<Text>();
+        textList = gameObject.GetComponentsInChildren<Text>();
+        damageDealt = textList[1].GetComponent<Text>();
+        damageBlocked = textList[2].GetComponent<Text>();
+        lightAttacks = textList[3].GetComponent<Text>();
+        heavyAttacks = textList[4].GetComponent<Text>();
+        rangedAttacks = textList[5].GetComponent<Text>();
+        totalHits = textList[7].GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -42,5 +44,6 @@ public class Stats : MonoBehaviour
         heavyAttacks.text = $"Heavy Attacks Used: {health.heavyAttackUsed}";
         rangedAttacks.text = $"Ranged Attacks Used: {health.rangedAttackUsed}";
         //specialAttacks.text = $"Special Attacks Used: {specialAttacks}";
+        totalHits.text = $"Total Hits: {health.totalHit}";
     }
 }

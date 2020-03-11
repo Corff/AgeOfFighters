@@ -78,12 +78,14 @@ public class Health : MonoBehaviour
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
         }
@@ -113,11 +115,15 @@ public class Health : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
+                workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
+                workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
         }
