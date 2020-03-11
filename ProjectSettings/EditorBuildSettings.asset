@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Options Menu.unity
     guid: 3b781ba955dc5bb42ac93a58bf1a425d
   - enabled: 1
-    path: Assets/Scenes/Character Selection.unity
+    path: Assets/Scenes/Character Selection Multiplayer.unity
     guid: e95fa182796cb4b4ca326abde87600bf
   - enabled: 1
     path: Assets/Scenes/Game Scene.unity
