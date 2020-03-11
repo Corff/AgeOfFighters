@@ -45,6 +45,7 @@ public class CharMovement : MonoBehaviour
 
     //Input Lockout
     public bool inputActive = false;
+    private bool onPlayer;
 
     void Flip()
     {
@@ -120,7 +121,6 @@ public class CharMovement : MonoBehaviour
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                     isGrounded = true;
                 }
-
                 else
                 {
                     isGrounded = false;
@@ -130,8 +130,8 @@ public class CharMovement : MonoBehaviour
                 {
                     rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y);
                     isGrounded = true;
-                }
 
+                }
                 else
                 {
                     isGrounded = false;

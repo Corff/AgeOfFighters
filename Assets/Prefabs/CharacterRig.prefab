@@ -890,6 +890,14 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  stunTime: 2
+  damageBlocked: 0
+  damageDealt: 0
+  lightAttackUsed: 0
+  rangedAttackUsed: 0
+  heavyAttackUsed: 0
+  specialAttackUsed: 0
+  totalHit: 0
 --- !u!114 &-7757772846296217521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCrouched: 0
   speed: 3
+  dashSpeed: 30
+  backdashDuration: 0
   dashBuffer: 0
   dash: 0
   isWalking: 0
@@ -975,9 +985,7 @@ MonoBehaviour:
   dust: {fileID: 0}
   dist: 1
   groundedTimer: 0.5
-  dashDuration: 0.25
-  dashSpeed: 30
-  dashCoolDown: 1
+  inputActive: 0
 --- !u!82 &-9117664537143466526
 AudioSource:
   m_ObjectHideFlags: 0
