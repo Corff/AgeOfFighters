@@ -65,7 +65,6 @@ public class CMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player") //Enter Crouch
         {
-            soundAccess.soundCall(gameObject, "Crouch"); 
             isCrouched = true;
             //@@ Testing out another method of crouching
             
@@ -82,6 +81,7 @@ public class CMovement : MonoBehaviour
             }
             */
             //Crouching hitbox (box collider) implemented into the animation itself
+            soundAccess.soundCall(gameObject, "Crouch");
             anim.SetBool("isCrouched", true);
         }
 
@@ -99,6 +99,7 @@ public class CMovement : MonoBehaviour
             //{
             //    transform.localPosition = new Vector3(transform.position.x, -0.25f, 0);
             //}
+            soundAccess.soundCall(gameObject, "Crouch");
             anim.SetBool("isCrouched", true);
         }
 
@@ -115,7 +116,6 @@ public class CMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Crouch") && isCrouched && gameObject.tag == "Player") //Exit crouch
         {
-            soundAccess.soundCall(gameObject, "Crouch");
             isCrouched = false;
             isShielding = false;
             //@@ Testing out another method of crouching
