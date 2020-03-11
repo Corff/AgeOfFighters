@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
     private ComboCounter comboCounter;
 
 
-    void Start()
+    void Start() {
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
