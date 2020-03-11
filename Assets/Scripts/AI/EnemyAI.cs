@@ -10,6 +10,9 @@ public class EnemyAI : MonoBehaviour
     public CAttack enemyAttack;
     public CharMovement cmove;
     bool isAi;
+    bool walking;
+    bool running;
+    int walk = 1;
 
 
     // Start is called before the first frame update
@@ -23,6 +26,9 @@ public class EnemyAI : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             rb = gameObject.GetComponent<Rigidbody2D>();
             cmove = gameObject.GetComponent<CharMovement>();
+            chooseWalk();
+            jump();
+            crouch();
         }
     }
 
@@ -32,7 +38,6 @@ public class EnemyAI : MonoBehaviour
 
         if (isAi)
         {
-            WalkToPlayer();
             float distance = Vector2.Distance(gameObject.transform.position, player.transform.position);
             //Debug.Log(distance);
             if (distance < 2)
@@ -44,9 +49,24 @@ public class EnemyAI : MonoBehaviour
             {
                 rangedPlayer();
             }
+
+            //WalkToPlayer();
+
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (walking)
+        {
+            WalkToPlayer();
+        }
+        if (running)
+        {
+            RunFromPlayer();
+        }
     }
 
     void WalkToPlayer()
@@ -56,27 +76,30 @@ public class EnemyAI : MonoBehaviour
 
         if (posDiff > 0)
         {
-            Vector2 movement = new Vector2(10, rb.velocity.y);
-            rb.velocity += movement;
-            gameObject.transform.localPosition += new Vector3(-0.01f, 0, 0);
-            cmove.MoveHorizontal(-1);
-            //Debug.Log("Left");
-            gameObject.transform.localScale = new Vector3(-0.3f, 0.3f, 1);
+            cmove.MoveHorizontal(-walk, ref rb);
         }
 
         if (posDiff < 0)
         {
-
-            Vector2 movement = new Vector2(-10, rb.velocity.y);
-            rb.velocity += movement;
-            gameObject.transform.localPosition += new Vector3(0.01f, 0, 0);
-            cmove.MoveHorizontal(1);
-            //Debug.Log("Right");
-            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 1);
+            cmove.MoveHorizontal(walk, ref rb);
         }
 
         //Debug.Log(posDiff);
 
+    }
+    void RunFromPlayer()
+    {
+        float posDiff = gameObject.transform.localPosition.x - player.GetComponent<Transform>().localPosition.x;
+
+        if (posDiff < 0)
+        {
+            cmove.MoveHorizontal(-walk, ref rb);
+        }
+
+        if (posDiff > 0)
+        {
+            cmove.MoveHorizontal(walk, ref rb);
+        }
     }
     void attackPlayer()
     {
@@ -94,5 +117,54 @@ public class EnemyAI : MonoBehaviour
     void rangedPlayer()
     {
         enemyAttack.RangedAttackOn();
+    }
+
+    void chooseWalk()
+    {
+        Debug.Log("Choosing");
+        int rand = Random.Range(0, 10);
+
+        walking = false;
+        running = false;
+
+        if (rand <= 3)
+        {
+            walking = true;
+            Debug.Log(rand + "walkTo");
+
+        }
+        else
+        {
+            running = true;
+            Debug.Log(rand + "runFrom");
+        }
+        Invoke("chooseWalk", 5);
+    }
+    void jump()
+    {
+        int rand = Random.Range(0, 2);
+        if(rand == 1)
+        {
+            cmove.JumpOn();
+        }
+        Invoke("jump", 2);
+    }
+    void crouch()
+    {
+        int rand = Random.Range(0, 2);
+        int rand2 = Random.Range(0, 5);
+        if (rand == 1)
+        {
+            StartCoroutine(crouchTime(rand2));
+        }
+        Invoke("crouch", 2);
+    }
+    IEnumerator crouchTime(float a)
+    {
+        cmove.CrouchOn();
+        walk = 0;
+        yield return new WaitForSeconds(a);
+        cmove.CrouchOff();
+        walk = 1;
     }
 }

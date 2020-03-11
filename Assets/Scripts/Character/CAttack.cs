@@ -67,7 +67,7 @@ public class CAttack : MonoBehaviour
         if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
         {
             RangedAttackOn();
-            Debug.Log("Ranged");
+            //Debug.Log("Ranged");
         }
 
         if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
@@ -174,7 +174,7 @@ public class CAttack : MonoBehaviour
 
     public void RangedAttackOn()
     {
-        Debug.Log("Ranged Attack On");
+        //Debug.Log("Ranged Attack On");
         //Debug.Log(timer.time);
         if (timer.timeUp)
         {
