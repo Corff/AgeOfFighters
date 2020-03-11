@@ -43,6 +43,9 @@ public class CharMovement : MonoBehaviour
     private float timeBuffer = 0f;
     private int offset = 1;
 
+    //Input Lockout
+    public bool inputActive = false;
+
     void Flip()
     {
         Vector3 Scaler = transform.localScale;
@@ -78,8 +81,10 @@ public class CharMovement : MonoBehaviour
     {
         timeBuffer += Time.deltaTime;
 
-       // if (timeBuffer >= offset)
+        // if (timeBuffer >= offset)
         //{
+        if (inputActive)
+        {
             if (Input.GetButtonDown("Crouch") && gameObject.tag == "Player")
             {
                 CrouchOn();
@@ -197,9 +202,7 @@ public class CharMovement : MonoBehaviour
             {
                 DashManager(1);
             }
-        
-
-
+        }
        // }
 
        // timeBuffer -= offset;
@@ -218,7 +221,7 @@ public class CharMovement : MonoBehaviour
     {
         float moveHorizontal = 0f;
 
-        if (((!isCrouched && isGrounded) || !isGrounded) && !isShielding)
+        if (((!isCrouched && isGrounded) || !isGrounded) && !isShielding && inputActive) //TODO: Replace isShielding
         {
             if (gameObject.tag == "Player")
             {
@@ -263,10 +266,19 @@ public class CharMovement : MonoBehaviour
 
         if (isWalking || moveHorizontal == 0 && dashQueue.Count >= 2)
         {
-            if (dashQueue[dashQueue.Count - 1] == 1)
+            try
             {
-                dashQueue[dashQueue.Count - 1] = 0;
+                if (dashQueue[dashQueue.Count - 1] == 1)
+                {
+                    dashQueue[dashQueue.Count - 1] = 0;
+                }
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                Debug.LogError("DASH QUEUE ERROR");
+                dashQueue.Clear();
+            }
+
         }
 
     }
@@ -304,6 +316,12 @@ public class CharMovement : MonoBehaviour
            anim.SetBool("isRunning", true);
         }
     }
+
+    /// <summary>
+    /// Call within FixedUpdate. Used to move the player.
+    /// </summary>
+    /// <param name="moveHorizontal">Value between -1 and 1 (inclusive).</param>
+    /// <param name="rb">Rigid body of the AI</param>
     public void MoveHorizontal(float moveHorizontal,  ref Rigidbody2D rb)
     {
         if (moveHorizontal > 1 || moveHorizontal < -1)

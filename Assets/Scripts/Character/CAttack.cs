@@ -23,12 +23,14 @@ public class CAttack : MonoBehaviour
     private SpecialAttackControl specialAC;
     private Queue<int> moveQueue;
     private Health health;
+    private CharMovement charMovement;
 
     private SFXController soundAccess;
 
     // Start is called before the first frame update
     void Start()
     {
+        charMovement = GetComponent<CharMovement>();
         health = GetComponent<Health>();
         soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
         anim = GetComponent<Animator>();
@@ -46,81 +48,84 @@ public class CAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
+        if (charMovement.inputActive)
         {
-            LightAttackOn();
-        }
+            if (Input.GetButtonDown("LightAttack") && gameObject.tag == "Player")
+            {
+                LightAttackOn();
+            }
 
-        if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
-        {
-            LightAttackOff();
-        }
+            if (Input.GetButtonUp("LightAttack") && gameObject.tag == "Player")
+            {
+                LightAttackOff();
+            }
 
-        if (Input.GetButtonDown("HeavyAttack") && gameObject.tag == "Player")
-        {
-            HeavyAttackOn();
-        }
+            if (Input.GetButtonDown("HeavyAttack") && gameObject.tag == "Player")
+            {
+                HeavyAttackOn();
+            }
 
-        if (Input.GetButtonUp("HeavyAttack") && gameObject.tag == "Player")
-        {
-            HeavyAttackOff();
-        }
+            if (Input.GetButtonUp("HeavyAttack") && gameObject.tag == "Player")
+            {
+                HeavyAttackOff();
+            }
 
-        if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
-        {
-            RangedAttackOn();
-            //Debug.Log("Ranged");
-        }
+            if (Input.GetButtonDown("RangedAttack") && gameObject.tag == "Player")
+            {
+                RangedAttackOn();
+                //Debug.Log("Ranged");
+            }
 
-        if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
-        {
-            soundAccess.soundCall(gameObject, "Punch");
-            punchCheck.SetActive(true);
-            anim.SetTrigger("isPunching");
-            LightAttackOn();
-        }
+            if (Input.GetButtonDown("EnemyLightAttack") && gameObject.tag == "Enemy")
+            {
+                soundAccess.soundCall(gameObject, "Punch");
+                punchCheck.SetActive(true);
+                anim.SetTrigger("isPunching");
+                LightAttackOn();
+            }
 
-        if (Input.GetButtonUp("EnemyLightAttack") && gameObject.tag == "Enemy")
-        {
-            LightAttackOff();
-        }
+            if (Input.GetButtonUp("EnemyLightAttack") && gameObject.tag == "Enemy")
+            {
+                LightAttackOff();
+            }
 
-        if (Input.GetButtonDown("EnemyHeavyAttack") && gameObject.tag == "Enemy")
-        {
-            soundAccess.soundCall(gameObject, "HPunch");
-            heavyPunchCheck.SetActive(true);
-            anim.SetTrigger("Heavy Punch");
-            HeavyAttackOn();
-        }
+            if (Input.GetButtonDown("EnemyHeavyAttack") && gameObject.tag == "Enemy")
+            {
+                soundAccess.soundCall(gameObject, "HPunch");
+                heavyPunchCheck.SetActive(true);
+                anim.SetTrigger("Heavy Punch");
+                HeavyAttackOn();
+            }
 
-        if (Input.GetButtonUp("EnemyHeavyAttack") && gameObject.tag == "Enemy")
-        {
-            HeavyAttackOff();
-        }
+            if (Input.GetButtonUp("EnemyHeavyAttack") && gameObject.tag == "Enemy")
+            {
+                HeavyAttackOff();
+            }
 
-        if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
-        {
-            RangedAttackOn();
-        }
+            if (Input.GetButtonDown("EnemyRangedAttack") && gameObject.tag == "Enemy")
+            {
+                RangedAttackOn();
+            }
 
-        if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
-        {
-            soundAccess.soundCall(gameObject, "Special");
-            specialAC.SpecialTrigger(gameObject.tag);
-        }
-        if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
-        {
-            specialAC.SpecialTrigger(gameObject.tag);
-        }
+            if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
+            {
+                soundAccess.soundCall(gameObject, "Special");
+                specialAC.SpecialTrigger(gameObject.tag);
+            }
+            if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
+            {
+                specialAC.SpecialTrigger(gameObject.tag);
+            }
 
-        if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
-        {
-            soundAccess.soundCall(gameObject, "Special");
-            specialAC.SpecialOff(gameObject.tag);
-        }
-        if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
-        {
-            specialAC.SpecialOff(gameObject.tag);
+            if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
+            {
+                soundAccess.soundCall(gameObject, "Special");
+                specialAC.SpecialOff(gameObject.tag);
+            }
+            if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
+            {
+                specialAC.SpecialOff(gameObject.tag);
+            }
         }
     }
     public void LightAttackOn()

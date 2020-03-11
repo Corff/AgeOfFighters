@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
+    private CharMovement charMovement;
+    public float stunTime = 2f;
 
     public float damageBlocked = 0f;
     public float damageDealt = 0f;
@@ -25,6 +27,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
+        charMovement = GetComponent<CharMovement>();
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
@@ -52,6 +55,16 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
+    /// Disables the input of the character.
+    /// </summary>
+    private IEnumerator DisableInput()
+    {
+        charMovement.inputActive = false;
+        yield return new WaitForSeconds(stunTime);
+        charMovement.inputActive = true;
+    }
+
+    /// <summary>
     /// Deals damage to the character.
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
@@ -73,6 +86,7 @@ public class Health : MonoBehaviour
         {
             health -= amount;
             healthSlider.value = health;
+            StartCoroutine(DisableInput()); //Delta time might be better.
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
