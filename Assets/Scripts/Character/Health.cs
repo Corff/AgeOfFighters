@@ -28,6 +28,7 @@ public class Health : MonoBehaviour
     private float target;
     private float current;
     public float slideSpeed = 1f;
+    private ComboCounter comboCounter;
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class Health : MonoBehaviour
         healthSlider.value = health;
         fill.color = gradient.Evaluate(healthSlider.normalizedValue); //Changes the health bar colour based on the character's HP
         blocking = GetComponent<Blocking>();
+        comboCounter = GameObject.FindWithTag("GameController").GetComponent<ComboCounter>();
     }
 
     void Update()
@@ -99,6 +101,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount;
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
@@ -106,6 +109,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
@@ -136,6 +140,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount;
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementEHitCounter();
             }
             if (gameObject.tag == "Enemy")
             {
@@ -143,6 +148,7 @@ public class Health : MonoBehaviour
                 workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
                 workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
+                comboCounter.IncrementPHitCounter();
             }
         }
     }
