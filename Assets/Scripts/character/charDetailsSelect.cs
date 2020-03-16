@@ -28,7 +28,9 @@ public class charDetailsSelect : MonoBehaviour
         
     }
 
-    public void hoverRequestOn(int charSNum)
+  
+
+    public void selectRequestOn(int charSNum)
     {
         isOn = true;
         charPanel.SetActive(true);
@@ -36,10 +38,5 @@ public class charDetailsSelect : MonoBehaviour
         descPanel.GetComponent<Text>().text = charInfo.GetComponent<Character_Array>().getCharDesc()[charSNum];
         charPanel.GetComponentInChildren<Image>().sprite = charInfo.GetComponent<Character_Array>().characterImages[charSNum];
         charInfo.GetComponent<Character_Array>().setPlayerChoice(charSNum);
-    }
-    public void hoverRequestOof()
-    {
-        isOn = false;
-        charPanel.SetActive(false);
     }
 }
