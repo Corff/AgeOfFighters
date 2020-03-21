@@ -13,7 +13,7 @@ public class AttackCollision : MonoBehaviour
     {
         //Set the tag to the opposite of what the gameobject
         //this script is attached to.
-        if (gameObject.transform.parent.parent.parent.parent.parent.tag == "Player")
+        if (gameObject.transform.parent.parent.parent.parent.tag == "Player")
         {
             Debug.LogWarning("If damage breaks, this probably needs re-writing");
             targetTag = "Enemy";
