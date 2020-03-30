@@ -14,7 +14,6 @@ public class Blocking : MonoBehaviour
     public bool perfectBlock = false;
     public TimeControl timer;
     private TimeControl perfect;
-    public GameObject block;
     public GameObject Timer;
     public Animator anim;
     private SFXController soundAccess;
@@ -51,7 +50,6 @@ public class Blocking : MonoBehaviour
                 {
                     soundAccess.soundCall(gameObject, "Block");
                 }
-                block.SetActive(true);
                 anim.SetBool("isBlocking", true);
                 perfect.countDown = true; //Start the degen for stamina and the perfect window
                 timer.countDown = true;
@@ -73,7 +71,6 @@ public class Blocking : MonoBehaviour
                 {
                     soundAccess.soundCall(gameObject, "Block");
                 }
-                block.SetActive(false);
                 anim.SetBool("isBlocking", false);
                 perfectBlock = false;
                 blocked = false;
@@ -89,7 +86,6 @@ public class Blocking : MonoBehaviour
                 {
                     soundAccess.soundCall(gameObject, "Block");
                 }
-                block.SetActive(true);
                 anim.SetBool("isBlocking", true);
                 perfect.countDown = true; //Start the degen for stamina and the perfect window
                 timer.countDown = true;
@@ -111,7 +107,6 @@ public class Blocking : MonoBehaviour
                 {
                     soundAccess.soundCall(gameObject, "Block");
                 }
-                block.SetActive(false);
                 anim.SetBool("isBlocking", false);
                 perfectBlock = false;
                 blocked = false;

@@ -18,7 +18,7 @@ public class AttackCollision : MonoBehaviour
             Debug.LogWarning("If damage breaks, this probably needs re-writing");
             targetTag = "Enemy";
         }
-        else if (gameObject.transform.parent.parent.parent.parent.parent.tag == "Enemy")
+        else if (gameObject.transform.parent.parent.parent.parent.tag == "Enemy")
         {
             targetTag = "Player";
         }
