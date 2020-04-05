@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class Character_Array : MonoBehaviour
 {
 
-    private string[] characterNames = {"Red Chump", "Blue Chump"};
+    private string[] characterNames = {"Red Chump", "Robot Boi", "Blue Chump"};
     private string[] characterDesc = 
         { "A red boi chump.",
+        "A roboty boi chump",
         "A blue boi chump :)"};
     private static int playerNumChoice;
 
