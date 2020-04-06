@@ -586,7 +586,7 @@ MonoBehaviour:
   perfectBlock: 0
   timer: {fileID: 0}
   Timer: {fileID: 166422153398596364, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
-  anim: {fileID: 0}
+  anim: {fileID: 5727903721868401344}
 --- !u!95 &5727903721868401344
 Animator:
   serializedVersion: 3

@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &168311279
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &248827901
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &273247716
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1073121322
@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1198882131
@@ -2016,7 +2016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1353383583
@@ -2256,6 +2256,7 @@ GameObject:
   - component: {fileID: 1728829223}
   - component: {fileID: 1728829221}
   - component: {fileID: 1728829224}
+  - component: {fileID: 1728829225}
   m_Layer: 5
   m_Name: Character 3
   m_TagString: Untagged
@@ -2387,6 +2388,49 @@ MonoBehaviour:
           m_StringArgument: Game Scene
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1728829225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728829219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 122498380}
+          m_MethodName: hoverRequestOn
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 122498380}
+          m_MethodName: hoverRequestOof
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1793398620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,7 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1793398623
@@ -2526,7 +2570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1882046160
@@ -2681,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3d16c194a39543aecc747553b7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charNum: 2
+  charNum: 3
   charInfo: {fileID: 4709575567619571237}
   isEnemy: 0
 --- !u!222 &1961739548
