@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,10 +15,25 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
-   
+    private CharMovement charMovement;
+    public float stunTime = 2f;
+
+    public float damageBlocked = 0f;
+    public float damageDealt = 0f;
+    public int lightAttackUsed = 0;
+    public int rangedAttackUsed = 0;
+    public int heavyAttackUsed = 0;
+    public int specialAttackUsed = 0;
+    public int totalHit = 0;
+    private float target;
+    private float current;
+    public float slideSpeed = 1f;
 
     void Start()
     {
+        current = health;
+        target = health;
+        charMovement = GetComponent<CharMovement>();
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
@@ -36,7 +52,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        healthSlider.value = health;
+        UpdateSlider();
         if (health <= 0)
         {
             deathTag = gameObject.tag;
@@ -45,34 +61,50 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
+    /// Disables the input of the character.
+    /// </summary>
+    private IEnumerator DisableInput()
+    {
+        charMovement.inputActive = false;
+        yield return new WaitForSeconds(stunTime);
+        charMovement.inputActive = true;
+    }
+
+    /// <summary>
     /// Deals damage to the character.
     /// </summary>
     /// <param name="amount">Value to be taken.</param>
-    public void TakeHealth(float amount) //IDE1006 Name Violation
+    public void TakeHealth(float amount)
     {
         Debug.Log(blocking.blocked);
         //Checks for blocking before taking health, takes stamina instead of blocking.
         if (blocking.perfectBlock) //If the block is perfect take only half the amount off.
         {
             blocking.timer.time = blocking.timer.time - (amount / 2);
+
         }
         else if (blocking.blocked) //Consider making this a private method
         {
             blocking.timer.time -= amount;
+            damageBlocked += amount;
         }
         else
         {
-            health -= amount;
-            healthSlider.value = health;
+            UpdateSlider(amount);
+            StartCoroutine(DisableInput()); //Delta time might be better.
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
+                workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
+                workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
         }
@@ -96,32 +128,45 @@ public class Health : MonoBehaviour
         }
         else
         {
-            health -= amount;
-            healthSlider.value = health;
+            UpdateSlider(amount);
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
+                workingObj.GetComponent<Health>().damageDealt += amount;
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
                 workingObj = GameObject.FindGameObjectWithTag("Player");
+                workingObj.GetComponent<Health>().damageDealt += amount; //Update the damage dealt on the appropriate character script.
+                workingObj.GetComponent<Health>().totalHit += 1;
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
         }
     }
 
     /// <summary>
-    /// Heals the character.
+    /// Gradually change the health slider so it is smooth.
     /// </summary>
-    /// <param name="amount">Value to be added.</param>
-    public void AddHealth(float amount)
+    private void UpdateSlider(float amount = 0)
     {
-        health += amount;
-        healthSlider.value = health;
-        fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
+        if (amount != 0)
+        {
+            health -= amount;
+            target = health;
+        }
+        if (current != target)
+        {
+            healthSlider.value = healthSlider.value - Time.deltaTime * 30;
+            current = healthSlider.value;
+        }
+        if (current < target)
+        {
+            current = target;
+            healthSlider.value = target;
+        }
     }
-
 
 }
