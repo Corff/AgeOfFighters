@@ -364,8 +364,8 @@ GameObject:
   - component: {fileID: 273247714}
   - component: {fileID: 273247716}
   - component: {fileID: 273247717}
-  - component: {fileID: 273247715}
   - component: {fileID: 273247718}
+  - component: {fileID: 273247715}
   - component: {fileID: 273247719}
   m_Layer: 5
   m_Name: Character 4
@@ -495,7 +495,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &273247719
@@ -895,7 +895,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &587330260
@@ -1729,7 +1729,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1208354466
@@ -2353,8 +2353,8 @@ GameObject:
   - component: {fileID: 1728829220}
   - component: {fileID: 1728829222}
   - component: {fileID: 1728829223}
-  - component: {fileID: 1728829221}
   - component: {fileID: 1728829224}
+  - component: {fileID: 1728829221}
   - component: {fileID: 1728829225}
   m_Layer: 5
   m_Name: Character 3
@@ -2484,7 +2484,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1728829225
