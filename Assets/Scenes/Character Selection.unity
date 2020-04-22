@@ -390,8 +390,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160.5, y: 113.00003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -121.4, y: -111.1}
+  m_SizeDelta: {x: 142.7, y: 168.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &273247715
 MonoBehaviour:
@@ -646,13 +646,6 @@ RectTransform:
   - {fileID: 1728829220}
   - {fileID: 273247714}
   - {fileID: 1073121320}
-  - {fileID: 168311277}
-  - {fileID: 1198882129}
-  - {fileID: 1793398621}
-  - {fileID: 248827899}
-  - {fileID: 1353383581}
-  - {fileID: 1882046158}
-  - {fileID: 1961739546}
   m_Father: {fileID: 1610341340}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -805,8 +798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160.5, y: 113.00003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -240.5, y: 79}
+  m_SizeDelta: {x: 142.7, y: 168.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &587330257
 MonoBehaviour:
@@ -895,7 +888,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &587330260
@@ -1459,8 +1452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160.5, y: -2.0000153}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 108.4, y: -111.1}
+  m_SizeDelta: {x: 142.7, y: 168.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073121321
 MonoBehaviour:
@@ -1639,8 +1632,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -53.5, y: 113.00003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -11.6, y: 79}
+  m_SizeDelta: {x: 142.7, y: 168.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1208354463
 MonoBehaviour:
@@ -1729,7 +1722,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1208354466
@@ -2073,13 +2066,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1353383581}
-  - component: {fileID: 1353383583}
-  - component: {fileID: 1353383584}
-  - component: {fileID: 1353383582}
-  m_Layer: 5
-  m_Name: Character 10
-  m_TagString: Untagged
+  - component: {fileID: 1526332515}
+  - component: {fileID: 1526332514}
+  - component: {fileID: 1526332513}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2379,8 +2371,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 53.5, y: 113.00003}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 217.5, y: 79}
+  m_SizeDelta: {x: 142.7, y: 168.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1728829221
 MonoBehaviour:
@@ -3142,6 +3134,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8613336207532230123, guid: c470ac0438a58864aabbf115e701f333,
+        type: 3}
+      propertyPath: characterImages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613336207532230123, guid: c470ac0438a58864aabbf115e701f333,
+        type: 3}
+      propertyPath: characterImages.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d5eb3735ec250b42b7fe2f85ed97d0c,
+        type: 3}
+    - target: {fileID: 8613336207532230123, guid: c470ac0438a58864aabbf115e701f333,
+        type: 3}
+      propertyPath: characterImages.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d5eb3735ec250b42b7fe2f85ed97d0c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c470ac0438a58864aabbf115e701f333, type: 3}
 --- !u!1 &4709575567619571237 stripped
