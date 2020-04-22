@@ -353,6 +353,36 @@ public class CharMovement : MonoBehaviour
         }
     }
 
+    public void MoveHorizontal(float moveHorizontal, ref Rigidbody2D rb)
+    {
+        if (moveHorizontal > 1 || moveHorizontal < -1)
+        {
+            throw new ArgumentException("The value must be between 1 and -1 (inclusive)");
+        }
+        movement = new Vector3(moveHorizontal * (speed), rigidBody.velocity.y, 0);
+        //anim.SetBool("Running", true);
+
+        rb.velocity = movement;
+
+        if (moveHorizontal == 0)
+        {
+            anim.SetBool("isRunning", false);
+            dashBuffer = false;
+            isWalking = false;
+            //speed = 5f;
+        }
+
+        if (moveHorizontal > 0)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else if (moveHorizontal < 0)
+        {
+            anim.SetBool("isRunning", true);
+        }
+    }
+
+
     /// <summary>
     /// Makes the character jump.
     /// </summary>

@@ -9,6 +9,7 @@ public class GameStartControl : MonoBehaviour
     public bool isEnemy;
     public bool isVs;
     public bool genRandom;
+    public bool isAi;
 
     private int playerChoice;
     private Image vsImage;
@@ -55,6 +56,10 @@ public class GameStartControl : MonoBehaviour
             var enemyInstance = Instantiate(enemyPrefab, new Vector2(5f, -1.75f), Quaternion.identity);
             playerInstance.tag = "Player";
             enemyInstance.tag = "Enemy";
+            if (isAi)
+            {
+                enemyInstance.transform.GetChild(7).gameObject.SetActive(true);
+            }
         }
     }
 

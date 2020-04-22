@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 0.44145, y: 0.44145, z: 2.9431999}
   m_Children: []
   m_Father: {fileID: 975011299070502215}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8989777087004400477
 SpriteRenderer:
@@ -991,6 +991,36 @@ Transform:
   m_LocalScale: {x: 0.14999999, y: 0.14999999, z: 1}
   m_Children: []
   m_Father: {fileID: 975011299070502215}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7664222073596380789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3520706027234878699}
+  m_Layer: 0
+  m_Name: isAi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3520706027234878699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664222073596380789}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19300008, y: 0.53700006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 975011299070502215}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7763080093626799126
@@ -1206,6 +1236,7 @@ GameObject:
   - component: {fileID: 1347458454945479322}
   - component: {fileID: 4344595146087628489}
   - component: {fileID: 3476064873838898551}
+  - component: {fileID: 756837167528161039}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -1231,6 +1262,7 @@ Transform:
   - {fileID: 6015204722454993493}
   - {fileID: 7524807372297422015}
   - {fileID: 806675061739941912}
+  - {fileID: 3520706027234878699}
   - {fileID: 2335521833149102580}
   - {fileID: 2593933198412931456}
   m_Father: {fileID: 0}
@@ -1363,7 +1395,6 @@ MonoBehaviour:
   perfectWindow: 1
   perfectBlock: 0
   timer: {fileID: 0}
-  block: {fileID: 2155501279880415163}
   Timer: {fileID: 166422153398596364, guid: cb527a8608123a348ad5d55f7094325f, type: 3}
   anim: {fileID: 8273859857380504950}
 --- !u!114 &3661932075297772552
@@ -1528,6 +1559,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &756837167528161039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544233885837751940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06d10d1cbf4a34fa419b95cd2d0232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  rb: {fileID: 0}
+  enemyAttack: {fileID: 0}
+  cmove: {fileID: 0}
 --- !u!1 &8783572067634870375
 GameObject:
   m_ObjectHideFlags: 0
