@@ -124,7 +124,7 @@ public class CAttack : MonoBehaviour
     public void LightAttackOn()
     {
         soundAccess.soundCall(gameObject, "Punch");
-        punchCheck.SetActive(true);
+        //punchCheck.SetActive(true);
         anim.SetTrigger("isPunching");
         if (moveQueue.Count == 9)
         {

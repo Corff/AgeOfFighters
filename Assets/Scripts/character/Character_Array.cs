@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class Character_Array : MonoBehaviour
 {
 
-    private string[] characterNames = {"Red Chump", "Blue Chump"};
+    private string[] characterNames = {"Red Chump", "Robot Boi", "Blue Chump", "Penguin Boi"};
     private string[] characterDesc = 
         { "A red boi chump.",
-        "A blue boi chump :)"};
+        "A roboty boi chump",
+        "A blue boi chump :)",
+        "A penguiny? boi chump"};
     private static int playerNumChoice;
 
     public List<Sprite> characterImages;
