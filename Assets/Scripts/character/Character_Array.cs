@@ -13,7 +13,8 @@ public class Character_Array : MonoBehaviour
         "A blue boi chump :)",
         "A penguiny? boi chump"};
     private static int playerNumChoice;
-
+    private static int multiPlayerNumChoice1;
+    private static int multiPlayerNumChoice2;
     public List<Sprite> characterImages;
     public List<Sprite> characterBackgrounds;
     public List<GameObject> characterPrefabs;
@@ -26,13 +27,36 @@ public class Character_Array : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void setPlayerChoice(int choiceVal)
+    public void setPlayerChoice(int choiceVal, int charT)
     {
-        playerNumChoice = choiceVal;
+        if(PlayModeControl.isMultiplayer == false)
+        {
+            playerNumChoice = choiceVal;
+        }
+        else if(PlayModeControl.isMultiplayer == true && charT == 0)
+        {
+            multiPlayerNumChoice1 = choiceVal;
+        }
+        else if (PlayModeControl.isMultiplayer == true && charT == 1)
+        {
+            multiPlayerNumChoice2= choiceVal;
+        }
     }
-    public int getPlayerChoice()
+    public int getPlayerChoice(int charT)
     {
-        return playerNumChoice;
+        if(PlayModeControl.isMultiplayer == true && charT == 0)
+        {
+            return multiPlayerNumChoice1;
+        }
+
+        else if (PlayModeControl.isMultiplayer == true && charT == 1)
+        {
+            return multiPlayerNumChoice2;
+        }
+        else
+        {
+            return playerNumChoice;
+        }
     }
 
     public string[] getCharNames()

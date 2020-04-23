@@ -590,7 +590,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 0
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -611,9 +611,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: f9a8e0c6-aaf9-4415-b232-05e547177040
+  cloudProjectId: 3fbb7177-c7a5-43ec-b2d5-dba6249ae761
   framebufferDepthMemorylessMode: 0
-  projectName: AgeOfFighters
+  projectName: AgeOfFighterFinale
   organizationId: tse-group
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

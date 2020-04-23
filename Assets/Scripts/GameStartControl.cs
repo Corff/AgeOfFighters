@@ -12,6 +12,7 @@ public class GameStartControl : MonoBehaviour
     public bool isAi;
     public GameObject background;
     public GameObject mapInf;
+    public Sprite[] sprites;
 
     private Map_Array mapScript;
     private int playerChoice;
@@ -27,6 +28,8 @@ public class GameStartControl : MonoBehaviour
     private List<GameObject> characterPrefabList;
     private SpriteRenderer[] playerBodyParts;
     private SpriteRenderer[] enemyBodyParts;
+    private Image playerImage;
+    private Image enemyImage;
 
 
 
@@ -35,7 +38,7 @@ public class GameStartControl : MonoBehaviour
     void Start()
     {
         charTempNames = charInfo.GetComponent<Character_Array>().getCharNames();
-        playerChoice = charInfo.GetComponent<Character_Array>().getPlayerChoice();
+        playerChoice = charInfo.GetComponent<Character_Array>().getPlayerChoice(0);
         vsImage = GetComponent<Image>();
         backImage = GetComponentInParent<Image>();
         vsText = GetComponentInChildren<Text>();
@@ -50,7 +53,7 @@ public class GameStartControl : MonoBehaviour
         }
         Debug.Log("EnemyNum " + enemyNum);
         isAi = !PlayModeControl.isMultiplayer;
-        if (isVs == false)
+        if (isVs == false && PlayModeControl.isMultiplayer == false)
         {
             Debug.Log("EnemyNum " + enemyNum);
             playerPrefab = characterPrefabList[playerChoice];
@@ -60,6 +63,30 @@ public class GameStartControl : MonoBehaviour
             var enemyInstance = Instantiate(enemyPrefab, new Vector2(5f, -1.75f), Quaternion.identity);
             playerInstance.tag = "Player";
             enemyInstance.tag = "Enemy";
+            playerImage = GameObject.FindWithTag("PH").GetComponent<Image>();
+            enemyImage = GameObject.FindWithTag("EH").GetComponent<Image>();
+            playerImage.sprite = sprites[playerChoice];
+            enemyImage.sprite = sprites[enemyNum];
+            if (isAi)
+            {
+                enemyInstance.transform.GetChild(7).gameObject.SetActive(true);
+            }
+        }
+        else if (isVs == false && PlayModeControl.isMultiplayer == true)
+        {
+            enemyNum = charInfo.GetComponent<Character_Array>().getPlayerChoice(1);
+            Debug.Log("EnemyNum " + enemyNum);
+            playerPrefab = characterPrefabList[playerChoice];
+            enemyPrefab = characterPrefabList[enemyNum];
+            Debug.Log("Enemy Prefab " + enemyPrefab);
+            var playerInstance = Instantiate(playerPrefab, new Vector2(-5f, -1.75f), Quaternion.identity);
+            var enemyInstance = Instantiate(enemyPrefab, new Vector2(5f, -1.75f), Quaternion.identity);
+            playerInstance.tag = "Player";
+            enemyInstance.tag = "Enemy";
+            playerImage = GameObject.FindWithTag("PH").GetComponent<Image>();
+            enemyImage = GameObject.FindWithTag("EH").GetComponent<Image>();
+            playerImage.sprite = sprites[playerChoice];
+            enemyImage.sprite = sprites[enemyNum];
             if (isAi)
             {
                 enemyInstance.transform.GetChild(7).gameObject.SetActive(true);

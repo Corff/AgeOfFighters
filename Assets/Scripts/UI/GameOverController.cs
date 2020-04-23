@@ -9,11 +9,12 @@ public class GameOverController : MonoBehaviour
 
     private Health checkPHealth;//Checks current health of Player
     private Health checkEHealth;//Checks current health of Enemy
-
+    private FadePanel fp;
 
 
     private void Start()
     {
+        fp = gOPanel.GetComponent<FadePanel>();
         checkPHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
         checkEHealth = GameObject.FindWithTag("Enemy").GetComponent<Health>();
     }
@@ -27,11 +28,13 @@ public class GameOverController : MonoBehaviour
 
                 gOPanel.GetComponentInChildren<Text>().text = "Player 2";
                 gOPanel.SetActive(true);
+                fp.GOPanelFadeON = true;
             }
             else if (checkEHealth.deathTag == "Enemy")
             {
                 gOPanel.GetComponentInChildren<Text>().text = "Player 1";
                 gOPanel.SetActive(true);
+                fp.GOPanelFadeON = true;
             }
         }
     }

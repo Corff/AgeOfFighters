@@ -23,6 +23,11 @@ TagManager:
   - PCCounter
   - EnemyAI
   - SFXControlTag
+  - CharSel1
+  - CharSel2
+  - PH
+  - EH
+  - GOP
   layers:
   - Default
   - TransparentFX

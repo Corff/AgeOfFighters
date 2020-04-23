@@ -88,7 +88,6 @@ public class Health : MonoBehaviour
         if (blocking.perfectBlock) //If the block is perfect take only half the amount off.
         {
             blocking.timer.time = blocking.timer.time - (amount / 2);
-            blocking.ReturnProjectile(go);
         }
         else if (blocking.blocked)
         {
