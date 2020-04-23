@@ -1242,7 +1242,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1549521189}
-  - component: {fileID: 1549521190}
   m_Layer: 5
   m_Name: MapDetails
   m_TagString: Untagged
@@ -1276,20 +1275,6 @@ RectTransform:
   m_AnchoredPosition: {x: 394.8, y: 0.000053406}
   m_SizeDelta: {x: 426.5, y: 639}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1549521190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549521188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d13d0efd2262444952b647d97c9171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapNum: 0
-  mapInfo: {fileID: 644986129}
 --- !u!1 &1556007391
 GameObject:
   m_ObjectHideFlags: 0
