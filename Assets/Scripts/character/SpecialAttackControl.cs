@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,29 +17,25 @@ public class SpecialAttackControl : MonoBehaviour
     private WaitForSeconds chargingTime;
     private SpriteRenderer[] charPBodyParts;
     private SpriteRenderer[] charEBodyParts;
-
+    private CMovement cMovement;
+    private RaycastHit2D raycast;
+    private RaycastHit2D raycastLeft;
+    public float specialDOT;
+    private bool done = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        cMovement = GetComponent<CMovement>();
         animator = GetComponent<Animator>();
         if (gameObject.tag == "Player")
         {
             specialSlider = GameObject.FindWithTag("PlayerSpecial").GetComponent<Slider>();
-            foreach (GameObject x in GameObject.FindGameObjectsWithTag("BodyPart"))
-            {
-                charPBodyParts = gameObject.GetComponentsInChildren<SpriteRenderer>();
-            }
             specialSlider.value = specialVal;
         }
         else if (gameObject.tag == "Enemy")
         {
             specialSlider = GameObject.FindWithTag("EnemySpecial").GetComponent<Slider>();
-            foreach(GameObject x in GameObject.FindGameObjectsWithTag("BodyPart"))
-            {
-                charEBodyParts = gameObject.GetComponentsInChildren<SpriteRenderer>();
-            }
             specialSlider.value = specialVal;
         }
     }
@@ -46,6 +44,8 @@ public class SpecialAttackControl : MonoBehaviour
     void Update()
     {
         specialSlider.value = specialVal;
+        Debug.DrawRay(gameObject.transform.position, Vector2.left, Color.blue);
+        Debug.DrawRay(gameObject.transform.position, Vector2.right, Color.blue);
     }
 
     public void IncrementSpecialValue(int addSp) 
@@ -57,43 +57,29 @@ public class SpecialAttackControl : MonoBehaviour
     {
         if (specialVal >= 100 && tag == "Player")
         {
-            foreach (SpriteRenderer sr in charPBodyParts)
-            {
-                sr.GetComponent<SpriteRenderer>().color = Color.red;
-            }
             specialAttackCheck.SetActive(true);
-            animator.SetTrigger("Special Attack");
+            GameObject.FindWithTag("Enemy").GetComponent<Health>().TakeHealth(gameObject.GetComponent<CAttack>().damageArray[3]);
             specialVal = 0;
         }
+
         if (specialVal >= 100 && tag == "Enemy")
         {
-            foreach (SpriteRenderer sr in charEBodyParts)
-            {
-                sr.GetComponent<SpriteRenderer>().color = Color.red;
-            }
             specialAttackCheck.SetActive(true);
-            animator.SetTrigger("Special Attack");
+            GameObject.FindWithTag("Player").GetComponent<Health>().TakeHealth(gameObject.GetComponent<CAttack>().damageArray[3]);
             specialVal = 0;
         }
     }
 
-    public void SpecialOff(string tag)
-    {
+    public void SpecialOff(string tag) { 
         if (tag == "Player")
         {
-            foreach (SpriteRenderer sr in charPBodyParts)
-            {
-                sr.GetComponent<SpriteRenderer>().color = Color.white;
-            }
             specialAttackCheck.SetActive(false);
+            done = false;
         }
         if (tag == "Enemy")
         {
-            foreach (SpriteRenderer sr in charEBodyParts)
-            {
-                sr.GetComponent<SpriteRenderer>().color = Color.white;
-            }
             specialAttackCheck.SetActive(false);
+            done = false;
         }
     }
 }

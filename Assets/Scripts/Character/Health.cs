@@ -14,10 +14,12 @@ public class Health : MonoBehaviour
     private GameObject workingObj;
     public Gradient gradient; //Reponsible for changing health bar colours depending on how much health you have
     private Image fill; //the Bar of the Health Bar.
+    private ComboCounter accessCC;
    
 
     void Start()
     {
+        accessCC = GameObject.FindWithTag("GameController").GetComponent<ComboCounter>();
         accessSP = gameObject.GetComponent<SpecialAttackControl>();
         if(gameObject.tag == "Player")
         {
@@ -62,16 +64,19 @@ public class Health : MonoBehaviour
         }
         else
         {
+            gameObject.GetComponent<ParticleSystem>().Play();
             health -= amount;
             healthSlider.value = health;
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
+                accessCC.IncrementEHitCounter();
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
+                accessCC.IncrementPHitCounter();
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
@@ -95,16 +100,19 @@ public class Health : MonoBehaviour
         }
         else
         {
+            gameObject.GetComponent<ParticleSystem>().Play();
             health -= amount;
             healthSlider.value = health;
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
             if (gameObject.tag == "Player")
             {
+                accessCC.IncrementEHitCounter();
                 workingObj = GameObject.FindGameObjectWithTag("Enemy");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }
             if (gameObject.tag == "Enemy")
             {
+                accessCC.IncrementPHitCounter();
                 workingObj = GameObject.FindGameObjectWithTag("Player");
                 workingObj.GetComponent<SpecialAttackControl>().IncrementSpecialValue(10);
             }

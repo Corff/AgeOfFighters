@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 3282596901917974141}
   - component: {fileID: 3282596901917974142}
   - component: {fileID: 3282596901917974143}
+  - component: {fileID: 1462955765}
   m_Layer: 5
   m_Name: GameOverPanel
-  m_TagString: Untagged
+  m_TagString: GOP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3282596901917974141
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78,6 +79,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1462955765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282596901917974137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9a69a23a284c44bb80fcdce37d3a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GOPanelFadeON: 0
+  winner: {fileID: 3282596903224421437}
+  backButtonGO: {fileID: 3282596903498893337}
+  stats: {fileID: 3282596902499430051}
+  winsSign: {fileID: 3282596903473639836}
+  gameOverTitle: {fileID: 3282596903477047713}
 --- !u!1 &3282596902499430061
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +529,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: LoadLevel
+        m_MethodName: LoadNextLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

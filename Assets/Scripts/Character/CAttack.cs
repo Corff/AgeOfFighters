@@ -102,8 +102,8 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonDown("SpecialAttack") && gameObject.tag == "Player")
         {
-            soundAccess.soundCall(gameObject, "Special");
             specialAC.SpecialTrigger(gameObject.tag);
+            soundAccess.soundCall(gameObject, "Special");
         }
         if (Input.GetButtonDown("EnemySpecialAttack") && gameObject.tag == "Enemy")
         {
@@ -112,8 +112,8 @@ public class CAttack : MonoBehaviour
 
         if (Input.GetButtonUp("SpecialAttack") && gameObject.tag == "Player")
         {
-            soundAccess.soundCall(gameObject, "Special");
             specialAC.SpecialOff(gameObject.tag);
+            soundAccess.soundCall(gameObject, "Special");
         }
         if (Input.GetButtonUp("EnemySpecialAttack") && gameObject.tag == "Enemy")
         {
@@ -124,7 +124,7 @@ public class CAttack : MonoBehaviour
     public void LightAttackOn()
     {
         soundAccess.soundCall(gameObject, "Punch");
-        //punchCheck.SetActive(true);
+        punchCheck.SetActive(true);
         anim.SetTrigger("isPunching");
         if (moveQueue.Count == 9)
         {
@@ -150,8 +150,8 @@ public class CAttack : MonoBehaviour
     public void HeavyAttackOn()
     {
         soundAccess.soundCall(gameObject, "HPunch");
-        heavyPunchCheck.SetActive(true);
-        anim.SetTrigger("isHeavyPunching");
+        punchCheck.SetActive(true);
+        anim.SetTrigger("isPunching");
         if (moveQueue.Count == 9)
         {
             moveQueue.Dequeue();
@@ -206,7 +206,7 @@ public class CAttack : MonoBehaviour
 
     public void HeavyAttackOff()
     {
-        heavyPunchCheck.SetActive(false);
+        punchCheck.SetActive(false);
     }
 
     float StaleMoves(int n)

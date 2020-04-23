@@ -9,10 +9,10 @@ public class Map_Array : MonoBehaviour
 
 
 
-    private string[] mapNames = { "City", "Jungle", "Fenland", "Desert", "Mountains" };
+    private string[] mapNames = { "City", "Night Farmlnad", "Fenland", "Desert", "Mountains" };
     private string[] mapDesc =
         { "Cityscape, watch out for Shia LaBouef",
-        "Forest and temple", "Flatest Place On Earth", "This place is damn hot, wear sandals.", "Dem some big bois in the background, don't try to climb them you'll probably die"};
+        "Lovely farm with a starry sky", "Flatest Place On Earth", "This place is damn hot, wear sandals.", "Dem some big bois in the background, don't try to climb them you'll probably die"};
     private static int playerMapNumChoice;
 
     public List<Sprite> mapImages;

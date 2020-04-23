@@ -14,16 +14,20 @@ public class GameOverController : MonoBehaviour
 
     private void Start()
     {
-        fp = gOPanel.GetComponent<FadePanel>();
-        checkPHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
-        checkEHealth = GameObject.FindWithTag("Enemy").GetComponent<Health>();
+        //fp = gOPanel.GetComponent<FadePanel>();
+        //checkPHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
+        //checkEHealth = GameObject.FindWithTag("Enemy").GetComponent<Health>();
     }
     void Update()
     {
-       
+        fp = gOPanel.GetComponent<FadePanel>();
+        checkPHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
+        checkEHealth = GameObject.FindWithTag("Enemy").GetComponent<Health>();
         if (checkPHealth.dead == true || checkEHealth.dead == true)
         {
-            if(checkPHealth.deathTag == "Player")
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            if (checkPHealth.deathTag == "Player")
             {
 
                 gOPanel.GetComponentInChildren<Text>().text = "Player 2";

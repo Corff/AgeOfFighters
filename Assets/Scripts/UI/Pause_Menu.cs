@@ -19,11 +19,15 @@ public class Pause_Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menuOn == false)
         {
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             PauseMenuUi.SetActive(true);
             menuOn = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && menuOn == true)
         {
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             PauseMenuUi.SetActive(false);
             menuOn = false;
         }

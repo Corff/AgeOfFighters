@@ -45,13 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapImages:
   - {fileID: 21300000, guid: 361a1f8b34fa0564582c9f23c190bddf, type: 3}
-  - {fileID: 21300000, guid: aa908057e938ba64db516d87769dec33, type: 3}
+  - {fileID: 21300000, guid: b70f6b22b4beabf4089a0721fc26b892, type: 3}
+  - {fileID: 21300000, guid: 367933a17b80fe94683866e9bccd0bc2, type: 3}
   - {fileID: 21300000, guid: bdeb72df64327b7499acdcf04bef6c92, type: 3}
-  - {fileID: 21300000, guid: 846976f87055e204c806a72f8b5907e7, type: 3}
-  - {fileID: 21300000, guid: 9d31472516ca9de48acaa5a16aa7348c, type: 3}
+  - {fileID: 21300000, guid: aa908057e938ba64db516d87769dec33, type: 3}
   mapTextures:
   - {fileID: 2100000, guid: 5d8729d7189f566499c2803155d09110, type: 2}
-  - {fileID: 2100000, guid: 0274add487835c644af4e23b8af9ce49, type: 2}
+  - {fileID: 2100000, guid: f5f30b210a419ae4ea55f5bd7c148d9f, type: 2}
+  - {fileID: 2100000, guid: 24a54513ea94d81468bf8a399cca2a5c, type: 2}
   - {fileID: 2100000, guid: 14f7a0b7505d1e244a45fc5a32e44ae5, type: 2}
-  - {fileID: 0}
-  - {fileID: 2100000, guid: 3ff93d50ed4022d45bb6a4599262ca8a, type: 2}
+  - {fileID: 2100000, guid: 0274add487835c644af4e23b8af9ce49, type: 2}

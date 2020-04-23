@@ -23,15 +23,16 @@ public class SFXController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
-        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
-        playerAudio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();//Grabs Player AudioSource
-        enemyAudio = GameObject.FindWithTag("Enemy").GetComponent<AudioSource>();//Grabs Enemy AudioSource
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
+        playerAudio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();//Grabs Player AudioSource
+        enemyAudio = GameObject.FindWithTag("Enemy").GetComponent<AudioSource>();//Grabs Enemy AudioSource
         //charSFX(playerAnim, playerAudio);
         //charSFX(enemyAnim, enemyAudio);
     }

@@ -11,44 +11,40 @@ public class FadePanel : MonoBehaviour
     public Text stats;
     public Text winsSign;
     public Text gameOverTitle;
-
-    private Image image;
-    private float alpha = 0;
-    private Color panelColour;
-    private Color textColour;
-    private float newalpha = 1;
+    public float durationFade = 0.5f;
 
 
-    void Start()
-    {
-        panelColour = new Color(0, 219, 235, alpha);
-        textColour = new Color(255, 255, 255, alpha);
-        winner.color = textColour;
-        backButtonGO.color = textColour;
-        stats.color = textColour;
-        winsSign.color = textColour;
-        gameOverTitle.color = textColour;
-        image = gameObject.GetComponent<Image>();
-        image.color = panelColour;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (GOPanelFadeON == true && newalpha < 255)
+        if (GOPanelFadeON == true)
         {
-            newalpha += Time.deltaTime;
-            if (newalpha > 255) newalpha = 255;
-            Debug.LogWarning(newalpha);
-            panelColour.a = newalpha;
-            image.color = panelColour;
-            textColour.a = newalpha;
-            winner.color = textColour;
-            backButtonGO.color = textColour;
-            stats.color = textColour;
-            winsSign.color = textColour;
-            gameOverTitle.color = textColour;
+            AlphaFade();
+        }
+    }
 
+    public void AlphaFade()
+    {
+        var canvGroup = GetComponent<CanvasGroup>();
+
+        StartCoroutine(AlphaFadeDo(canvGroup, canvGroup.alpha, 1));
+        if(canvGroup.alpha == 1)
+        {
+            Time.timeScale = 0;
+        }
+    }
+
+    public IEnumerator AlphaFadeDo(CanvasGroup canvasGroup, float start, float end)
+    {
+        float timer = 0f;
+
+        while(timer < durationFade)
+        {
+            timer += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(start, end, timer / durationFade);
+
+            yield return null;
         }
     }
 }
