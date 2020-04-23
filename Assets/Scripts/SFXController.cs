@@ -24,7 +24,7 @@ public class SFXController : MonoBehaviour
     void Start()
     {
         playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
-        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>(); ;
+        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
         playerAudio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();//Grabs Player AudioSource
         enemyAudio = GameObject.FindWithTag("Enemy").GetComponent<AudioSource>();//Grabs Enemy AudioSource
     }
@@ -38,6 +38,7 @@ public class SFXController : MonoBehaviour
 
     public void soundCall(GameObject Gm, string typeAnim)
     {
+        Debug.Log("Sfx Run");
         if (Gm.tag == "Player")
         {
             charCallSFX(playerAnim, playerAudio, typeAnim);

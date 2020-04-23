@@ -28,7 +28,7 @@ public class CAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundAccess = GameObject.FindGameObjectWithTag("GameController").GetComponent<SFXController>();
+        soundAccess = GameObject.FindWithTag("GameController").GetComponent<SFXController>();
         anim = GetComponent<Animator>();
         specialAC = GetComponent<SpecialAttackControl>();
         timer = Instantiate(timer, new Vector2(100, 100), Quaternion.identity).GetComponent<TimeControl>();
@@ -174,7 +174,6 @@ public class CAttack : MonoBehaviour
 
     public void RangedAttackOn()
     {
-        Debug.Log(timer.time);
         if (timer.timeUp)
         {
             StartCoroutine(RangedAttack());

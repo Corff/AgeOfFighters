@@ -44,7 +44,6 @@ public class GameStartControl : MonoBehaviour
         characterPrefabList = charInfo.GetComponent<Character_Array>().characterPrefabs;
         mapScript = mapInf.GetComponent<Map_Array>();
         background.GetComponent<MeshRenderer>().material = mapScript.mapTextures[mapScript.getMapPlayerChoice()];
-        Debug.Log("Length minus 1 " + (characterPrefabList.Count - 1));
         if(genRandom == true)
         {
             enemyNum = Random.Range(0, characterPrefabList.Count);
