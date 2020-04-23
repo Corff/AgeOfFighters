@@ -495,7 +495,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &273247719
@@ -895,7 +895,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &587330260
@@ -1729,7 +1729,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1208354466
@@ -1867,15 +1867,6 @@ PrefabInstance:
       propertyPath: transitionTime
       value: 0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 1293680773, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2948078070103610906, guid: d0964107e73faf443b68b00b5aa9111c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2948078070103610905, guid: d0964107e73faf443b68b00b5aa9111c,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1883,6 +1874,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1293680774, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293680773, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948078070103610906, guid: d0964107e73faf443b68b00b5aa9111c,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1293680778, guid: d0964107e73faf443b68b00b5aa9111c, type: 3}
@@ -2484,7 +2484,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game Scene
+          m_StringArgument: Map Select
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1728829225

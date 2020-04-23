@@ -240,7 +240,7 @@ MonoBehaviour:
   timer: 0
   setName: 
   anim: {fileID: 2948078070103610904}
-  transitionTime: 0.5
+  transitionTime: 0.3
 --- !u!1 &2948078069744471610
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6751762137721419779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8839107370588935003}
+  - component: {fileID: 1557560915957429341}
+  m_Layer: 0
+  m_Name: MapInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8839107370588935003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751762137721419779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1490.6829, y: 674.59753, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557560915957429341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751762137721419779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ae9cdbc988d464284280f9c007dae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapImages:
+  - {fileID: 21300000, guid: 361a1f8b34fa0564582c9f23c190bddf, type: 3}
+  - {fileID: 21300000, guid: aa908057e938ba64db516d87769dec33, type: 3}
+  - {fileID: 21300000, guid: bdeb72df64327b7499acdcf04bef6c92, type: 3}
+  - {fileID: 21300000, guid: 846976f87055e204c806a72f8b5907e7, type: 3}
+  - {fileID: 21300000, guid: 9d31472516ca9de48acaa5a16aa7348c, type: 3}
+  mapTextures:
+  - {fileID: 2100000, guid: 5d8729d7189f566499c2803155d09110, type: 2}
+  - {fileID: 2100000, guid: 0274add487835c644af4e23b8af9ce49, type: 2}
+  - {fileID: 2100000, guid: 14f7a0b7505d1e244a45fc5a32e44ae5, type: 2}
+  - {fileID: 0}
+  - {fileID: 2100000, guid: 3ff93d50ed4022d45bb6a4599262ca8a, type: 2}

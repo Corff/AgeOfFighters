@@ -6,7 +6,7 @@ public class SFXController : MonoBehaviour
 {
 
     public AudioClip[] characterSFX;//Sfx array of all character related sounds, starts at index 7
-    //1.Walk 2.Run 3.LPunch 4.HPunch 5.Special 6.Jump 7.Crouch
+                                    //1.Walk 2.Run 3.LPunch 4.HPunch 5.Special 6.Jump 7.Crouch
 
 
     private characterInfoAssign charInfoAccess;//CharInfo Access
@@ -23,8 +23,8 @@ public class SFXController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();//Grabs Player Animator
-        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();//Grabs Enemy Animator
+        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>(); ;
         playerAudio = GameObject.FindWithTag("Player").GetComponent<AudioSource>();//Grabs Player AudioSource
         enemyAudio = GameObject.FindWithTag("Enemy").GetComponent<AudioSource>();//Grabs Enemy AudioSource
     }
@@ -38,7 +38,7 @@ public class SFXController : MonoBehaviour
 
     public void soundCall(GameObject Gm, string typeAnim)
     {
-        if(Gm.tag == "Player")
+        if (Gm.tag == "Player")
         {
             charCallSFX(playerAnim, playerAudio, typeAnim);
         }

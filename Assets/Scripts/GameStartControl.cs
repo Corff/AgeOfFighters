@@ -10,7 +10,10 @@ public class GameStartControl : MonoBehaviour
     public bool isVs;
     public bool genRandom;
     public bool isAi;
+    public GameObject background;
+    public GameObject mapInf;
 
+    private Map_Array mapScript;
     private int playerChoice;
     private Image vsImage;
     private List<Sprite> charSpriteList;
@@ -31,7 +34,6 @@ public class GameStartControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         charTempNames = charInfo.GetComponent<Character_Array>().getCharNames();
         playerChoice = charInfo.GetComponent<Character_Array>().getPlayerChoice();
         vsImage = GetComponent<Image>();
@@ -40,12 +42,15 @@ public class GameStartControl : MonoBehaviour
         charSpriteList = charInfo.GetComponent<Character_Array>().characterImages;
         charBackList = charInfo.GetComponent<Character_Array>().characterBackgrounds;
         characterPrefabList = charInfo.GetComponent<Character_Array>().characterPrefabs;
+        mapScript = mapInf.GetComponent<Map_Array>();
+        background.GetComponent<MeshRenderer>().material = mapScript.mapTextures[mapScript.getMapPlayerChoice()];
         Debug.Log("Length minus 1 " + (characterPrefabList.Count - 1));
         if(genRandom == true)
         {
             enemyNum = Random.Range(0, characterPrefabList.Count);
         }
         Debug.Log("EnemyNum " + enemyNum);
+        isAi = !PlayModeControl.isMultiplayer;
         if (isVs == false)
         {
             Debug.Log("EnemyNum " + enemyNum);
