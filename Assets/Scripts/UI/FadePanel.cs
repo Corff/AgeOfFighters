@@ -29,10 +29,6 @@ public class FadePanel : MonoBehaviour
         var canvGroup = GetComponent<CanvasGroup>();
 
         StartCoroutine(AlphaFadeDo(canvGroup, canvGroup.alpha, 1));
-        if(canvGroup.alpha == 1)
-        {
-            Time.timeScale = 0;
-        }
     }
 
     public IEnumerator AlphaFadeDo(CanvasGroup canvasGroup, float start, float end)

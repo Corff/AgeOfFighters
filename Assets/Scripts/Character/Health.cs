@@ -64,7 +64,6 @@ public class Health : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<ParticleSystem>().Play();
             health -= amount;
             healthSlider.value = health;
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
@@ -100,7 +99,6 @@ public class Health : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<ParticleSystem>().Play();
             health -= amount;
             healthSlider.value = health;
             fill.color = gradient.Evaluate(healthSlider.normalizedValue);  //Changes the health bar colour based on the character's HP
